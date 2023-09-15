@@ -1,0 +1,88 @@
+---
+title: The effects of mangrove restoration on fish stocks and marine biodiversity
+  in Indonesia
+author: "Sophie Wulfing"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  word_document: default
+  bookdown::pdf_document2:
+    fig_caption: yes
+    toc: no
+bibliography:
+- BRIN_Prop.bib
+- BRIN_Prop2.bib
+header-includes: \usepackage{setspace}\doublespacing
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
+#knitr::write_bib look into
+
+setwd("C:/Users/sophi/Desktop/FulbrightPaperwork/BRINApp")
+
+```
+
+# Research Objectives
+
+1. Determine the effect of mangrove restoration on the fishery production on Pulau Tanakeke, Takalar Regency, South Sulawesi Province, Indonesia.
+
+2. Uncover what aspects of mangrove cover is most beneficial to juvenile fish populations (i.e. reductions in water temperature, shade, or increased plant biomass).
+
+3. Disseminate these findings to the local community on Tanakeke with the help of the NGO Blue Forest as part of their community engagement program as well as publish findings to international scientific journals.
+
+# Background
+
+Mangroves are inter-tidal forests that are essential components to many tropical ecosystems. As the effects of climate change grow stronger worldwide, the need for carbon mitigation and protection against extreme weather are becoming more urgent. Mangroves biomes comprise about 14 % of marine carbon sequestration and may result in high gas emissions when these ecosystems are disturbed [@alongiCarbonSequestrationMangrove2012], while more established mangroves are more efficient in absorbing atmospheric carbon [@cameronEstimatingFullGreenhouse2019]. Beyond their benefits of protecting against extreme weather events, mangroves are also key actors in maintaining the biodiversity of the ecosystems they inhabit. Mangroves have been reported to support up 20% of the benthic biodiversity in their habitats [@carugatiImpactMangroveForests2018]. They provide essential nutrients, temperature controls, and protection from predators for marine life [@blueforestsAdaptiveCollaborativeManagement2012new]. Further, Mangroves have been shown to increase fishery yields in their surrounding areas, therefore increasing fisher income [@aburto-oropezaMangrovesGulfCalifornia2008]. The root systems of mangroves provide shelter and protection for juvenile fish, allowing them to grow and develop safely away from predators and also also act as a buffer against strong currents and waves, creating calmer and more stable environments where fish can feed and reproduce [@alongiMangroveForestsResilience2008]. Areas with intact mangrove forests have been shown to support higher fish abundance and diversity compared to areas without mangroves [@nagelkerkenHabitatFunctionMangroves2008]. Mangroves provide a rich food web, with leaf litter and detritus serving as a source of nutrients that fuel the basis of the food chain, supporting the growth and survival of various fish species [@alongiMangroveForestsResilience2008]. Furthermore, mangroves act as a buffer against coastal erosion and storm surges, safeguarding the habitats of both fish and fishermen [@nagelkerkenHabitatFunctionMangroves2008]. Mangroves offer a crucial line of defense against the impacts of climate change on fisheries. The dense root systems of mangroves stabilize shorelines and protect coastal areas from erosion caused by rising sea levels and extreme weather events [@alongiMangroveForestsResilience2008]. As the largest archipelago in the world, marine fisheries are an extremely important resource in Indonesia for food security and fisher income. Fisheries contribute to about 3% of the GDP in Indonesia, and over 80% of fishery catches are from small scale fisheries, however these systems are currently subject to over-exploitation, threatening the food security of those who are reliant on these fisheries [@ayundaImpactSmallScaleFisheries2018].
+
+Despite all of their contributions to ecosystem health, mangrove environments are being threatened worldwide. Rising sea-levels has been shown to be a major contributor to mangrove loss [@gilmanThreatsMangrovesClimate2008]. Further, as extreme events are becoming more intense and more frequent, these could potentially threaten mangroves due to defoliation, soil erosion, or by altering the chemical makeup or temperature of soils [@gilmanThreatsMangrovesClimate2008]. Mangroves are also directly threatened by anthropogenic activity. Pollution, coastal development, and aquaculture development have also contributed to mangrove ecosystem loss [@adeelAssessmentManagementMangrove2002]. Mangrove forests in the Western Tropical Pacific are the most diverse of these habitats globally [@ellisonOriginsMangroveEcosystems1999]. Indonesia has the most extensive mangrove forests in the world [@kusmanaManagementMangroveEcosystem2011]. As Indonesia is also the largest archipelagic country, mangroves’ contribution to flood protection and extreme weather mitigation is vital to the health and safety of many of its inhabitants. However, due to timber production, aquaculture, and human development, the Ministry of Forestry reported in 2007 that around 69% of mangroves were in damaged condition in the country [@kusmanaManagementMangroveEcosystem2011]. As a response to this habitat loss, the Indonesian government has committed to restoring 600,000 hectares of mangroves in the country in 2024, the most ambitious mangrove restoration project in the world. Tanakeke Island in South Sulawesi, Takalar Regency, is one location where this restoration effort is taking place. Here, mangrove habitats are generally privately owned, and the main driver of mangrove loss has been timber production and shrimp aquaculture [@blueforestsAdaptiveCollaborativeManagement2012new]. 1,200 hectares of mangroves were converted into aquaculture ponds in the 1980s and 1990s, which is about 70% of its historical cover [@brownCASESTUDYCommunity]. Recently, there have been reports of increased flooding on this island which could be attributed to the loss of protection from mangroves [@blueforestsAdaptiveCollaborativeManagement2012new]. However, in response to mangrove restoration, the community has seen great success in both engagement and successful mangrove rehabilitation, where hundreds of community members have participated since the 1990’s [@blueforestsAdaptiveCollaborativeManagement2012new; @PresentTanakekeIsland2013]. Further, small scale fishing is an essential part of peoples’ livelihoods on Tanakeke. Locally caught seafood is the main source of protein on this island [@blueforestsAdaptiveCollaborativeManagement2012new]. 
+
+Mangroves provide refuge for about 55% fish catch biomass in Indonesia [@theworldbankNewProjectWill2022new]. Fisher income has been shown to be negatively affected by mangrove habitat loss, and because of this, the financial gain of mangrove restoration is predicted to be more lucrative than any alternative land use such as aquaculture [@yamamotoLivingEcosystemDegradation2023]. For this reason, mangroves are an essential component to the health of Indonesia’s fisheries and contribute significantly to the food security of those directly reliant on small scale fisheries as a key source of nutrition, including on Tanakeke Island [@blueforestsAdaptiveCollaborativeManagement2012new]. While these mangrove restoration efforts have resulted in increased flood prevention and ecotourism, little research has been done to assess the improvements in marine biodiversity and benefits to fish stocks. In this project, we aim to understand how this restoration is affecting local marine biodiversity and the sustainability of commercially fished species on Tanakeke Island. We will use Unbaited Remote Underwater Video (URUV) methods which are non-invasive and cost effective.<!-- NONINVASIVE --> Methodology in this research will involve only observation and observation with video. No direct contact with animals will occur over the course of this project. <!-- NONINVASIVE --> We will use URUV to assess the marine biodiversity of mangrove habitats and compare them to the biodiversity of areas that have not undergone mangrove rehabilitation. Further, we will collect temperature and light data to create a statistical analysis of which variable is the most important when fostering biodiversity in mangroves.
+
+The outcomes of this project will be to disseminate its results to the local community. This will be done with the aid of Blue Forests, an NGO that oversees mangrove replanting on this island and facilitates community action and engagement in this restoration project. With their help, we will incorporate the results of this study into their curriculum for educating the public on the benefits of mangroves. Further, at Universitas Hasanuddin, I will assist in Dr. Ambo Rappe's lab by leading data science and coding seminars for graduate and undergraduate students at the University in order to help them learn data organization and analysis for their own projects. Finally, with the help of Dr. Ambo Rappe, we intend on publishing this research an international journal (see section 8). 
+
+
+# Methods
+
+## Site description:
+Pulau Tanakeke (Figure \ref{Tanakeke}) is situated about 40 km southwest of Makassar in South Sulawesi, Takalar Regency. The island is a coral atoll covering about 3,930 hectares. About 392.25 hectares of mangrove has been restored [@cameronEstimatingFullGreenhouse2019]. Access to the island presents a challenge as rough seas make sea crossings difficult during rainy seasons. The island comprises of five villages or desa: Balangdatu,  Maccinibaji, Mattirobaji, Rewataya, and Tompotana. Historically, the island was populated with about 1,776 hectares of Mangroves, most of which has been destroyed for aquaculture.
+
+(ref:tanakeke) A map of Tanakeke Island with village (desa) names (left). The right image shows the mangrove restoration sites on Tanakeke Island by Blue forests. Both images are courtesy of Blue Forests.
+
+```{r Tanakeke, echo = FALSE, fig.show="hold", out.width="45%", results = "asis", fig.cap = '(ref:tanakeke) \\label{Tanakeke}'}
+
+knitr::include_graphics("Tanakeke_Villages.png")
+knitr::include_graphics("Tanakeke_Sites.png")
+
+```
+
+
+## Equipment:
+For the video recording data, we will use six SJCAM SJ4000 Action Camera 4K30fps WiFi Cameras. In order to collect the temperature and light data, we will use a HOBO Pendant Temperature/Light 64K Data Logger.
+
+## Data Collection:
+In this project, we plan on selecting three different sites across the island. Within each site, we will locate a recently restored mangrove, mangroves that were restored over ten years ago, and an area where mangroves have not been rehabilitated yet. Recently restored mangrove sites will be in Lantangpeo, where Blue Forests is currently working on mangrove rehabilitation (Figure \ref{Tanakeke}). Sites that have been restored over ten years ago and unrestored sites will be located in Tompotanah and Ujungtanah (Figure \ref{Tanakeke}). At each site, we will place two cameras at 1m depth facing horizontally at a 7 degree angle from one another in order to measure fish length and water visibility. Next to the cameras, we will place the light and temperature loggers which will collect throughout the duration of filming. With two cameras per location, this will total 18 cameras deployments per month for nine months between February 2024 and October 2024.<!-- TIMING --> Cameras will record for 1 hour. After which, the cameras and loggers will be extracted from the site, the recording will be downloaded, and then the cameras will be moved to the next site where we will conduct the same experiment. Sampling of each site will occur on a monthly basis.<!-- NONINVASIVE --> Methodology in this research will involve only observation and observation with video. No direct contact with animals will occur over the course of this project.<!-- NONINVASIVE -->
+
+## Analysis:
+We will measure biodiversity using the MaxN calculation method, as it is the most robust calculation for relative abundance [@whitmarshWhatBigBRUVver2017]. Further, we will use the data collected from the temperature and light loggers to create a statistical model of fish abundance in order to determine if fish abundance is more attributed to decreased water temperature or the shaded areas provided by mangrove habitats.
+Expected Result
+As has been found in previous literature, we expect the sites with older, more established mangroves to foster the most biodiversity of juvenile fishes due to better shelter from predators and cooler temperatures. We expect the areas with no mangrove restoration to exhibit the least amount of biodiversity due to the exposure of these environments to predators and higher temperatures.
+
+# Source of Funds
+Fulbright Grant: ~ $20,800
+
+# Research Location
+Pulau Tanakeke, Takalar Regency, South Sulawesi Province, Indonesia (Figure \ref{Tanakeke}).
+
+# Data Management Plan
+Raw video data will be taken from the cameras and stored on a portable external hard drive as well as into my personal Google Drive account. We will also submit the raw data to BRIN's data repository, as well as any notes taken during field excursions. Any notes, observation data, and analyses will be conducted on my personal computer and backed up in GitHub.
+
+# Research Time and Duration
+I will arrive in Indonesia in mid-October in order to take a three month, intensive language course in Bahasa Indonesia through Alam Bahasa in Yogyakarta. This is necessary in order to facilitate my living and working relationships in Makassar and Tanakeke Island, as well as help me to communicate my findings during seminars and community programs. After this course, I will move to Makassar and begin working with Dr. Ambo Rappe and her students in creating coding seminars and further planning of this research. I will also meet with Blue Forests to discuss specific travel dates and research sites. <!-- DURATION -->Field research will start in February 2024 when the rainy season has ended and we are able to reach the Island and collect data until October 2024.<!-- DURATION -->
+
+# Publication Plans
+Dr. Rohani Rappe and I will publish this research in an international journal such as Journal of Fisheries Research by Elsevier, the Marine Ecology Progress Series by Inter-Research Science Center, or PLOSOne. We will decide together at the end of the project which journal best suits the findings of this research.
+
+
+\newpage
+
+# Works Cited
