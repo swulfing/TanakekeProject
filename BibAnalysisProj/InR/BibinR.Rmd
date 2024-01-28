@@ -14,27 +14,47 @@ library(knitr)
 library(kableExtra)
 library(ggplot2)
 library(bibliometrixData)
+library(dplyr)
+library(biblionetwork)
 # use scopuscollection data from the package 
 
+mangroveData <- read.csv('mangroveANDfisheriesANDbiomassORbiodiversity.csv')
+rhiz_bb <- read.csv('rhizophoraANDbiomassORbiodiversity.csv')
+rhiz_f <- read.csv('rhizophoraANDfisheries.csv')
+rhiz_all <- read.csv('rhizophoraANDfisheriesANDbiomassORbiodiversity.csv')
 
 ```
 
-## R Markdown
+```{r packageDownload}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+package_list <- c(
+  "here", # use for paths creation
+  "tidyverse",
+  "bib2df", # for cleaning .bib data
+  "janitor", # useful functions for cleaning imported data
+  "rscopus", # using Scopus API
+  "biblionetwork", # creating edges
+  "tidygraph", # for creating networks
+  "ggraph" # plotting networks
+)
+for (p in package_list) {
+  if (p %in% installed.packages() == FALSE) {
+    install.packages(p, dependencies = TRUE)
+  }
+  library(p, character.only = TRUE)
+}
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+github_list <- c(
+  "agoutsmedt/networkflow", # manipulating network
+  "ParkerICI/vite" # needed for the spatialisation of the network
+)
+for (p in github_list) {
+  if (gsub(".*/", "", p) %in% installed.packages() == FALSE) {
+    devtools::install_github(p)
+  }
+  library(gsub(".*/", "", p), character.only = TRUE)
+}
 
-```{r cars}
-summary(cars)
+
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

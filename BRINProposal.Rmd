@@ -18,8 +18,6 @@ header-includes: \usepackage{setspace}\doublespacing
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
 #knitr::write_bib look into
 
-setwd("C:/Users/sophi/Desktop/FulbrightPaperwork/BRINApp")
-
 ```
 
 # Research Objectives
