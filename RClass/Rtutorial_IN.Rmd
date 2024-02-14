@@ -7,19 +7,19 @@ output: html_document
 # R STUDIO
 
 ## 4 PANEL
-### KIRI ATAS - PANEL SUMBER
-- Menulis dan menyimpan skrip skrip kode sehingga analysis bisa dilakukan kembali
+### KIRI ATAS - SUMBER PANEL
+- Menulis dan menyimpan skrip - skrip kode sehingga analisis bisa dilakukan kembali
 
-### KIRI BAHWA - KONSOLE
-- Hasil atau keluaran kode. Bisa menjalankan kode di sini kalau kamu mau memeriksa kodenya atau berinteraksi dengan data.
+### KIRI BAWAH - KONSOLE
+- Menunjukkan hasil atau keluaran kode. Bisa menjalankan kode di sini kalau kamu mau memeriksa kodenya atau berinteraksi dengan data.
 
 ### KANAN ATAS
-- Environment/linkugan punya variabel variabel dibuat oleh Anda
+- Environment/lingkungan: punya variabel - variabel yang kamu buat.
 
-### KANAN BAHWA
+### KANAN BAWAH
 - Tab tab: Files - Files bisa dieksplorasi
   Plots/ grafik: Visualisasi
-  Packages: Di sini kamu bisa metemukan paket kode dibuate oleh orang lain
+  Packages: Di sini kamu bisa menemukan paket kode yang dibuat oleh orang lain
     -Banyak fungsi: genetika, menganalisis matriks, membuat peta, menyelesaikan persamaan, dll
   Help: mengakses library
     CONTOH - bisa mengetik ?NAMAPAKET di panel sumber atau panel konsole dan bisa membaca tentang paket, input input, contoh, dan kegunaan paketnya
@@ -31,7 +31,7 @@ output: html_document
   "Run" Tombol di kanan atas
   CTRL + ENTER
   
-``` {r OPERATOR DASAR}
+``` {r DASAR OPERASI}
 #Perhitungan dasar dapat diselesaikan
 2 + 3
 
@@ -41,11 +41,11 @@ output: html_document
 # Pembagian utuh- desimal tidak dipakai
 94729 %/% 7
 
-#Aritmatika modular - keluaran adaleh sisanya
+# Aritmatika modular - keluaran adaleh sisanya
 94729 %% 7
 
-# BISA membuat komentar - kata kata tidak dijalankan - dengan tanda #
-# SELALU DIBERI LABEL PADA KODE. 
+# BISA membuat komentar - kata - kata tidak dijalankan - dengan tanda tagar/hashtag
+# SELALU DIBERI LABEL PADA KODE. MEMBERI CATATAN - TAKE NOTES
 
 #FUNGSI CETAK
 
@@ -58,25 +58,25 @@ print("Hello, world")
 METODE SIMPAN DATA - memberi nama pada data atau objek
 
  - HARUS mulai dengan huruf
- - huruf/angka/titik/garis bahwa bisa dipakai
+ - huruf/angka/titik/garis bawah bisa dipakai
  - Harus cek huruf besar atau huruf kecil
- - Tidak bisa pakai nama: TRUE, FALSE, NULL, if. Sudah nama fungsi di R 
+ - Tidak bisa pakai nama variabel: TRUE, FALSE, NULL, if. Sudah dipakai di fungsi R 
  
  <!-- karena itu adalah fungsi -->
  
 ```{r Variabel}
 
-## Nama variabel yang tidak berjalan
+# # Nama variabel yang tidak berjalan
 # 1nama <- "Sophie"
 # .1nama <- "Sophie"
 # _1nama <- "Sophie"
 # nama 1 <- "Sophie"
 
 #Huruf besar atau huruf kecil
-nama1 <- "Sophie"
+nama_1 <- "Sophie"
 NAMA1
 
-# Bisa membuat variabel dara nomor dan membuat kalkulasi
+# Bisa membuat variabel dari nomor dan membuat kalkulasi
 x <- 4
 y <- 17
 
@@ -87,8 +87,8 @@ z <- x * y
 z
 
 
-#Bersatu rangkian
-Negara <- "Indonesia"
+#Bersatu Rangkaian
+Negara <- "Amerika"
 Umur <- 27
 
 paste("Halo, nama saya", nama1, "Saya dari", Negara, "Umur saya", Umur, "tahun") # Harus pakai koma di antara kata dan variabel
@@ -99,46 +99,46 @@ paste("Halo, nama saya", nama1, "Saya dari", Negara, "Umur saya", Umur, "tahun")
 # JENIS DATA
 - Nomor
 - Angka utuh
-- Boolean/logical
+- Bolean/logical
 - Karakter/huruf
-- Rangkian
-- Factor - Lewati untuk saat ini. Seperti Rangkian tapi pakai hirarki
+- Rangkaian/string
+- Factor - Kita bisa melewati dulu. Seperti Rangkaian tapi pakai hirarki
 
 ```{r JenisData}
 
-# NUMERIC - tidak pakai tanda kutip
+# Angka - tidak pakai tanda kutip
 k <- "17"
 x * k
 
 # Cek jenis data dengan "class"
 class(k)
 
-# Menrubah jenis data
+# Mengubah jenis data
 k <- as.numeric(k)
 
 
 class(k)
 x * k #Berjalan
 
-# BOOLEAN: TRUE OR FALSE (Betul atau Salah). Di worksheet
+# BOLEAN: TRUE OR FALSE (Betul atau Salah). Di worksheet
 x < k
-x == k #harus pakai dua tanda sama dengan
+x == k #harus pakai dua tkamu sama dengan
 
 
-# Karakter dan rangikan
+# Karakter dan rangkaian
 
 #Menghitung
-nchar(name1)
+nchar(nama1)
 
-# Cek kalau ada kata di dalam rangikan
-grepl("Soph", name1)
-grepl("Anne", name1)
+# Cek kalau ada kata di dalam rangkaian
+grepl("Soph", nama1)
+grepl("Anne", nama1)
 
 
 ```
 
 # DAFTAR
-Koleksi objek diatur (DOES THAT MEAN ORDERED OR JUST ORGANIZED)
+Koleksi objek diatur
 Berberapa objek bisa disimipan di satu variabel
 
 
@@ -150,171 +150,180 @@ buah <- c("apel", "pisang", "sangka", "salak", "mangga")
 Daftar_1 <- c(4, 546, 234, 85, 1, 8, 3543, 654, 14, 46, 8934)
 
 
-OneToTen <- 1:10 # Membuat dafar nomor hitung dengan tanda titik dua
-evenNumbers <- seq(0, 20, 2) #kalau tidak mau setiap nomor, bisa membuat urutan dengan seq
-tenOnes <- rep(3, 5) #Membuat dafter di nomor sama berkali-kali
+OneToTen <- 1:10 # Membuat daftar kalipatan dengan tanda titik dua
+evenNumbers <- seq(0, 20, 2) #kalau tidak mau setiap angka, bisa membuat urutan dengan "seq"
+#Even number = angka genap
+#Odd NUMBER = angka ganjil
+tenOnes <- rep(1, 10) #Membuat dafter dengan angka yang sama berkali-kali
 
 # Dafter Isi
 min(Daftar_1) #Minimum
 max(Daftar_1) #Maksimum
 sort(Daftar_1) #Mengatur
-length(Daftar_1) #Ukurang
+length(Daftar_1) #Jumlah 
 range(Daftar_1) #Minimum dan Maksimum
 
-#Menganggil bagian daftar
-fruit[1]
-fruit[1:3]
-fruit[c(1,3, 5)]
-fruit[-2]
+#Memanggil sebagian data dari daftar
+buah[1]
+buah[1:3]
+buah[c(1,3, 5)]
+buah[-2]
 
-#Merubah bagian daftar
-fruit[1] <- "jeruk"
-fruit
+#Mengubah bagian daftar
+buah[1] <- "jeruk"
+buah
 
 #operator boolean - cek daftar
-"apel" %in% fruit
+"apel" %in% buah
 
 #Menambah input baru pada daftar
-fruit_2 <- append(fruit, "apel", after = 2)
-fruit_2
+buah_2 <- append(buah, "apel", after = 2)
+buah_2
 
 ```
- # MATRICES, DATA FRAMES, AND NESTED LISTS
+ # MATRIKS, DATA FRAMES, DAN DAFTAR BERSARANG
  
- Two or higher dimensional datasets with rows and columns
+ Di atas satu dimensi pakai baris dan kolom
  
-```{r matrices}
+```{r matriks}
 
-# Create a matrix
-numbersMatrix <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3)
+# MATRIX - seperti daftar. 2 dimensi. Perintah mirip
 
-# Print the matrix
-numbersMatrix
+# Membuat matriks
 
-# Can be done with strings as well
-fruitMatrix <- matrix(c("apple", "banana", "cherry", "mango","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+matriksAngka <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 3)
 
-fruitMatrix
+# Cetak matriks
+matriksAngka 
 
-# Indexing
-fruitMatrix[1, 2]
-fruitMatrix[2,]
-fruitMatrix[,2]
+# Bisa dibuat dengan rangkaian
+matriksBuah <- matrix(c("apel", "pisang", "semangka", "mangga","anggur", "nanas", "salak", "alpukat", "jeruk"), nrow = 3, ncol = 3)
 
-#More than one row or column
-fruitMatrix[c(1,2),]
-fruitMatrix[,c(1,2)]
+matriksBuah
+
+# Daftar Isi
+matriksBuah[1, 2]
+matriksBuah[2,]
+matriksBuah[,2]
+
+# > 1 Kolom
+matriksBuah[c(1,2),]
+matriksBuah[,c(1,2)]
 
 
-# ADDING COLUMNS
-newFruitMatrix_1 <- cbind(fruitMatrix, c("strawberry", "blueberry", "raspberry"))
+# Menambah Kolom
+matriksBuahBaru_1 <- cbind(matriksBuah, c("stroberi", "bluberi", "durian"))
 
-# Print the new matrix
-newFruitMatrix_1
+# Cetak matriks baru
+matriksBuahBaru_1
 
-#ADDING ROWS
-newFruitMatrix_2 <- rbind(fruitMatrix, c("strawberry", "blueberry", "raspberry"))
+#Menambah Baris
+matriksBuahBaru_2 <- rbind(matriksBuah, c("stroberi", "bluberi", "durian"))
 
-# Print the new matrix
-newFruitMatrix_2
+# Cetak matriks baru
+matriksBuahBaru_2
 
-# REMOVING ROWS AND COLUMNS
-fruitMatrix <- fruitMatrix[-c(1), -c(1)]
+# Menghapus baris dan kolom
+matriksBuah <- matriksBuah[-c(1), -c(1)]
 
-fruitMatrix
+matriksBuah
 
-# check if in matrix
-"apple" %in% fruitMatrix
-"grape" %in% fruitMatrix
+# Cek matriks
+"apel" %in% matriksBuah
+"grape" %in% matriksBuah
 
-# Check Sizes
-dim(fruitMatrix)
-length(fruitMatrix)
+# Cek dimensi dan ukuran
+dim(matriksBuah)
+length(matriksBuah)
 
 ```
 
 ```{r dataframes}
 
-# Create a data frame
+# Kolom punya nama yang bisa dimanggil
+
+# Membuat dataframe
 Data_Frame <- data.frame (
-  Student = c("Rina", "Virginia", "Ben"),
-  Score = c(100, 150, 120),
-  Time = c(60, 30, 45)
+  Murid = c("Rina", "Virginia", "Ben"),
+  Nilai = c(100, 150, 120),
+  Waktu = c(60, 30, 45)
 )
 
-# Print the data frame
+
+# Cetak Data frame
 View(Data_Frame)
 
 summary(Data_Frame)
 
-#Accessing
+#Menanggil kolom
 View(Data_Frame[1])
 
-Data_Frame[["Student"]]
+Data_Frame[["Murid"]]
 
-Data_Frame$Student
+Data_Frame$Murid
 
 
-# Add a new row
-New_row_DF <- rbind(Data_Frame, c("John", 110, 110))
+# Menambah baris
+baris_baru_DF <- rbind(Data_Frame, c("John", 110, 110))
 
-# Print the new row
-View(New_row_DF)
+# Cetak data frame baru
+View(baris_baru_DF)
 
-# Add a new column
-New_col_DF <- cbind(Data_Frame, Place = c(2, 1, 3))
+# Menambah kolom
+kolom_baru_DF <- cbind(Data_Frame, Place = c(2, 1, 3))
 
-# Print the new column
-View(New_col_DF)
+# Cetak data frame
+View(kolom_baru_DF)
 
-# Remove the first row and column
+# Hapus baris dan kolom yang pertama
 Data_Frame_Remove <- Data_Frame[-c(1), -c(1)]
 
-# Print the new data frame
+# Cetak dataframe
 View(Data_Frame_Remove)
 
-# Dimensions
+# Dimensi
 dim(Data_Frame)
 ncol(Data_Frame)
 nrow(Data_Frame)
-length(Data_Frame) #same as ncol
+length(Data_Frame) #sama ncol
+
 ```
  
  # IF STATEMENTS
  
- Will execute code only if a statement is true
+ Akan menjalankan kode hanya kalay kalimat tetap benar
  
 ```{r ifstatement}
 #if statement
 a <- 33
 b <- 200
 
-if (b > a) { #Boolean statement. If true, will execute what's in the curly brackets
-  print("b is greater than a")
+if (b > a) { #Kalimat boolean. Kalau benar, R akan menjalankan kode di dalam kurung keriting
+  print("b lebih besar daripada a")
 }
 
-# else if statement - run if the previous statement is untrue
+# else if statement - dijalankan kalau kalimat diatas salah
 
 a <- 33
 b <- 33
 
 if (b > a) {
-  print("b is greater than a")
+  print("b lebih besar daripada a")
 } else if (a == b) {
-  print ("a and b are equal")
+  print ("a sama dengan b")
 }
 
-# Else statement - if no previous statements are true
+# Else statement - dijalankan kalau semua kalimat tersebut salah
 
 a <- 200
 b <- 33
 
 if (b > a) {
-  print("b is greater than a")
+  print("b lebih besar daripada a")
 } else if (a == b) {
-  print("a and b are equal")
+  print ("a sama dengan b")
 } else {
-  print("a is greater than b")
+  print("a lebih besar daripada b")
 }
 
 ```
@@ -328,7 +337,7 @@ b <- 33
 
 if (a < 1000){
   if(b < 1000) {
-  print("both a and b are below 1000")
+  print("a dan b kurang dari 1000")
   } 
 }
 
@@ -345,11 +354,11 @@ a <- 200
 b <- 33
 
 if (a < 100 & b < 100) {
-  print("both a and b are below 100")
+  print("a dan b kurang dari 100")
 } 
 
 if (a < 100 | b < 100) {
-  print("either a or b are below 100")
+  print("a atau b kurang dari 100")
 } 
 
 
@@ -357,78 +366,79 @@ if (a < 100 | b < 100) {
 
 # WHILE LOOPS
 
-Will execute a code as long as a condition is true
+ Akan menjalankan kode berkali-kali hanya kalau kalimat tetap benar
 
 ```{r whileloops}
 
-i <- 1
-while (i <= 6) {
-  print(i)
-  i <- i + 1
+i <- 1 # memberi angka pada i
+while (i <= 6) { # Boolean, cek kalimat (benar/salah)
+  print(i) # Menjalan kode
+  i <- i + 1 # Merubah i. Kode berulang
 }
 
 ```
  
 # FOR LOOPS
 
-Iterates over a sequence
+Menjalankan kode berkali-kali sampai FOR A SET NUMBER OF TIMES
 
 ```{r forLoops}
+
 for (x in 1:10) {
-  print(x)
+  print(paste("Nomornya ", x))
 }
 
 
-fruits <- list("apple", "banana", "cherry")
+loopBuah <- list("apel", "pisang", "alpukat")
 
-for (x in fruits) {
-  print(x)
+for (x in loopBuah) {
+  print(paste("Buahnya ", x))
 }
 
 ```
 
 
-# FUNCTIONS
+# FUNGSI
 
-A block of code that is run only when you call it
+Kode yang tidak dijalankan kecuali kamu menanggil kodenya
 
-```{r functions}
+```{r fungsi}
 
-my_function <- function() { # create a function with the name my_function
+fungsi_aku <- function() { # membuat fungsi dengan nama "fungsi_aku". Tidak dijalankan
   print("Hello World!")
 }
 
-# Have to call the function to use it
-my_function()
+# menanggil fungsi
+fungsi_aku()
 
-# Function with arguments
+# Fungsi dengan input
 
-name_function <- function(name){
+fungsi_nama <- function(name){
   print(paste("Hello, my name is", name))
 }
 
-name_function()
-name_function("Sophie") #Now can change argument to change the output
+fungsi_nama()
+fungsi_nama("Sophie") #Bisa merubah input fungsi
 
-# Multiple arguments
-intro_function <- function(name, home){
-  print(paste("Hello, my name is", name, "I am from", home))
+# Berbagai input
+intro_function <- function(nama, asal){
+  print(paste("Halo, nama saya", nama, "Saya berasal dari", asal))
 }
 
 intro_function("Sophie", "Washington")
 
 
-# Function with return values - return is used more often because it stores a variable
-mult_function <- function(x) {
+# Fungsi yang pakai "return" - return lebih dipakai karena bisa menyimpan keluaran pada variabel
+fungsi_perkalian <- function(x) {
   return (5 * x)
 }
 
-print(mult_function(3))
-print(mult_function(5))
-print(mult_function(9))
+print(fungsi_perkalian(3))
+print(fungsi_perkalian(5))
+print(fungsi_perkalian(9))
 
-FinalScore <- mult_function(9) * 100
-FinalScore
+nilaiFinal <- fungsi_perkalian(9) * 100
+nilaiFinal
 ```
  
  
