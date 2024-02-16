@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.9)  15 FEB 2024 13:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.9)  16 FEB 2024 12:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -597,83 +597,85 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 127.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [2] [3] [4]
-<AnnualScientificProduction.png, id=53, 1011.78pt x 505.89pt>
+{c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [2] [3]
+<AnnualScientificProduction.png, id=35, 1011.78pt x 505.89pt>
 File: AnnualScientificProduction.png Graphic file (type png)
 <use AnnualScientificProduction.png>
-Package pdftex.def Info: AnnualScientificProduction.png  used on input line 174.
+Package pdftex.def Info: AnnualScientificProduction.png  used on input line 155.
 (pdftex.def)             Requested size: 469.76266pt x 234.88132pt.
-<MostRelevantSources.png, id=54, 1011.78pt x 505.89pt>
+<MostRelevantSources.png, id=36, 1011.78pt x 505.89pt>
 File: MostRelevantSources.png Graphic file (type png)
 <use MostRelevantSources.png>
-Package pdftex.def Info: MostRelevantSources.png  used on input line 180.
+Package pdftex.def Info: MostRelevantSources.png  used on input line 161.
 (pdftex.def)             Requested size: 234.86589pt x 117.43294pt.
-<SourceDynamics.png, id=55, 1011.78pt x 505.89pt>
+<SourceDynamics.png, id=37, 1011.78pt x 505.89pt>
 File: SourceDynamics.png Graphic file (type png)
 <use SourceDynamics.png>
-Package pdftex.def Info: SourceDynamics.png  used on input line 180.
+Package pdftex.def Info: SourceDynamics.png  used on input line 161.
 (pdftex.def)             Requested size: 234.86589pt x 117.43294pt.
 
-Overfull \hbox (2.58783pt too wide) in paragraph at lines 180--180
+Overfull \hbox (2.58783pt too wide) in paragraph at lines 161--161
 [][] [] 
  []
 
-<AuthorCountries.png, id=56, 1011.78pt x 505.89pt>
+[4 <./AnnualScientificProduction.png>]
+<AuthorCountries.png, id=47, 1011.78pt x 505.89pt>
 File: AuthorCountries.png Graphic file (type png)
 <use AuthorCountries.png>
-Package pdftex.def Info: AuthorCountries.png  used on input line 186.
+Package pdftex.def Info: AuthorCountries.png  used on input line 171.
 (pdftex.def)             Requested size: 469.76266pt x 234.88132pt.
-<MostCitedCountries.png, id=57, 1011.78pt x 505.89pt>
-File: MostCitedCountries.png Graphic file (type png)
-<use MostCitedCountries.png>
-Package pdftex.def Info: MostCitedCountries.png  used on input line 192.
-(pdftex.def)             Requested size: 469.76266pt x 234.88132pt.
-<BibinR_files/figure-latex/countryMap-1.pdf, id=58, 469.755pt x 325.215pt>
+<BibinR_files/figure-latex/countryMap-1.pdf, id=48, 469.755pt x 325.215pt>
 File: BibinR_files/figure-latex/countryMap-1.pdf Graphic file (type pdf)
 <use BibinR_files/figure-latex/countryMap-1.pdf>
-Package pdftex.def Info: BibinR_files/figure-latex/countryMap-1.pdf  used on input line 198.
+Package pdftex.def Info: BibinR_files/figure-latex/countryMap-1.pdf  used on input line 177.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<BibinR_files/figure-latex/countryMap-2.pdf, id=59, 469.755pt x 325.215pt>
+<BibinR_files/figure-latex/countryMap-2.pdf, id=49, 469.755pt x 325.215pt>
 File: BibinR_files/figure-latex/countryMap-2.pdf Graphic file (type pdf)
 <use BibinR_files/figure-latex/countryMap-2.pdf>
-Package pdftex.def Info: BibinR_files/figure-latex/countryMap-2.pdf  used on input line 198.
+Package pdftex.def Info: BibinR_files/figure-latex/countryMap-2.pdf  used on input line 177.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.6099pt too wide) in paragraph at lines 198--198
+Overfull \hbox (2.6099pt too wide) in paragraph at lines 177--177
 [][] [] 
  []
 
-<TrendTopics.png, id=60, 1011.78pt x 505.89pt>
-File: TrendTopics.png Graphic file (type png)
-<use TrendTopics.png>
-Package pdftex.def Info: TrendTopics.png  used on input line 204.
+<MostCitedCountries.png, id=50, 1011.78pt x 505.89pt>
+File: MostCitedCountries.png Graphic file (type png)
+<use MostCitedCountries.png>
+Package pdftex.def Info: MostCitedCountries.png  used on input line 183.
 (pdftex.def)             Requested size: 469.76266pt x 234.88132pt.
-<CountryCollaborationNetwork.png, id=61, 1991.44pt x 1180.41pt>
+[5 <./MostRelevantSources.png> <./SourceDynamics.png>] [6 <./AuthorCountries.png> <./BibinR_files/figure-latex/countryMap-1.pdf> <./BibinR_files/figure-latex/countryMap-2.pdf>]
+<CountryCollaborationNetwork.png, id=77, 1991.44pt x 1180.41pt>
 File: CountryCollaborationNetwork.png Graphic file (type png)
 <use CountryCollaborationNetwork.png>
-Package pdftex.def Info: CountryCollaborationNetwork.png  used on input line 210.
+Package pdftex.def Info: CountryCollaborationNetwork.png  used on input line 191.
 (pdftex.def)             Requested size: 469.75092pt x 278.44106pt.
-[5] [6 <./AnnualScientificProduction.png> <./MostRelevantSources.png> <./SourceDynamics.png>] [7 <./AuthorCountries.png> <./MostCitedCountries.png>] [8 <./BibinR_files/figure-latex/countryMap-1.pdf> <./BibinR_files/figure-latex/countryMap-2.pdf> <./TrendTopics.png>] [9 <./CountryCollaborationNetwork.png>] [10] (./BibinR.aux)
+<TrendTopics.png, id=80, 1011.78pt x 505.89pt>
+File: TrendTopics.png Graphic file (type png)
+<use TrendTopics.png>
+Package pdftex.def Info: TrendTopics.png  used on input line 199.
+(pdftex.def)             Requested size: 469.76266pt x 234.88132pt.
+[7 <./MostCitedCountries.png>] [8 <./CountryCollaborationNetwork.png> <./TrendTopics.png>] [9] [10] [11] [12] (./BibinR.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `BibinR.out' has not changed.
-(rerunfilecheck)             Checksum: F1BEAAE444453E9F238FD040E5A1FD3F;691.
+(rerunfilecheck)             Checksum: 6AA77D00C8BC75AB175DA05DFE958249;340.
  ) 
 Here is how much of TeX's memory you used:
- 13156 strings out of 476188
- 207885 string characters out of 5794187
+ 13158 strings out of 476188
+ 207938 string characters out of 5794187
  1931978 words of memory out of 5000000
- 34874 multiletter control sequences out of 15000+600000
- 602541 words of font info for 65 fonts, out of 8000000 for 9000
+ 34871 multiletter control sequences out of 15000+600000
+ 596544 words of font info for 63 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 69i,6n,79p,1864b,492s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 69i,6n,79p,1864b,486s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/Users/Sophi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on BibinR.pdf (10 pages, 3541652 bytes).
+Output written on BibinR.pdf (12 pages, 3544928 bytes).
 PDF statistics:
- 174 PDF objects out of 1000 (max. 8388607)
- 134 compressed objects within 2 object streams
- 37 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 70 words of extra memory for PDF output out of 10000 (max. 10000000)
 
