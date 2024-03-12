@@ -1,0 +1,17 @@
+---
+title: "DataViz_practice"
+author: "Sophie Wulfing"
+date: "2024-03-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+URUV_data <- read.csv("Master_RecordingData.csv")
+
+
+```
+
+```{r dataClean,}
+```
