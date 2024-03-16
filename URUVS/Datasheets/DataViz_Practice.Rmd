@@ -2,16 +2,86 @@
 title: "DataViz_practice"
 author: "Sophie Wulfing"
 date: "2024-03-12"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
+
+library(dplyr)
+library(ggplot2)
 
 URUV_data <- read.csv("Master_RecordingData.csv")
 
 
 ```
 
-```{r dataClean,}
+```{r dataClean}
+
+URUV_data$DATE <- as.Date(URUV_data$DATE, format = "%d/%m/%Y")
+
+URUV_data <- URUV_data %>%
+  filter(!is.na(F1_TIME)) %>% #Take out unused videos
+  rowwise() %>%
+  mutate(WATER_DEPTH_AVERAGE = mean(c(WATER_DEPTH_BEFORE, WATER_DEPTH_AFTER), na.rm=TRUE)) #Take avg depth during recording
+
+#View(URUV_data)
+
+```
+
+```{r AllSpecies, results = 'asis', echo = FALSE, fig.show = "hold", out.width = "50%"}
+
+ggplot(URUV_data, aes(x=DESA, y=NO_ALLSPECIES)) + 
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+
+ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_ALLSPECIES)) + 
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+
+```
+
+```{r FishSpecies, results = 'asis', echo = FALSE, fig.show = "hold", out.width = "50%"}
+
+ggplot(URUV_data, aes(x=DESA, y=NO_FISHSPECIES)) + 
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+
+ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_FISHSPECIES)) + 
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+
+```
+
+```{r speciesSort}
+
+for(i in 1:ncol(URUV_data)){
+  if(grepl("MAXN", colnames(URUV_data[i]))){ #Sort Through all MaxN's calculated
+    
+    #Need to fully rename column so ggplot can read it. Make separate datasheet
+    Yaxistitle <- colnames(URUV_data[i])
+    data1 <- URUV_data %>% 
+    rename(MAXN_TARGET = i)
+    
+    #Graph boxplot per desa
+    print(ggplot(data1, aes(x=DESA, y=MAXN_TARGET)) +
+      geom_boxplot() +
+      geom_jitter(shape=16, position=position_jitter(0.2)) +
+      ylab(Yaxistitle))
+
+    #Graph boxplot per site type
+    print(ggplot(data1, aes(x=SITE_TYPE, y=MAXN_TARGET)) +
+      geom_boxplot() +
+      geom_jitter(shape=16, position=position_jitter(0.2)) +
+      ylab(Yaxistitle))
+  }
+  
+  
+  
+}
+
+
+
 ```

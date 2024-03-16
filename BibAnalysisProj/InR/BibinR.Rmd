@@ -125,7 +125,13 @@ In this study, we aim to conduct a bibliometric analysis of research trends that
 
 # METHODS
 
-# RESULTS AND DISCUSSION
+Documents were collected using the Scopus database. The keywords “Mangroves”, “Fisheries”, and “Biomass OR Biodiversity” were used to conduct the search, and results were filtered to the following subject areas: Environmental Science, Agriculture and Biological Sciences, Earth and Planetary Sciences, Social Sciences, Economics Econometrics and Finance, Multidisciplinary, Energy, Computer Science, Mathematics, and Decision Sciences. A total of 251 articles were found from a total of 138 different sources, and results were limited to research articles so that SOMETHING SOMETHING SOMETHING. Information on WHICH BITS OF DATA DID YOU USE was collected on each paper to conduct bibliometric analysis. 
+
+Analysis
+
+The search results were cleaned using OpenRefine CHECK OUT THIS WEBSITE website to avoid duplicate keywords with the same meanings. VOSviewer and Tableau were used in the visualizations of XYZ MAKE SOME MORE HERE I GUESS AND HAVE CITATION. Further the R package Bibliometrix (CITATION) was used to make THE FIGURES BLAH BLAH
+
+# RESULTS
 
 ```{r AnnualScientificProduction, echo = FALSE, results = "asis", fig.cap = '(ref:annualscientificproduction) \\label{AnnualScientificProduction}', out.width = "100%"}
 
@@ -143,7 +149,7 @@ knitr::include_graphics("SourceDynamics.png")
 ```
 (ref:sourcedynamics) Total number of publications relating to mangroves, fisheries, and biomass and biodiversity from the top 10 journals (left). Publication trends from the top 6 journals over time (right)
 
-When searching research articles that cover mangroves, fisheries, and biomass or biodiversity in the SCOPUS database, a total of 251 articles were found from a total of 138 different sources. Dates of publication ranged from 1989 to 2024, and 37.45% of these articles were written with international co-Authorship. Figure \ref{AnnualScientificProduction} shows the total number of articles published which use the keywords of mangroves, fisheries and biomass or biodiversity. The greatest increase in the number of papers written that covers these three topics was in 2015, when the number of articles was 7 to 2016, where the number of articles doubled to 14. The highest number of articles in this analysis was seen in 2022 with 29 articles. This indicates that mangrove and fishery research is increasing in relevance and greater focus on the benefits of mangrove on fisheries worldwide.
+Dates of publication ranged from 1989 to 2024, and 36.65% of these articles were written with international co-Authorship. Figure \ref{AnnualScientificProduction} shows the total number of articles published which use the keywords of mangroves, fisheries and biomass or biodiversity, ANNUAL GROWTH RATE 5.25%. The greatest increase in the number of papers written that covers these three topics was in 2015, when the number of articles was 7 to 2016, where the number of articles doubled to 14. The highest number of articles in this analysis was seen in 2022 with 29 articles. This indicates that mangrove and fishery research is increasing in relevance and greater focus on the benefits of mangrove on fisheries worldwide.
 
 The journal that has published the most papers in these areas was Ocean and Coastal Management with 13 total publications. However, this journal's first paper relevant to mangroves, fisheries, and biomass or biodiversity was first published in 2005, whereas Estuarine, Coastal, and Shelf Science, the second most active journal, published its first paper on the subject in 1989 \ref{SourceDynamics}. The journal of Ocean and Coastal Management publishes papers that focus on governance and management issues while the Estuarine, Coastal, and Shelf Science journal covers a broader, more general focus on ocean and estuary science. However, Seas at the Millennium, the journal with the third most papers, was a one-time journal published at the turn of the century that provided a comprehensive review of the environmental condition of the seas of the world. The top six journals that have published on mangroves, fisheries, and biomass or biodiversity all require publications to be made in English.
 
@@ -224,9 +230,15 @@ knitr::include_graphics("MostCitedCountries.png")
 
 ```
 
+```{r CountryOverTime, echo = FALSE, results = "asis", fig.cap = '(ref:mostcitedcountries) \\label{MostCitedCountries}', out.width = "100%"}
+
+knitr::include_graphics("CountryOverTime.png")
+
+```
+
 (ref:mostcitedcountries) Top ten most cited countries on articles relating to mangroves, fisheries, biomass and biodiversity
 
-In terms of geographic distribution of research on mangroves, fisheries, and biomass or biodiversity, Australia has the highest number of total authorship as well as the highest number of secondary authorship whereas the country with the most Main Corresponding authors is the United States. The United States also has the highest number of cited documents, with 3,625 total citations (Figure \ref{AuthorCountries}). Figure \ref{countryMap} shows the difference between the countries with the most publications relating to mangroves, fisheries, and biomass or biodiversity and compared to the amount of mangrove cover each country has [@jiaMappingGlobalDistribution2023.] The United States is the most cited country in this area (Figure \ref{MostCitedCountries}), with almost three times the number of citations as the United Kingdom, country with the second highest number of citations.
+In terms of geographic distribution of research on mangroves, fisheries, and biomass or biodiversity, Australia has the highest number of total authorship as well as the highest number of secondary authorship whereas the country with the most Main Corresponding authors is the United States. The United States also has the highest number of cited documents, with 3,681 total citations (Figure \ref{AuthorCountries}). Figure \ref{countryMap} shows the difference between the countries with the most publications relating to mangroves, fisheries, and biomass or biodiversity and compared to the amount of mangrove cover each country has [@jiaMappingGlobalDistribution2023.] The United States is the most cited country in this area (Figure \ref{MostCitedCountries}), with over three times the number of citations as the United Kingdom, country with the second highest number of citations.
 
 ```{r CountryCollaborationNetwork, echo = FALSE, results = "asis", fig.cap = '(ref:countrycollaborationnetwork) \\label{CountryCollaborationNetwork}', out.width = "100%"}
 
@@ -246,6 +258,21 @@ knitr::include_graphics("TrendTopics.png")
 
 (ref:trendtopics) Trending topics covered by papers relating to mangroves, fisheries, and biomass or biodiversity. The keywords on the left represent words used more than ten times total since 2000.
 
-Keyword trends are helpful indicators of what issues are relevant when studying mangroves, fisheries. Figure \ref{TrendTopics}shows the most relevant keywords (used more than ten times total and over three times a year) and which years they have been the most used. Most recently, the terms carbon, human, and climate change have become the most relevant topics. Keywords Australia and Indian Ocean both have the longest span of relevancy.
+Keyword trends are helpful indicators of what issues are relevant when studying mangroves, fisheries. Figure \ref{TrendTopics} shows the most relevant keywords (used more than ten times total and over three times a year) and which years they have been the most used. Most recently, the terms carbon, human, and climate change have become the most relevant topics. Keywords Australia and Indian Ocean both have the longest span of relevancy.
+
+# DISCUSSION
+
+OUTLINE
+Fig1 Increased interest in fisheries relation to mangroves
+Relate to trending topics as climate change is a new but pressing issue. Top three most recently trending topics are carbon, human, and climate change
+
+A lot of english speaking sources and authorship. Maybe something about who this is effecting 
+No papers from africa even though there are many countries iwth mangroves 
+Most collaboration between USA and AUS. could benefit from stronger collabs elsewhere
+
+First three cited countries are english speaking, even though one doesn't have mangroves
+Of top producing countries, Brazil, indonesia, and china started later
 
 \newpage
+
+# REFERENCES
