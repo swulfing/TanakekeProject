@@ -4,10 +4,10 @@ title: The effects of mangrove restoration on fish stocks and marine biodiversit
 author: "Sophie Wulfing"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  word_document: default
   bookdown::pdf_document2:
     fig_caption: yes
     toc: no
+  word_document: default
 bibliography:
 - BRIN_Prop.bib
 - BRIN_Prop2.bib
@@ -65,8 +65,8 @@ We will measure biodiversity using the MaxN calculation method, as it is the mos
 Expected Result
 As has been found in previous literature, we expect the sites with older, more established mangroves to foster the most biodiversity of juvenile fishes due to better shelter from predators and cooler temperatures. We expect the areas with no mangrove restoration to exhibit the least amount of biodiversity due to the exposure of these environments to predators and higher temperatures.
 
-# Source of Funds
-Fulbright Grant: ~ $20,800
+<!-- # Source of Funds -->
+<!-- Fulbright Grant: ~ $20,800 -->
 
 # Research Location
 Pulau Tanakeke, Takalar Regency, South Sulawesi Province, Indonesia (Figure \ref{Tanakeke}).

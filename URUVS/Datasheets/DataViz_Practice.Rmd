@@ -85,3 +85,68 @@ for(i in 1:ncol(URUV_data)){
 
 
 ```
+
+```{r vegitationcheck}
+
+plot(x = 1,
+     type = "n",
+     xlim = c(0, 100), 
+     ylim = c(0, 10),
+     pch = 16,
+     xlab = "Vegitation", 
+     ylab = "Total Species")
+
+# Add coral2 points for male data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "D"],
+       y = URUV_data$NO_ALLSPECIES[URUV_data$SITE_TYPE == "D"],
+       pch = 16,
+       col = "coral2", trans.val = .8)
+
+# Add steelblue points for female data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "E"],
+       y = URUV_data$NO_ALLSPECIES[URUV_data$SITE_TYPE == "E"],
+       pch = 16,
+       col = "steelblue3", trans.val = .8)
+
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "L"],
+       y = URUV_data$NO_ALLSPECIES[URUV_data$SITE_TYPE == "L"],
+       pch = 16,
+       col = "chartreuse2", trans.val = .8)
+
+```
+
+```{r vegitationcheck2}
+
+plot(x = 1,
+     type = "n",
+     xlim = c(0, 100), 
+     ylim = c(0, 10),
+     pch = 16,
+     xlab = "Vegitation", 
+     ylab = "Total Species")
+
+# Add coral2 points for male data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "D"],
+       y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "D"],
+       pch = 16,
+       col = "coral2", trans.val = .8)
+
+# Add steelblue points for female data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "E"],
+       y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "E"],
+       pch = 16,
+       col = "steelblue3", trans.val = .8)
+
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "L"],
+       y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "L"],
+       pch = 16,
+       col = "chartreuse2", trans.val = .8)
+
+```
+
+```{r batterycheck}
+
+ggplot(URUV_data, aes(x=NO_BATTERY, y=TOTALTIME_RECORDING)) + 
+  geom_bar(stat='identity')
+
+```
