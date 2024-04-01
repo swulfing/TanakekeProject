@@ -1,0 +1,84 @@
+Fishers who rely on mangroves: Modelling and mapping the 
+global intensity of mangrove-associated fisheries Ermgassen et al 2021
+	Estimate there are 4.1 million mangrove associated fishers globally, with the highest number of mangrove fishers found in Indonesia, India, Bangladesh, Myanmar, and Brazil.
+	ecosystem service values of 25 US$ trillion annually (including tidal marshes; Costanza et al., 2014). 
+	Understanding the global status of management in fisheries is difficult
+	 Unsurprisingly, several of the countries with 
+the largest number of mangrove fishers (Fig. 2), are also those countries 
+that have the largest mangrove extents e.g. Indonesia, Brazil and 
+Bangladesh. 
+
+
+
+Chapter 9 Anthropogenic Drivers of Mangrove Loss: Geographic Patterns and Implications for Livelihoods
+Chodhury et al 2017
+	 Three main proximate sources dominated the case studies on mangrove loss: infrastructure development, land use conversions linked to agriculture or aquaculture, and wood extraction. Among these, conversions for agriculture/aquaculture and harvesting of wood for both household and commercial use were the most commonly cited proximate sources of mangrove loss.
+	Reasons for mangrove loss mostly economic. but "Household subsistence needs and a lack of alternatives to mangrove-derived incomes also shaped economic drivers of mangrove loss (13 cases, 30%)" The rest are policy or institutional factors
+	when mangrove protection is poorly enforced or nonexistent, there are multiple and often devastating impacts on local communities. In the worst scenarios, conversion to intense shrimp aquaculture clears an area of mangrove trees, but then fails due to poor management that brings diseases to the shrimp ponds. The pond is then abandoned and the owners simply clear new mangrove areas and begin the process again (Thu and Populus 2007).
+	Pg 284 has per-country estimations of mangrove economic contribution to fisheries
+	Enormous benefits to coastal poor communities
+	Also says shrimp agriculture one of the main drivers of loss
+	Our synoptic review of the research literature clearly reveals that mangrove losses are spatially differentiated, time-dependent, and linked to varying sets of proximate activities and causal drivers. 
+	 loss and recovery indicates that such drivers rarely operate in isolation; we find, instead, that most studies reveal a complex set of interacting causal drivers of mangrove loss. Further, the combination of economic drivers (such as global shrimp commodity markets) with policy-institutional change (such as government policies and subsidies, property rights regimes, and conservation policies) has been the most powerful process shaping mangrove change globally
+	
+A systematic review of mangrove restoration studies in Southeast Asia: Challenges and opportunities for the United Nation's Decade on Ecosystem Restoration - Gerona-Daga & Salmo 2022
+	HONESTLY A PRETTY GOOD ONE FOR YOUR MAIN PAPER
+	SE Asia - most diverse and extensive Mangroves. Also extremely vulnerable to climate change impacts
+	BIBA if you're looking for an example. Frontiers journal. SEE WHAT SOFTWARE
+	Most restoration studies out of SE asia come from indonesia Starting 2014, disturbance-related topics on erosion and climate change
+ became more frequent. In recentyears,more studiesused the keywords blue carbon and remote sensing. Parallel analysison the most frequent terms associated with titles revealed the words carbon, restoration, coastal, rehabilitation, anddiversity as the most used words (Table1)
+	GOOD EXAMPLE OF STUDY LIMITATIONS
+	Metrics for successful replanting not commonly reported, but are usually measured by survival rate and area planted. Secondary benefits are not systematically assessed - I could make the argument that secondary benefits are also a measurement of success
+	"we proposed that vegetation metrics be correlated/ related to ecosystem services and functions. "
+	 (Mursyid et al., 2021) ABOUT INDONESIA'S RESTORATION PLAN
+	"To realize [bridging research-implementation gap], we proposed an ASEAN journal focused on mangrove restoration, conservation, and management with a multinational scientific editorial board who are experts in mangrove studies. This can potentially increase the readership of ASEAN-based mangrove studies beyond the region."
+
+ Socio-ecological assessment for environmental planning in coastal fishery areas: A case study in Brazilian mangroves
+Santos et al 2017
+	carried out a socio-ecological assessment to characterize the use and perceptions of local populations at Northeastern Brazil on mangrove fisheries and local development
+	Suggests government support for encouraging natural, non-destructive aquaculture
+
+
+FROM BOOKMARKS
+Socioeconomic determinants of mangrove exploitation and management in the Pangani River Estuary, Tanzania
+Nyangoko et al 2022
+	Explored socioeconomic determinants of exploitation patterns and management of mangroves in the Pangani River Estuary
+	 "Exploration and promotion of feasible alternative livelihood activities and improved stakeholders’ collaborative arrangements are recommended for sustainable exploitation and management of mangroves" - Different from previous study, which suggested alternative use practices in mangroves - Discussion on participatory management
+	Gives est for African mangrove loss
+	Suggests gender gap in exploitation but more due to who is expected to be the provider
+	Fishers tend to be more reliant on mangroves as compared to other occupations
+	Discusses a lot of alternative methods to mangrove exploitation
+
+Economic analysis of mangrove and marine fishery linkages in India
+Anneboina & Kumar 2017
+	Mangroves have a major contribution to commercial fisheries in India's coasts (23% of commercial output in 2011)
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
