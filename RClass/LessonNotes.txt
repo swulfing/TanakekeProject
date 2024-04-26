@@ -1,0 +1,59 @@
+EQUATIONS:
+Each person take turns saying an equation and everyone type it out (Challenge, try to used pembagian utuh and artimatika modular, and variables in your challenges)
+
+VARIABLES (strings):
+Work in groups to come up with a fake character, but change the information based off of your own ideas using variables and print the results
+
+
+NAMA <- "Sophie"
+UMUR <- 27
+SUADARA <- 6
+NAMABAPAK <- "Tony"
+NAMAIBU <- "Gretchen"
+
+
+Contoh: "Nama saya", NAMA, "umur saya, " UMUR, "Saya bersuadara " SUADARA, "Nama bapak dan ibuku" NAMABAPAK, "dan", NAMAIBU.
+
+LISTS AND DATAFRAMES:
+First go through this example, you forgot to mention nested lists
+https://www.r-bloggers.com/2023/07/how-to-subset-list-objects-in-r/
+BASICALLY THE SAME AS A DATA FRAME, EXCEPT STRUCTURE. YOU'RE GOING TO SEE R OUTPUT COME UP AS A LIST SOMETIMES, NOT A DF SO JUST KNOWING HOW TO USE AND SUBSET
+
+Practice: 
+Write an empty dataframe
+Write dataframe that has lists of your classes, the number of students in each class, what day of the week that class is, and how many credits that class is
+Extract each column of that dataframe
+Extract the first two rows of that dataframe
+Extract the 3rd and 5th rows with 1st and 3rd columns from a given data frame.
+Add a column saying what time each class is
+Add a row of a made up class you'd like to take
+Show me the list of classes in alphabetical order
+
+(Another good practice example) https://www.w3resource.com/r-programming-exercises/dataframe/index.php
+
+IF STATEMENTS:
+write a nested if statement that checks if a number x is positive, negative, or 0
+Write an if statement that checks if a number is divisible by 2, 3, or both
+Write a while loop that prints every multple of 9 until 900
+
+FUNCTIONS
+Create a function that will return the sum of 2 integers.
+Create a function that will return T or F if a number is divisible by 7
+Create a function that will turn all numbers into positive, whole numbers
+
+
+Next lesson:
+
+Uploading data to R
+Subsetting datasets
+Merges?
+Basic graphing
+intro to dplyr?
+
+Lesson After:
+Good data management
+	metadata
+
+Zotero
+
+Graphing - ggplot
