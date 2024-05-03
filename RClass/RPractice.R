@@ -49,7 +49,11 @@
 #FUNGSI CETAK
 
 print("Hello, world")
+#soal matematika tentang perkalian
+4*12
 
+#soal matematika tentang penjumlahan
+199+56
 
 # VARIABEL ----------------------------------------------------------------
 
@@ -67,8 +71,8 @@ print("Hello, world")
 # nama 1 <- "Sophie"
 
 #Huruf besar atau huruf kecil
-nama_1 <- "Sophie"
-NAMA1
+nama1 <- "Sophie"
+NAMA_1<- "meja"
 
 # Bisa membuat variabel dari nomor dan membuat kalkulasi
 x <- 4

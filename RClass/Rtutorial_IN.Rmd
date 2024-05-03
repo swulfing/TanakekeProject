@@ -65,36 +65,67 @@ METODE SIMPAN DATA - memberi nama pada data atau objek
  <!-- karena itu adalah fungsi -->
  
 ```{r Variabel}
+# 
+# # # Nama variabel yang tidak berjalan
+# # 1nama <- "Sophie"
+# # .1nama <- "Sophie"
+# # _1nama <- "Sophie"
+# # nama 1 <- "Sophie"
+# 
+# #Huruf besar atau huruf kecil
+# nama_1 <- "Sophie"
+# NAMA1
+# 
+# # Bisa membuat variabel dari nomor dan membuat kalkulasi
+# x <- 4
+# y <- 17
+# 
+# x*y
+# 
+# # Membuat variabel dari hasil kalkulasi
+# z <- x * y
+# z
+# 
+# 
+# #Bersatu Rangkaian
+# Negara <- "Amerika"
+# Umur <- 27
+# 
+# paste("Halo, nama saya", nama1, "Saya dari", Negara, "Umur saya", Umur, "tahun") # Harus pakai koma di antara kata dan variabel
+# 
+# 
+# #TO DO: MAKE A PRACTICE SHEET OF THIS
 
-# # Nama variabel yang tidak berjalan
-# 1nama <- "Sophie"
-# .1nama <- "Sophie"
-# _1nama <- "Sophie"
-# nama 1 <- "Sophie"
+ADJECTIVE1 <- "cantik"
+ADJECTIVE2 <- "jelek"
+ADJECTIVE3 <- "keren"
+  
+NOUN1 <- "meja"
+NOUN2 <- "bunda"
+NOUN3 <- "kursi"
 
-#Huruf besar atau huruf kecil
-nama_1 <- "Sophie"
-NAMA1
+INGVERB1 <- "reading"
+INGVERB2 <- "eating"
+INGVERB3 <- "sleeping"
+INGVERB4 <- "running"
 
-# Bisa membuat variabel dari nomor dan membuat kalkulasi
-x <- 4
-y <- 17
-
-x*y
-
-# Membuat variabel dari hasil kalkulasi
-z <- x * y
-z
+PLURALNOUN1 <- "kupu kupu"
+PLURALNOUN2 <- "bunga bunga"
+PLURALNOUN3 <- "kunang kunang"
+PLURALNOUN4 <- "laba laba"
 
 
-#Bersatu Rangkaian
-Negara <- "Amerika"
-Umur <- 27
+GAME <- "hide n seek"
+PLANT <- "avisennia"
+BODYPART <- "kepala"
+NUMBER <- 1
+PLACE <- "Makassar"
+  
 
-paste("Halo, nama saya", nama1, "Saya dari", Negara, "Umur saya", Umur, "tahun") # Harus pakai koma di antara kata dan variabel
 
 
-#TO DO: MAKE A PRACTICE SHEET OF THIS
+paste("A vacation is when you take a trip to some ", ADJECTIVE1, " place with your ", ADJECTIVE2, " family. Usually you go to some place that is near a ", NOUN1, " or on a ", NOUN2, ". A good vacation is wehre you can ride ", PLURALNOUN1, " or play ", GAME, " or go hunting for ", PLURALNOUN2, ". I like to spend my time ", INGVERB1, " or ", INGVERB2, ". When parents go on a vacation, they spend their time eating three ", PLURALNOUN3, ", and fathers play golf, and mothers sit around ", INGVERB3, ". Last summer, my brother fell off a ", NOUN3, " and got poison ", PLANT, " all over his ", BODYPART, ". My family is going to go to the", PLACE, ", and I will practice ", INGVERB4, ". Parents need ", ADJECTIVE3, " and because they have to work ", NUMBER, " hours every day all year making enough ", PLURALNOUN4, " to pay for the vacation.")
+
 ```
 # JENIS DATA
 - Nomor

@@ -11,6 +11,18 @@ SUADARA <- 6
 NAMABAPAK <- "Tony"
 NAMAIBU <- "Gretchen"
 
+MADLIBS: Get in pairs and write a funny story but leave out nouns, verbs, and adjectives. Have the other person fill in the nouns, verbs, and adjectives to write a unique story.
+
+ADJECTIVE1
+NAME
+PLACE
+GAME
+ADJECTIVE2
+NOUN
+
+
+A vacation is when you take a trip to some ADJECTIVE1 place with your ADJECTIVE2 family. Usually you go to some place that is near a NOUN1 or on a NOUN2. A good vacation is wehre you can ride PLURALNOUN1 or play GAME or go hunting for PLURALNOUN2. I like to spend my time INGVERB1 or INGVERB2. When parents go on a vacation, they spend their time eating three PLURALNOUN3, and fathers play golf, and mothers sit around INGVERB2. Last summer, my brother fell off a NOUN3 and got poison PLANT all over his BODYPART. My family is going to go to the PLACE and I will practice INGVERB3. Parents need ADJECTIVE3 and because they have to work NUMBER hours every day all year making enough PLURALNOUN4 to pay for the vacation.
+
 
 Contoh: "Nama saya", NAMA, "umur saya, " UMUR, "Saya bersuadara " SUADARA, "Nama bapak dan ibuku" NAMABAPAK, "dan", NAMAIBU.
 
