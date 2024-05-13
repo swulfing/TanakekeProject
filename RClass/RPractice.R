@@ -128,7 +128,7 @@ x == k #harus pakai dua tkamu sama dengan
 nchar(nama1)
 
 # Cek kalau ada kata di dalam rangkaian
-grepl("Soph", nama1)
+grepl("Sur", nama1)
 grepl("Anne", nama1)
 
 

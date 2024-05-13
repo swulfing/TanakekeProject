@@ -27,6 +27,22 @@ A vacation is when you take a trip to some ADJECTIVE1 place with your ADJECTIVE2
 Contoh: "Nama saya", NAMA, "umur saya, " UMUR, "Saya bersuadara " SUADARA, "Nama bapak dan ibuku" NAMABAPAK, "dan", NAMAIBU.
 
 LISTS AND DATAFRAMES:
+Lists:
+
+Make a list of all the odd numbers from 1-100
+Make a list of all the numbers divisible by 7 from 1-1000
+
+Run the code and write what each of these do:
+	buah[1]
+	buah[1:3]
+	buah[c(1,3, 5)]
+	buah[-2]
+Make a list of your favorite movies or tv shows (in order most to least favorite)
+Print for me your top 3 favorite
+Check to see if the movie "Batman" is included
+Add your least favorite movie to the end
+
+
 First go through this example, you forgot to mention nested lists
 https://www.r-bloggers.com/2023/07/how-to-subset-list-objects-in-r/
 BASICALLY THE SAME AS A DATA FRAME, EXCEPT STRUCTURE. YOU'RE GOING TO SEE R OUTPUT COME UP AS A LIST SOMETIMES, NOT A DF SO JUST KNOWING HOW TO USE AND SUBSET
@@ -34,6 +50,7 @@ BASICALLY THE SAME AS A DATA FRAME, EXCEPT STRUCTURE. YOU'RE GOING TO SEE R OUTP
 Practice: 
 Write an empty dataframe
 Write dataframe that has lists of your classes, the number of students in each class, what day of the week that class is, and how many credits that class is
+Add a column on the left that numbers the classes starting from 1
 Extract each column of that dataframe
 Extract the first two rows of that dataframe
 Extract the 3rd and 5th rows with 1st and 3rd columns from a given data frame.
@@ -56,11 +73,9 @@ Create a function that will turn all numbers into positive, whole numbers
 
 Next lesson:
 
-Uploading data to R
-Subsetting datasets
-Merges?
-Basic graphing
-intro to dplyr?
+Uploading data to R - making graphs (base R and ggplot)
+	Subsetting datasets
+Intro to dplyr + Merges
 
 Lesson After:
 Good data management
