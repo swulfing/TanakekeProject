@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
 
 library(tidyverse)
 library(cowplot)
@@ -35,9 +35,9 @@ setwd("C:/Users/Sophi/Documents/GitHub/TanakekeProject/URUVS/Datasheets")
 
 # Read in logger info
 
-D6_HOBO <- read.csv("HOBO/HOBO02.2024_21370988_3_D6.csv")
-L4_HOBO <- read.csv("HOBO/HOBO02.2024_21370989_2_L4.csv")
-E5_HOBO <- read.csv("HOBO/HOBO02.2024_21513093_1_E5.csv")
+D6_HOBO <- read.csv("HOBO/D6_HOBOMASTER.csv")
+L4_HOBO <- read.csv("HOBO/L4_HOBOMASTER.csv")
+E5_HOBO <- read.csv("HOBO/E5_HOBOMASTER.csv")
 
 colnames(D6_HOBO) <- c("unique", "date", "temp", "light")
 #D6_HOBO$date <- as.Date(D6_HOBO$date, format = "%m/%d/%Y HH:MM:SS")
@@ -47,22 +47,23 @@ colnames(L4_HOBO) <- c("unique", "date", "temp", "light")
 
 colnames(E5_HOBO) <- c("unique", "date", "temp", "light")
 #E5_HOBO$date <- as.Date(L4_HOBO$date, format = "%m/%d/%Y HH:MM:SS")
-  
-ggplot() +
-  geom_point(data=D6_HOBO,aes(x=date,
-    y=temp), size = 1, alpha = 1/10, color = "red") +
-  geom_point(data=L4_HOBO,aes(x=date,
-    y=temp), size = 1, alpha = 1/10, color = "green") +
-  geom_point(data=E5_HOBO,aes(x=date,
-    y=temp), size = 1, alpha = 1/10, color = "blue")
 
-ggplot() +
-  geom_point(data=D6_HOBO,aes(x=date,
-    y=light), size = 1, alpha = 1/10, color = "red") +
-  geom_point(data=L4_HOBO,aes(x=date,
-    y=light), size = 1, alpha = 1/10, color = "green") +
-  geom_point(data=E5_HOBO,aes(x=date,
-    y=light), size = 1, alpha = 1/10, color = "blue")
+# PLOT WITH ALL POINTS. TAKES TOO LONG TO RENDER  
+# ggplot() +
+#   geom_point(data=D6_HOBO,aes(x=date,
+#     y=temp), size = 1, alpha = 1/10, color = "red") +
+#   geom_point(data=L4_HOBO,aes(x=date,
+#     y=temp), size = 1, alpha = 1/10, color = "green") +
+#   geom_point(data=E5_HOBO,aes(x=date,
+#     y=temp), size = 1, alpha = 1/10, color = "blue")
+# 
+# ggplot() +
+#   geom_point(data=D6_HOBO,aes(x=date,
+#     y=light), size = 1, alpha = 1/10, color = "red") +
+#   geom_point(data=L4_HOBO,aes(x=date,
+#     y=light), size = 1, alpha = 1/10, color = "green") +
+#   geom_point(data=E5_HOBO,aes(x=date,
+#     y=light), size = 1, alpha = 1/10, color = "blue")
   
 ```
 

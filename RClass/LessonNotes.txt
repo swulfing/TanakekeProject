@@ -63,13 +63,22 @@ Show me the list of classes in alphabetical order
 IF STATEMENTS:
 write a nested if statement that checks if a number x is positive, negative, or 0
 Write an if statement that checks if a number is divisible by 2, 3, or both
-Write a while loop that prints every multple of 9 until 900
+Use a while loop to investigate the number of terms required before the product 1⋅2⋅3⋅4⋅…reaches above 10 million. print the number of terms required
+
+FOR LOOP
+Loop through the dataframe you made last time and print out each of your classes
+Loop through 100 random flips of a coin and at the end of the loop, count how many times each was heads and tails. Use the code below to simulate a coin flip
+		coin <- c('heads', 'tails') #write two options for coin flip
+		sample(coin, size = 1) #Take a random subset
 
 FUNCTIONS
 Create a function that will return the sum of 2 integers.
-Create a function that will return T or F if a number is divisible by 7
+Create a function that will return T or F if a number is divisible by 17
 Create a function that will turn all numbers into positive, whole numbers
+Create a guess the number game. The function will randomly generate a number between one and 100. Then, two players will input their guesses. The closest player wins!
 
+START GRAPHING USING MTCARS
+Send lesson
 
 Next lesson:
 
@@ -78,8 +87,9 @@ Uploading data to R - making graphs (base R and ggplot)
 Intro to dplyr + Merges
 
 Lesson After:
-Good data management
-	metadata
+Good data management and clean data writing
+	metadata,
+	Dates
 
 Zotero
 

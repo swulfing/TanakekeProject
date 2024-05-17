@@ -10,20 +10,43 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
 
+library(plyr)
 library(dplyr)
 library(ggplot2)
 
-URUV_data <- read.csv("Master_RecordingData.csv")
+#Make a MasterDatasheet with all months data
+# CHANGE EVERY MONTH
+completedData <- c("02.2024", "03.2024")
 
+masterData <- data.frame(read.csv("URUV/RecordingData_02.2024.csv"))
 
+for(i in 2:length(completedData)){
+  addedData <- data.frame(read.csv(paste0("URUV/RecordingData_",completedData[i],".csv")))
+  
+  #All NA maxN's changed to 0s
+  for(k in 1:ncol(addedData)){
+    if(grepl("MAXN", colnames(addedData[k]))){
+      addedData[k][is.na(addedData[k])] <- 0
+    }}
+  
+  masterData <- rbind.fill(masterData, addedData)
+}
+
+masterData <- masterData %>%
+  filter( F1_TIME != "") %>%
+  filter(!is.na(F1_TIME))
+
+#View(masterData)
+write.csv(masterData, "Master_RecordingData.csv")
+
+URUV_data <- masterData
 ```
 
 ```{r dataClean}
 
 URUV_data$DATE <- as.Date(URUV_data$DATE, format = "%d/%m/%Y")
 
-URUV_data <- URUV_data %>%
-  filter(!is.na(F1_TIME)) %>% #Take out unused videos
+URUV_data <- URUV_data %>% #Take out unused videos
   rowwise() %>%
   mutate(WATER_DEPTH_AVERAGE = mean(c(WATER_DEPTH_BEFORE, WATER_DEPTH_AFTER), na.rm=TRUE)) #Take avg depth during recording
 
@@ -47,23 +70,45 @@ ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_ALLSPECIES)) +
 
 ggplot(URUV_data, aes(x=DESA, y=NO_FISHSPECIES)) + 
   geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.2))
+  geom_jitter(shape=16, position=position_jitter(0.1))
 
 ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_FISHSPECIES)) + 
   geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.2))
+  geom_jitter(shape=16, position=position_jitter(0.1))
 
 ```
+
+```{r totalMaxN}
+
+Maxn_List <- c()
+
+for(i in 1:ncol(URUV_data)){
+  if(grepl("MAXN", colnames(URUV_data[i]))){
+    Maxn_List <- append(Maxn_List,i)
+  }}
+
+URUV_data$MAXN_OVERALL <- rowSums(URUV_data[ , Maxn_List], na.rm=TRUE)
+
+ggplot(URUV_data, aes(x=DESA, y=MAXN_OVERALL)) + 
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.1))
+
+ggplot(URUV_data, aes(x=SITE_TYPE, y=MAXN_OVERALL)) + 
+  geom_boxplot() +
+  geom_jitter(shape=16, position=position_jitter(0.1))
+
+```
+
 
 ```{r speciesSort}
 
 for(i in 1:ncol(URUV_data)){
-  if(grepl("MAXN", colnames(URUV_data[i]))){ #Sort Through all MaxN's calculated
-    
+  if(grepl("MAXN", colnames(URUV_data[i])) & sum(URUV_data[i] > 0) > 5){ #Sort Through all MaxN's calculated
+    # & sum(colnames(URUV_data[i]) > 0) > 5
     #Need to fully rename column so ggplot can read it. Make separate datasheet
     Yaxistitle <- colnames(URUV_data[i])
-    data1 <- URUV_data %>% 
-    rename(MAXN_TARGET = i)
+    data1 <- URUV_data %>%
+      rename("MAXN_TARGET" = colnames(URUV_data[i]))
     
     #Graph boxplot per desa
     print(ggplot(data1, aes(x=DESA, y=MAXN_TARGET)) +
@@ -125,18 +170,19 @@ plot(x = 1,
      xlab = "Vegitation", 
      ylab = "Total Species")
 
-# Add coral2 points for male data
+# Add coral2 points for degraded data
 points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "D"],
        y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "D"],
        pch = 16,
        col = "coral2", trans.val = .8)
 
-# Add steelblue points for female data
+# Add steelblue points for EMR data
 points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "E"],
        y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "E"],
        pch = 16,
        col = "steelblue3", trans.val = .8)
 
+#Green points for lush data
 points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "L"],
        y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "L"],
        pch = 16,
