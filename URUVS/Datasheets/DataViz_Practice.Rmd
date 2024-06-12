@@ -10,13 +10,20 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
 
+# Temporal Trends
+# Shannon’s diversity Index
+# Principal Component Analysis
+# Community Structures
+
+
 library(plyr)
 library(dplyr)
 library(ggplot2)
+library(lubridate)
 
 #Make a MasterDatasheet with all months data
 # CHANGE EVERY MONTH
-completedData <- c("02.2024", "03.2024")
+completedData <- c("02.2024", "03.2024", "04.2024", "05.2024")
 
 masterData <- data.frame(read.csv("URUV/RecordingData_02.2024.csv"))
 
@@ -35,6 +42,12 @@ for(i in 2:length(completedData)){
 masterData <- masterData %>%
   filter( F1_TIME != "") %>%
   filter(!is.na(F1_TIME))
+
+#Need to chage NAs again
+for(j in 1:ncol(masterData)){
+    if(grepl("MAXN", colnames(masterData[j]))){
+      masterData[j][is.na(masterData[j])] <- 0
+    }}
 
 #View(masterData)
 write.csv(masterData, "Master_RecordingData.csv")
@@ -57,24 +70,24 @@ URUV_data <- URUV_data %>% #Take out unused videos
 ```{r AllSpecies, results = 'asis', echo = FALSE, fig.show = "hold", out.width = "50%"}
 
 ggplot(URUV_data, aes(x=DESA, y=NO_ALLSPECIES)) + 
-  geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.2))
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.2))
 
 ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_ALLSPECIES)) + 
-  geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.2))
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.2))
 
 ```
 
 ```{r FishSpecies, results = 'asis', echo = FALSE, fig.show = "hold", out.width = "50%"}
 
 ggplot(URUV_data, aes(x=DESA, y=NO_FISHSPECIES)) + 
-  geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.1))
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.1))
 
 ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_FISHSPECIES)) + 
-  geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.1))
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.1))
 
 ```
 
@@ -90,25 +103,72 @@ for(i in 1:ncol(URUV_data)){
 URUV_data$MAXN_OVERALL <- rowSums(URUV_data[ , Maxn_List], na.rm=TRUE)
 
 ggplot(URUV_data, aes(x=DESA, y=MAXN_OVERALL)) + 
-  geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.1))
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.1))
 
 ggplot(URUV_data, aes(x=SITE_TYPE, y=MAXN_OVERALL)) + 
-  geom_boxplot() +
-  geom_jitter(shape=16, position=position_jitter(0.1))
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.1))
 
 ```
 
+\newpage
+
+# ANOVAS AND STATS
+```{r ANOVA_oneway}
+
+# LATER maybe try a PCA https://builtin.com/data-science/step-step-explanation-principal-component-analysis
+
+# ONE WAY ANOVA CHECKING EFFECT OF SITE AND DESA
+# https://www.scribbr.com/statistics/anova-in-r/
+
+one.way_Overall <- aov(MAXN_OVERALL ~ SITE_TYPE, data = URUV_data)
+summary(one.way_Overall)
+
+one.way_Desa <- aov(MAXN_OVERALL ~ DESA, data = URUV_data)
+summary(one.way_Desa)
+
+
+```
+
+```{r ANOVA_2WAY}
+
+# one.way_Total <- aov(NO_FISHSPECIES ~ SITE_TYPE, data = URUV_data)
+# 2 WAY ANOVA CHECKING SITE AND OVERALL MAXN
+
+two.way_Overall <- aov(MAXN_OVERALL ~ SITE_TYPE + DESA, data = URUV_data)
+summary(two.way_Overall)
+
+Interaction_Overall <- aov(MAXN_OVERALL ~ SITE_TYPE * DESA, data = URUV_data)
+summary(Interaction_Overall)
+
+
+```
+
+\newpage
+
+# TEMPORAL
+```{r TotalFish}
+
+#DO THIS LATER fishFTrend <- URUV_data %>%
+  
+```
+
+\newpage
+
+# INDIVIDUAL SPECIES
 
 ```{r speciesSort}
 
 for(i in 1:ncol(URUV_data)){
-  if(grepl("MAXN", colnames(URUV_data[i])) & sum(URUV_data[i] > 0) > 5){ #Sort Through all MaxN's calculated
+  if(grepl("MAXN", colnames(URUV_data[i])) & sum(URUV_data[i] > 0) > 10){ #Sort Through all MaxN's calculated
     # & sum(colnames(URUV_data[i]) > 0) > 5
     #Need to fully rename column so ggplot can read it. Make separate datasheet
     Yaxistitle <- colnames(URUV_data[i])
     data1 <- URUV_data %>%
       rename("MAXN_TARGET" = colnames(URUV_data[i]))
+    
+    data1$MONTH <- month(data1$DATE)
     
     #Graph boxplot per desa
     print(ggplot(data1, aes(x=DESA, y=MAXN_TARGET)) +
@@ -121,6 +181,26 @@ for(i in 1:ncol(URUV_data)){
       geom_boxplot() +
       geom_jitter(shape=16, position=position_jitter(0.2)) +
       ylab(Yaxistitle))
+    
+    
+    #Graph temporal patterns
+    
+    SpeciesPerMonth <- data1 %>%
+      group_by(MONTH) %>%
+      summarize(sum(MAXN_TARGET))
+    colnames(SpeciesPerMonth) <-c("MONTH", "TOTAL")
+
+    SpeciesPerMonth$MONTH <- as.integer(SpeciesPerMonth$MONTH)
+
+    MONTHLIST <- data.frame(MONTH = c(1:12))
+
+    temporalSpeciesData <- left_join(MONTHLIST, SpeciesPerMonth)
+    
+    temporalSpeciesData[is.na(temporalSpeciesData)] <- 0
+
+    print(ggplot(temporalSpeciesData, aes(x = MONTH, y = TOTAL)) +
+      geom_bar(stat = "identity"))
+    
   }
   
   
@@ -130,6 +210,10 @@ for(i in 1:ncol(URUV_data)){
 
 
 ```
+
+\newpage
+
+# QUALITY CHECKS
 
 ```{r vegitationcheck}
 
