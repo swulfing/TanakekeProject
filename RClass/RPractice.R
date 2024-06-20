@@ -351,6 +351,17 @@ while (i <= 6) { # Boolean, cek kalimat (benar/salah)
   i <- i + 1 # Merubah i. Kode berulang
 }
 
+# NEXT LESSON:
+#   - Review if statemetns
+#   - Start for loops
+#   - Pay (each 100, fajrin gets 200)
+#   - Show how to pick a start time
+
+
+
+
+
+
 # For Loops ---------------------------------------------------------------
 
 for (x in 1:10) {
