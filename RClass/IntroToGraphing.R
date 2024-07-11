@@ -1,5 +1,7 @@
-#Datasets yang sudah ada di R. Bisa dipakai kapanpun untuk latihan
+#Dataset dataset yang sudah ada di R. Bisa dipakai kapanpun untuk latihan
 
+
+#View() <- command untuk lihat dataset
 View(mtcars)
 View(pressure)
 View(BOD)
@@ -11,7 +13,9 @@ View(faithful)
 library(ggplot2) #Perlu didownload di tab packages di layar kanan bawah
 require(ggplot2)
 
-#SCATTERPLOT
+
+# BANDINGKAN KODE BASE R DAN GGPLOT2
+#SCATTERPLOT BASE R
 plot(x = mtcars$wt, y = mtcars$mpg)
 
 # GGPLOT2 - semua syntax barhasil grafik yang sama
@@ -25,6 +29,7 @@ ggplot(data = mtcars, aes(x = wt, y = mpg)) + # menentukan data, x dan y dinentu
 
 
 
+# BASE R
 #GRAFIK GARIS
 plot(x = pressure$temperature, y = pressure$pressure, type = "l")
 # tambah titik
@@ -34,7 +39,7 @@ lines(x = pressure$temperature, y = pressure$pressure/2, col = "red")
 # tambah titik
 points(x = pressure$temperature, y = pressure$pressure/2, col = "red")
 
-# di ggplot2
+# GGPLOT2
 ggplot(pressure, aes(x = temperature, y = pressure)) +
   geom_line() +
   geom_point()
@@ -55,6 +60,7 @@ p + coord_flip()
 
 
 #HISTOGRAM
+# BASE R
 hist(mtcars$mpg)
 hist(mtcars$mpg, breaks = 10) #Binning - Binning adalah cara untuk mengelompokkan suatu data ke dalam jumlah yang lebih kecil pada “bins”. Sering dipakai di statistik
 
@@ -66,6 +72,7 @@ ggplot(mtcars, aes(x=mpg)) +
 
 
 # BOXPLOT
+# BASE R
 boxplot(mpg ~ cyl, data = mtcars)
 
 # ggplot
