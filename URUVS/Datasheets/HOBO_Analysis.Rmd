@@ -64,6 +64,8 @@ colnames(E5_HOBO) <- c("unique", "date", "temp", "light")
 #     y=light), size = 1, alpha = 1/10, color = "green") +
 #   geom_point(data=E5_HOBO,aes(x=date,
 #     y=light), size = 1, alpha = 1/10, color = "blue")
+
+#Readagain
   
 ```
 

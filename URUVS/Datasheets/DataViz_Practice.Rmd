@@ -20,6 +20,7 @@ library(plyr)
 library(dplyr)
 library(ggplot2)
 library(lubridate)
+library(ggpubr)
 
 #Make a MasterDatasheet with all months data
 # CHANGE EVERY MONTH
@@ -55,7 +56,7 @@ write.csv(masterData, "Master_RecordingData.csv")
 URUV_data <- masterData
 
 
-# REREAD
+
 ```
 
 ```{r dataClean}
@@ -150,11 +151,54 @@ summary(Interaction_Overall)
 
 \newpage
 
-# TEMPORAL
-```{r TotalFish}
+# STATS
+```{r depthplotting}
 
-#DO THIS LATER fishFTrend <- URUV_data %>%
-  
+# plot(URUV_data$WATER_DEPTH_BEFORE, URUV_data$MAXN_OVERALL)
+# abline(lm(MAXN_OVERALL ~ WATER_DEPTH_BEFORE, data = URUV_data))
+# 
+# lm(MAXN_OVERALL ~ WATER_DEPTH_BEFORE, data = URUV_data)
+
+ggplot(data=URUV_data, aes(x=WATER_DEPTH_BEFORE, y=MAXN_OVERALL)) +
+        geom_smooth(method="lm") +
+        geom_point() +
+        stat_regline_equation(label.x=15, label.y=50) +
+        stat_cor(aes(label=..rr.label..), label.x=15, label.y=40)
+
+```
+
+```{r tideplotting}
+
+# plot(URUV_data$TIDE_HEIGHT, URUV_data$MAXN_OVERALL)
+
+ggplot(data=URUV_data, aes(x=TIDE_HEIGHT, y=MAXN_OVERALL)) +
+        geom_smooth(method="lm") +
+        geom_point() +
+        stat_regline_equation(label.x=.1, label.y=50) +
+        stat_cor(aes(label=..rr.label..), label.x=.1, label.y=40)
+
+```
+
+```{r vegplotting}
+#plot(URUV_data$VEGITATION, URUV_data$MAXN_OVERALL)
+
+ggplot(data=URUV_data, aes(x=VEGITATION, y=MAXN_OVERALL)) +
+        geom_smooth(method="lm") +
+        geom_point() +
+        stat_regline_equation(label.x=15, label.y=50) +
+        stat_cor(aes(label=..rr.label..), label.x=15, label.y=40)
+
+```
+
+```{r plottingVis}
+
+plot(URUV_data$VISIBILITY, URUV_data$MAXN_OVERALL)
+
+ggplot(data=URUV_data, aes(x=VISIBILITY, y=MAXN_OVERALL)) +
+        geom_smooth(method="lm") +
+        geom_point() +
+        stat_regline_equation(label.x=15, label.y=50) +
+        stat_cor(aes(label=..rr.label..), label.x=15, label.y=40)
 ```
 
 \newpage
