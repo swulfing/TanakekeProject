@@ -22,6 +22,7 @@ library(ggplot2)
 library(lubridate)
 library(ggpubr)
 
+
 #Make a MasterDatasheet with all months data
 # CHANGE EVERY MONTH
 completedData <- c("02.2024", "03.2024", "04.2024", "05.2024")
@@ -59,7 +60,38 @@ URUV_data <- masterData
 
 ```
 
+```{r fxnCombineSpecies}
+
+combineSpecies <- function(NAME1, NAME2, NEWNAME) {
+# NAME1 <- "FISHF"
+# NAME2 <- "GUPPYC"
+# NEWNAME <- "FISHF"
+
+
+  SPECIES_Compare <- URUV_data %>%
+    select(contains(NAME1) | contains(NAME2))
+  
+  # Remove these columns from original dataset
+   NEW_URUV <- URUV_data[,!names(URUV_data) %in% colnames(SPECIES_Compare)]
+  
+  
+  MAXN_cols <- grep("MAXN", names(SPECIES_Compare), value = TRUE)
+  # CALCULATE NEW MAXN
+  SPECIES_Compare <- pmax(SPECIES_Compare[MAXN_cols[1]], SPECIES_Compare[MAXN_cols[2]])
+  colnames(SPECIES_Compare) <- paste0("MAXN_", NEWNAME)
+  
+  #APPEND TO DATASET AND REPLACE
+  NEW_URUV <- cbind(NEW_URUV, SPECIES_Compare)
+  
+  URUV_data <<- NEW_URUV
+  
+  }
+
+```
+
 ```{r dataClean}
+
+#NOTE: IF YOU USE T1 YOU HAVE TO CONVERT ALL OF THE TIME COLUMNS INTO TIME FORMATS. FIX FUNCTION ABOVE AS WELL TO CREATE SMALLER T1 VALUES
 
 URUV_data$DATE <- as.Date(URUV_data$DATE, format = "%d/%m/%Y")
 
@@ -68,6 +100,12 @@ URUV_data <- URUV_data %>% #Take out unused videos
   mutate(WATER_DEPTH_AVERAGE = mean(c(WATER_DEPTH_BEFORE, WATER_DEPTH_AFTER), na.rm=TRUE)) #Take avg depth during recording
 
 #View(URUV_data)
+
+# COMBINING SPECIES ORIGINALLY SEPARATED IN DATA
+combineSpecies("FISHF", "GUPPYC", "FISHF")
+combineSpecies("FISHM", "FISHG", "FISHM")
+combineSpecies("FISHL", "FISHK", "FISHK")
+
 
 ```
 
@@ -92,6 +130,56 @@ ggplot(URUV_data, aes(x=DESA, y=NO_FISHSPECIES)) +
 ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_FISHSPECIES)) + 
   geom_boxplot() 
   #geom_jitter(shape=16, position=position_jitter(0.1))
+
+```
+
+```{r ShannonsDiversity}
+
+# MAKE LIST OF SPECIES NOT TO INCLUDE UNIDGUPPY, 
+
+# DOUBLE CHECK THIS CALCULATION. based off this https://sqlpad.io/tutorial/shannon-diversity-calculate/
+
+# # Sample data: species counts
+# species_counts <- c(10, 20, 30, 40)
+# 
+# # Calculate proportions
+# species_proportions <- species_counts / sum(species_counts)
+# 
+# # Calculate Shannon Diversity Index
+# shannon_diversity <- -sum(species_proportions * log(species_proportions))
+# print(shannon_diversity)
+
+dontInclude <- c("UNIDGUPPY")
+
+for(i in 1:nrow(URUV_data)){
+  species_counts <- c()
+  k <- 1
+  for(j in 1:ncol(URUV_data)){
+    if(grepl("MAXN", colnames(URUV_data[j])) & URUV_data[i,j] > 0){
+      species_counts[k] <-URUV_data[i,j]
+      k <- k+1
+    }
+  }
+  
+  species_proportions <- species_counts / sum(species_counts)
+  shannon_diversity <- -sum(species_proportions * log(species_proportions))
+  URUV_data$SHANNON_DIV[i] <- shannon_diversity
+  
+}
+
+shannon <- URUV_data %>%
+      group_by(SITE_TYPE) %>%
+      summarise(SHANNON_AVG = mean(SHANNON_DIV))
+
+ggplot(data=shannon, aes(x=SITE_TYPE, y=SHANNON_AVG, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      xlab("Jenis Mangrove") +
+      ylab("Index") +
+      geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Dihancur","EMR", "Alami")) +
+      theme(legend.title=element_blank())
 
 ```
 
@@ -206,9 +294,11 @@ ggplot(data=URUV_data, aes(x=VISIBILITY, y=MAXN_OVERALL)) +
 # INDIVIDUAL SPECIES
 
 ```{r speciesSort}
+colList <- c()
 
 for(i in 1:ncol(URUV_data)){
-  if(grepl("MAXN", colnames(URUV_data[i])) & sum(URUV_data[i] > 0) > 10){ #Sort Through all MaxN's calculated
+  if(grepl("MAXN", colnames(URUV_data[i])) & sum(URUV_data[i] > 0) > 5){ #Sort Through all MaxN's calculated
+    colList <- append(colList, i)
     # & sum(colnames(URUV_data[i]) > 0) > 5
     #Need to fully rename column so ggplot can read it. Make separate datasheet
     Yaxistitle <- colnames(URUV_data[i])
@@ -247,6 +337,24 @@ for(i in 1:ncol(URUV_data)){
 
     print(ggplot(temporalSpeciesData, aes(x = MONTH, y = TOTAL)) +
       geom_bar(stat = "identity"))
+    
+    # Graph total number of fish in each siteType
+    
+    ikanTotal <- data1 %>%
+      group_by(SITE_TYPE) %>%
+      summarise(TOTAL_FISH = sum(MAXN_TARGET))
+    
+    print(ggplot(data=ikanTotal, aes(x=SITE_TYPE, y=TOTAL_FISH, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      xlab("Jenis Mangrove") +
+      ylab(paste("Jumlah Ikan", Yaxistitle)) +
+      geom_text(aes(label=TOTAL_FISH), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Dihancur","EMR", "Alami")) +
+      theme(legend.title=element_blank()))
+      
+      
     
   }
   
