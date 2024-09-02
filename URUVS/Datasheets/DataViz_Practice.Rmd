@@ -175,7 +175,7 @@ ggplot(data=shannon, aes(x=SITE_TYPE, y=SHANNON_AVG, fill = SITE_TYPE)) +
       geom_bar(stat="identity", color = "black") +
       xlab("Jenis Mangrove") +
       ylab("Index") +
-      geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
       theme_minimal() +
       scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
                     labels = c("Dihancur","EMR", "Alami")) +
