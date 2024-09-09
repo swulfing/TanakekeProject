@@ -25,7 +25,7 @@ library(ggpubr)
 
 #Make a MasterDatasheet with all months data
 # CHANGE EVERY MONTH
-completedData <- c("02.2024", "03.2024", "04.2024", "05.2024")
+completedData <- c("02.2024", "03.2024", "04.2024", "05.2024", "06.2024")
 
 masterData <- data.frame(read.csv("URUV/RecordingData_02.2024.csv"))
 
