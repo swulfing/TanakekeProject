@@ -20,7 +20,7 @@ dateInfo <- as.POSIXct("January 30, 25") #Doesn't work
 dateInfo <- as.POSIXct("January 30, 25 10:15 PM", format = "%B %d, %y %I:%M %p")
 str(dateInfo)
 
-#Exracting information from 
+#Extracting information from 
 year(dateInfo)
 month(dateInfo)
 day(dateInfo)
@@ -31,13 +31,14 @@ minute(dateInfo)
 #                  sales = runif(100, 10, 500) + seq(50, 149)^2)
 # write.csv(df, "C:/Users/Sophi/Documents/GitHub/TanakekeProject/RClass/UNHAS/dateTime.csv")
 
+# ACTIVITY: READ IN YOUR CLEANED DATA FROM THE DATA HYGIENE LESSON AND READ IN THE DATE COLUMN AS A DATE. 
+# MAKE A SCATTER PLOT OF THE WEIGHTS OVER TIME 
 
 
 
 
 
-
-# Activity: Download the dates dataset. Each group picks a different column to fix the dates and graph a time series
+# ACTIVITY: DOWNLOAD THE DATES DATASET. EACHGROUP WILL PICK A DIFFERENT COLUMN AND FIX THE DATES AND GRAPH A TIME SERIES
 dateData <- read.csv("C:/Users/Sophi/Documents/GitHub/TanakekeProject/RClass/UNHAS/dateTime.csv")
 
 # Try a time series alone
@@ -57,7 +58,7 @@ plot(x = dateData$date3, y = dateData$sales, type = 'l')
 
 
 
-# Activity: Use dplyr and graphing to extract the show the monthly average across all of the years
+# ACTIVITY: USE DPLYR AND GRAPHING TO EXTRACT AND SHOW TH EMONLTY AVERAGE SALES ACROSS ALL OF THE YEARS
 
 monthlyAverage <- dateData %>%
   mutate(month = month(date)) %>%

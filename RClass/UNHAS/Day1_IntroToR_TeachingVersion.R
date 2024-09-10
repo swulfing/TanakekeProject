@@ -1,7 +1,18 @@
+# 1. Running R code
+#   Blok, "Code", "Run"
+#   "Run" Tombol di kanan atas
+#   CTRL + ENTER
+
+# 2. R is case sensitive
+#  head(mtcars)
+#  Head(mtcars)
+
+# 3. Making Comments
+
 
 # MAKING VARIABLES ----------------------------------------------------------------
 
-# VARIABLES ARE CASE-SENSITIVE!
+# VARIABLES ARE CASE-SENSITIVE! Show how this makes two different variables
 nama1 <- "Sophie"
 NAMA1<- "Rina"
 
@@ -27,6 +38,7 @@ Umur <- 27
 paste("Hello world. My name is", nama1, "I am from", Negara, "I am", Umur, "years old")
 
 
+###################### back to slides
 
 # DATA TYPES -----------------------------------------------------------
 
@@ -43,7 +55,7 @@ paste("Hello world. My name is", nama1, "I am from", Negara, "I am", Umur, "year
 # INTEGER DIVISION
 94729 %/% 7
 
-# MODULAR ARITHMETIC
+# MODULAR ARITHMETIC - show on whiteboard what this is
 94729 %% 7
 
 # YOU CAN ALSO USE PARENTHESES IN THE SAME WAY THEY ARE USED IN MATHEMATICS
@@ -76,6 +88,7 @@ paste("Hello world. My name is", nama1, "I am from", Negara, "I am", Umur, "year
 
 
 
+###################### back to slides
 
 # STRINGS
 
@@ -92,12 +105,13 @@ grepl("Anne", nama1)
 
 ## ACTIVITY: CREATE INDIVIDUALIZED INTRODUCTIONS: FILL IN THE VARIABLES BELOW TO WRITE YOUR OWN INDIVIDUAL INTRODUCTION
 
+# erase the inputs below
 
-NAME <- 
-AGE <- 
-SIBLINGS <- 
-NAME_MOTHER <- 
-NAME_FATHER <- 
+NAME <- "Sophie"
+AGE <- 27
+SIBLINGS <- 6
+NAME_MOTHER <- "Gretchen"
+NAME_FATHER <- "Tony"
 
 
 paste("My name is", NAME, "I am", AGE, "years old. I have", SIBLINGS, "brothers and sisters. My mom's name is", NAME_MOTHER, "My father's name is", NAME_FATHER)
@@ -106,9 +120,38 @@ paste("My name is", NAME, "I am", AGE, "years old. I have", SIBLINGS, "brothers 
 
 # ACTIVITY: GET INTO GROUPS AND CREATE A MAD LIBS GAME LIKE THE EXAMPLE IN CLASS. WE WILL THEN PLAY MAD LIBS WITH THE GROUP. PAY ATTENTION TO COMMAS, PARENTHESES, AND QUOTATION MAKRS
 
+# delete the example below
+
+ADJECTIVE1 <- 
+ADJECTIVE2 <- 
+ADJECTIVE3 <- 
+
+NOUN1 <- 
+NOUN2 <- 
+NOUN3 <- 
+PLURALNOUN1 <- 
+PLURALNOUN2 <- 
+PLURALNOUN3 <- 
+PLURALNOUN4 <- 
+
+GAME <- 
+PLACE <- 
+NUMBER <- 
+PLANT <- 
+BODYPART <- 
+
+INGVERB1 <- 
+INGVERB2 <- 
+INGVERB3 <- 
+INGVERB4 <- 
 
 
 
+paste("A vacation is when you take a trip to some", ADJECTIVE1, "place with your", ADJECTIVE2, "family. Usually you go to some place that is near a", NOUN1, "or on a", NOUN2, ". A good vacation is where you can ride", PLURALNOUN1, "or play", GAME, "or go hunting for", PLURALNOUN2, ". I like to spend my time", INGVERB1,"or", INGVERB2,". When parents go on a vacation, they spend their time eating", NUMBER, PLURALNOUN3,", and fathers play golf, and mothers sit around", INGVERB3, ". Last summer, my brother fell off a", NOUN3, "and got poison", PLANT, "all over his", BODYPART, ". My family is going to go to the", PLACE, "and I will practice", INGVERB4, ". Parents need" , ADJECTIVE3, "and because they have to work", NUMBER, "hours every day all year making enough", PLURALNOUN4, "to pay for the vacation.")
+
+
+
+###################### back to slides
 
 
 # BOOLEAN/LOGICAL OPERATORS
@@ -127,6 +170,7 @@ x <= 6
 
 
 
+###################### back to slides
 
 # CHECKING AND CHANGING CLASSES
 class(x)
@@ -167,7 +211,7 @@ buah
 # CAN ALSO USE BOOLEAN OPERATORS IN LISTS
 "apel" %in% buah
 
-# ADD DATA TO A LIST.
+# ADD DATA TO A LIST. Note how this is now a new list
 buah_2 <- append(buah, "apel", after = 2)
 buah_2
 
@@ -320,6 +364,8 @@ length(Data_Frame) #SAME AS NCOL
 
 
 
+###################### back to slides
+
 # IF STATEMENTS -----------------------------------------------------------
 
 # IF STATEMENTS WILL ONLY RUN UNDER CERTAIN CONDITIONS
@@ -391,6 +437,7 @@ if (a < 100 | b < 100) { # OR
 
 
 
+###################### back to slides
 
 # WHILE LOOPS -------------------------------------------------------------
 
@@ -441,13 +488,13 @@ for (k in loopBuah) {
   # LOOP THROUGH 100 RANDOM FLIPS OF A COIN AND AT THE END OF THE LOOP, COUNT HOW MANY TIMES EACH WAS HEADS AND TAILS. USE THE CODE BELOW TO SIMULATE THE COIN FLIPS
 
 #WHAT DOES EACH OF THESE LINES DO?
-coin <- c('heads', 'tails') 
-sample(coin, size = 1)
+coin <- c('heads', 'tails')
+sample(coin, size = 1) 
 
 
 
 
-
+###################### back to slides
 
 # FUNCTION ------------------------------------------------------------------
 
@@ -501,6 +548,23 @@ nilaiFinal
 
   # CREATE A GUESS THE NUMBER GAME. THE FUNCTION WILL RANDOMLY GENERATE A NUMBER BETWEEN ONE AND 100. THEN, TWO PLAYERS WILL INPUT THEIR GUESSES. CLOSEST PLAYER WINS!
       # HINT: ADAPT THE COIN TOSS CODE TO RANDOMLY GENERATE A NUMBER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

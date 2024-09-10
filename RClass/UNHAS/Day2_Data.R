@@ -5,13 +5,14 @@ library(dplyr)
 getwd()
 setwd("C:/Users/Sophi/Documents/GitHub/TanakekeProject/RClass/UNHAS")
 
+#Download gapminder data first
 gapminder <- read.csv("gapminder.csv")
 
 #OR
 
 gapminder <- read.csv("C:/Users/Sophi/Documents/GitHub/TanakekeProject/RClass/UNHAS/gapminder.csv")
 
-View(gapminder)
+View(gapminder) #describe what this dataset is doing
 
 # GRAPHING boxplot and line DPLYR filter ----------------------------------------------------------------
 # Boxplot gdp per capita. Then filter by country
@@ -85,7 +86,7 @@ write.csv(poplasiDunia,"dataPoplasi.csv")
 
 dat <- read.csv("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2018-September-Bioinformatics-Prerequisites/master/friday/lm_example_data.csv") #You can also read csv data directly off of the internet
 
-#What is this datasheet? What are all of the variables and what kind are they
+#WHAT IS THIS DATASHEET? WHAT ARE ALL OF THE VARIABLES AND TYPES OF VARIABLES
 
 
 #Statistics to show distributions
@@ -102,12 +103,12 @@ boxplot(expression ~ treatment, data = dat)
 
 # ANOVAS and LMs
 
-one.way_ANOVA <- lm(expression ~ treatment, data = dat)
+one.way_ANOVA <- lm(expression ~ treatment, data = dat) #using a categorical with a continuous
 summary(one.way_ANOVA)
 
 # Linear Models
 
-linearModel <- lm(expression ~ temperature, data = dat) #What is the difference between these two codes
+linearModel <- lm(expression ~ temperature, data = dat) 
 summary(linearModel)
 
 
@@ -117,6 +118,8 @@ abline(lm(expression ~ temperature, data = dat))
 
 #diagnostics
 plot(linearModel)
+
+# DOES ANYONE HAVE ANY OTHER SPECIFIC STATISTICAL TESTS THEY WOULD LIKE TO RUN
 
 
 
