@@ -1,0 +1,89 @@
+DATE_COLLECTED,PLOT,SPECIES,SEX,WEIGHT,UNITS,SCALE_CALIB,NOTES
+16/07/2013,2,DM,F,,,,
+16/07/2013,7,DM,M,33,g,Y,
+16/07/2013,3,DM,M,,,,
+16/07/2013,1,DM,M,,,,
+18/07/2013,3,DM,M,40,g,Y,
+18/07/2013,7,DM,M,48,g,Y,
+18/07/2013,4,DM,F,29,g,Y,
+18/07/2013,4,DM,F,46,g,Y,
+18/07/2013,7,DM,M,36,g,Y,
+18/07/2013,7,DM,F,35,g,Y,
+18/07/2013,8,DM,F,22,g,Y,
+18/07/2013,7,DM,F,42,g,Y,
+18/07/2013,4,DM,F,41,g,Y,
+18/07/2013,6,DM,F,37,g,Y,
+19/08/2013,8,DO,F,52,,Y,Weight units unclear
+17/10/2013,3,DO,F,33,,Y,Weight units unclear
+17/10/2013,3,DO,F,50,,Y,Weight units unclear
+17/10/2013,17,DO,F,48,,Y,Weight units unclear
+17/10/2013,17,DO,F,31,,Y,Weight units unclear
+18/10/2013,8,DO,F,41,,Y,Weight units unclear
+12/11/2013,1,DO,F,44,,Y,Weight units unclear
+12/11/2013,1,DO,M,48,,Y,Weight units unclear
+14/11/2013,8,DO,F,39,,Y,Weight units unclear
+10/12/2013,9,DO,F,40,,Y,Weight units unclear
+10/12/2013,1,DO,M,45,,Y,Weight units unclear
+11/12/2013,8,DO,F,41,,Y,Weight units unclear
+12/11/2013,9,DS,F,117,,Y,Weight units unclear
+12/11/2013,1,DS,F,121,,Y,Weight units unclear
+12/11/2013,20,DS,M,115,,Y,Weight units unclear
+12/11/2013,9,DS,F,120,,Y,Weight units unclear
+13/11/2013,17,DS,F,118,,Y,Weight units unclear
+13/11/2013,11,DS,F,126,,Y,Weight units unclear
+13/11/2013,17,DS,M,132,,N,Weight units unclear
+13/11/2013,14,DS,F,113,,N,Weight units unclear
+13/11/2013,11,DS,F,122,,Y,Weight units unclear
+13/11/2013,4,DS,F,107,,Y,Weight units unclear
+13/11/2013,4,DS,F,115,,Y,Weight units unclear
+09/01/2014,1,DM,M,40,,Y,Weight units unclear
+09/01/2014,1,DM,F,36,,Y,Weight units unclear
+09/01/2014,1,DS,F,135,,Y,Weight units unclear
+20/01/2014,1,DM,F,39,,Y,Weight units unclear
+20/01/2014,1,DM,M,43,,Y,Weight units unclear
+20/01/2014,1,DS,F,144,,Y,Weight units unclear
+13/03/2014,1,DM,F,51,,Y,Weight units unclear
+13/03/2014,1,DM,F,44,,Y,Weight units unclear
+13/03/2014,1,DS,F,146,,Y,Weight units unclear
+08/01/2014,2,NA,,,,,
+08/01/2014,2,DM,M,44,,Y,Weight units unclear
+08/01/2014,2,DM,M,38,,Y,Weight units unclear
+08/01/2014,2,OL,,,,,
+08/01/2014,2,PE,M,22,,Y,Weight units unclear
+08/01/2014,2,DM,M,38,,Y,Weight units unclear
+08/01/2014,2,DM,M,48,,Y,Weight units unclear
+08/01/2014,2,DM,M,43,,Y,Weight units unclear
+08/01/2014,2,DM,F,35,,Y,Weight units unclear
+08/01/2014,2,DM,M,43,,Y,Weight units unclear
+08/01/2014,2,DM,F,37,,Y,Weight units unclear
+08/01/2014,2,PF,F,7,,Y,Weight units unclear
+08/01/2014,2,DM,M,45,,Y,Weight units unclear
+08/01/2014,2,OT,,,,,
+08/01/2014,2,DS,M,157,,N,Weight units unclear
+08/01/2014,2,OX,,,,,
+18/02/2014,2,NA,M,218,,N,Weight units unclear
+18/02/2014,2,PF,F,7,,Y,Weight units unclear
+18/02/2014,2,DM,M,52,,Y,Weight units unclear
+08/01/2015,3,PF,M,7,,Y,Weight units unclear
+18/02/2015,3,OT,M,24,,Y,Weight units unclear
+18/02/2015,3,OT,F,23,,Y,Weight units unclear
+11/03/2015,3,NA,M,232,,Y,Weight units unclear
+11/03/2015,3,OT,F,22,,Y,Weight units unclear
+11/03/2015,3,OT,M,26,,Y,Weight units unclear
+11/03/2015,3,PF,M,8,,Y,Weight units unclear
+08/04/2015,3,NA,F,,,,Weight units unclear
+06/05/2015,3,,,,,,Weight units unclear
+18/05/2015,3,NA,F,182,,Y,Weight units unclear
+09/06/2015,3,OT,F,29,,Y,Weight units unclear
+08/07/2015,3,NA,F,115,,Y,Weight units unclear
+08/07/2015,3,NA,M,190,,Y,Weight units unclear
+08/01/2015,4,DM,F,37,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,DS,F,128,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,DM,F,42,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,DM,M,37,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,DM,M,,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,DM,F,48,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,DM,M,45,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,DM,F,42,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,DO,M,52,,Y,"Weight units unclear, Year assumed"
+08/01/2015,4,OL,M,35,,Y,"Weight units unclear, Year assumed"

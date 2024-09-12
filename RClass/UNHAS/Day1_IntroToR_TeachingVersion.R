@@ -13,12 +13,15 @@
 # MAKING VARIABLES ----------------------------------------------------------------
 
 # VARIABLES ARE CASE-SENSITIVE! Show how this makes two different variables
+
+
 nama1 <- "Sophie"
 NAMA1<- "Rina"
 
 NAMA1 <- "BEN" # THIS WILL REWRITE OVER THE VARIABLE AND SAVE NEW INFORMATION
 
-# YOU CAN ASSIGN A NUMBER TO A VARIABLE 
+
+# YOU CAN ASSIGN A NUMBER TO A VARIABLE
 x <- 4
 y <- 17
 
@@ -26,6 +29,7 @@ x*y
 
 # YOU CAN CREATE A VAIRABLE FROM OTHER VARIABLES
 z <- x * y
+
 z
 
 
@@ -70,6 +74,27 @@ paste("Hello world. My name is", nama1, "I am from", Negara, "I am", Umur, "year
 
 
 
+16 %% 4 
+  
+17 %% 4 
+
+18 %% 4
+
+19 %% 4
+
+20 %% 4
+
+
+
+
+81 %% 3  
+
+81 %% 9  
+  
+24 %% 5  
+  
+101 %% 25  
+
 
 
 
@@ -94,10 +119,14 @@ paste("Hello world. My name is", nama1, "I am from", Negara, "I am", Umur, "year
 
 # ALWAYS USE QUOTATION MARKS. CANNOT PERFORM CALCULATIONS ON STRINGS
 k <- "17"
-14 * k
+14 * k # will not work
+
+k <- as.numeric(k)
+
+14 * k # will work now that k is a number
 
 # GREPL FUNCTION CHECKS IF THERE IS A CERTAIN STRING WITHIN ANOTHER STRING
-grepl("Soph", nama1)
+grepl("o", nama1)
 grepl("Anne", nama1)
 
 
@@ -122,31 +151,33 @@ paste("My name is", NAME, "I am", AGE, "years old. I have", SIBLINGS, "brothers 
 
 # delete the example below
 
-ADJECTIVE1 <- 
-ADJECTIVE2 <- 
-ADJECTIVE3 <- 
+ADJECTIVE1 <- "diligent"
+ADJECTIVE2 <- "smart"
+ADJECTIVE3 <- "polite"
 
-NOUN1 <- 
-NOUN2 <- 
-NOUN3 <- 
-PLURALNOUN1 <- 
-PLURALNOUN2 <- 
-PLURALNOUN3 <- 
-PLURALNOUN4 <- 
+NOUN1 <- "table"
+NOUN2 <- "book"
+NOUN3 <- "pen"
+PLURALNOUN1 <- "people"
+PLURALNOUN2 <- "cats"
+PLURALNOUN3 <- "students"
+PLURALNOUN4 <- "fishes"
 
-GAME <- 
-PLACE <- 
-NUMBER <- 
-PLANT <- 
-BODYPART <- 
+GAME <- "boardgame"
+PLACE <- "makassar"
+NUMBER <- 2
+PLANT <- "seagrass"
+BODYPART <- "hand"
 
+
+#Prompt for words
 INGVERB1 <- 
 INGVERB2 <- 
 INGVERB3 <- 
 INGVERB4 <- 
 
 
-
+# Create a story with words taken out
 paste("A vacation is when you take a trip to some", ADJECTIVE1, "place with your", ADJECTIVE2, "family. Usually you go to some place that is near a", NOUN1, "or on a", NOUN2, ". A good vacation is where you can ride", PLURALNOUN1, "or play", GAME, "or go hunting for", PLURALNOUN2, ". I like to spend my time", INGVERB1,"or", INGVERB2,". When parents go on a vacation, they spend their time eating", NUMBER, PLURALNOUN3,", and fathers play golf, and mothers sit around", INGVERB3, ". Last summer, my brother fell off a", NOUN3, "and got poison", PLANT, "all over his", BODYPART, ". My family is going to go to the", PLACE, "and I will practice", INGVERB4, ". Parents need" , ADJECTIVE3, "and because they have to work", NUMBER, "hours every day all year making enough", PLURALNOUN4, "to pay for the vacation.")
 
 
@@ -160,14 +191,15 @@ paste("A vacation is when you take a trip to some", ADJECTIVE1, "place with your
 
 x <- 6
 
-x <= 6
+x < 6
 
 (16/4) == 4 # NEED TO HAVE THE TWO EQUALS SIGNS OR ELSE YOU WILL JUST CREATE A VARIABLE
 
 # LOGICAL OPERATORS FOR STRINGS
 
-"." %in% "is there a period in this sentence?"
+#"." %in% "is there a period in this sentence ."
 
+grepl(".", "is there a period in this sentence .")
 
 
 ###################### back to slides
@@ -175,9 +207,13 @@ x <= 6
 # CHECKING AND CHANGING CLASSES
 class(x)
 
-as.character(x)
+x <- as.character(x)
 
-as.numeric(x)
+x * 14
+
+x <- as.numeric(x)
+
+x *14
 
 # LISTS ------------------------------------------------------------------
 
@@ -187,9 +223,9 @@ buah <- c("apel", "pisang", "sangka", "salak", "mangga")
 Daftar_1 <- c(4, 546, 234, 85, 1, 8, 3543, 654, 14, 46, 8934)
 
 # MAKING SEQUENCES
-OneToTen <- 1:10 
-evenNumbers <- seq(0, 20, 2) 
-tenOnes <- rep(1, 10) 
+OneToTen <- 1:10  #Count from lowernumber:highernumber
+evenNumbers <- seq(0, 20, 2)  #seq (FIRSTNUMBER, LASTNUMBER, MULTIPLY_BY)
+tenOnes <- rep(1, 10) # rep(NUMBER_TOBE_REPEATED, NUMBER_OF_TIMES_REPEATED)
 
 # INDEXING LISTS
 min(Daftar_1) #MINIMUM
@@ -199,17 +235,18 @@ length(Daftar_1) #TOTAL IN LIST
 range(Daftar_1) #MIN AND MAX
 
 # CALLING A CERTAIN PART OF LISTS
-buah[1]
-buah[1:3]
-buah[c(1,3, 5)]
-buah[-2]
+buah[1] #cALL THE FIRST PART OF LIST
+buah[1:3] #first three parts of the list
+
+buah[c(1,3, 5)] #first, third, and 5th part of list
+buah[-2] #Take out a part of the list
 
 # CHANGING DATA IN A LIST
 buah[1] <- "jeruk"
 buah
 
 # CAN ALSO USE BOOLEAN OPERATORS IN LISTS
-"apel" %in% buah
+"jeruk" %in% buah
 
 # ADD DATA TO A LIST. Note how this is now a new list
 buah_2 <- append(buah, "apel", after = 2)
@@ -220,29 +257,36 @@ buah_2
 # 1. MAKE A LIST OF ALL THE ODD NUMBERS FROM 1-100
 
 
+oddNumbers <- seq(1, 100, 2)
 
+# 2. MAKE A LIST OF ALL THE NUMBERS DIVISIBLE BY 7 FROM 0-1000
 
-# 2. MAKE A LIST OF ALL THE NUMBERS DIVISIBLE BY 7 FROM 1-1000
-
+DivisibleBy7 <- seq(0, 1000, 7)
 
 
 
 # 3. RUN THE FOLLOWING CODE AND IN YOUR OWN WORDS WRITE WHAT EACH INDEXING COMMAND DOES:
-  buah[1]
-  buah[1:3]
-  buah[c(1,3, 5)]
-  buah[-2]
+  buah[1] # Print first number
+  buah[1:3] # First, 2nd adn 3rd number
+  buah[c(1,3, 5)] #first, third, and fifth
+  buah[-2] #Remove second
   
   
 # MAKE A LIST OF YOUR TOP FIVE FAVORITE MOVES (FROM MOST TO LEAST FAVORITE)
   # PRINT YOUR TOP 3 FAVORITE
-  # CHECK TO SEE IF THE MOVE "BATMAN" IS INCLUDED
-  # ADD THE MOVIE "BATMAN" TO THE END OF THE LIST (BECAUSE IT'S A GREAT MOVIE)
 
 
+movie_List <- c("Little miss sunshine", "Rapunzel", "Dune", "Start Wars", "Avengers")
 
-
+# CHECK TO SEE IF THE MOVE "BATMAN" IS INCLUDED
+"Batman" %in% movie_List
   
+# ADD THE MOVIE "BATMAN" TO THE END OF THE LIST (BECAUSE IT'S A GREAT MOVIE)
+
+movie_List <- append(movie_List, "Batman", after = 5)
+
+
+
 ###################### back to slides
   
 # MATRICES AND DATA FRAMES ------------------------------
@@ -287,7 +331,7 @@ matriksBuah
 
 # CHECK YOUR MATRIX
 "apel" %in% matriksBuah
-"grape" %in% matriksBuah
+"nanas" %in% matriksBuah
 
 # CHECKING SIZING
 dim(matriksBuah)
@@ -344,6 +388,17 @@ length(Data_Frame) #SAME AS NCOL
 
 # WRITE AN EMPTY DATAFRAME
 
+Dataframe_empty <- data.frame()
+
+View(Dataframe_empty)
+
+Dataframe_withColnames <- data.frame(
+  Column1 = c(),
+  Column2 = c(),
+  Column3 = c()
+)
+
+View(Dataframe_withColnames)
 
 # WRITE A DATAFRAME THAT HAS A LIST OF YOUR CLASSES, THE NUMBER OF STUDENTS IN EACH CLASS, WHICH DAY OF THE WEEK THE CLASS IS, AND HOW MANY CREDITS THE CLASS IS FOR
   # ADD A COLUMN ON THE LEFT THAT NUMBERS THE CLASSES STARTING FROM 1
@@ -355,16 +410,46 @@ length(Data_Frame) #SAME AS NCOL
   # ORGANZIE THE CLASSES IN ALPHABETICAL ORDER
 
 
+classList_df <- data.frame(
+  Classes = c("Biology", "Math", "History", "Religion"),
+  No_Students = c(23, 27, 16, 27),
+  Day = c("Wednesday", "Monday", "Friday", "Monday"),
+  Credits = c(3, 4, 5, 2)
+)
+
+# ADD A COLUMN ON THE LEFT THAT NUMBERS THE CLASSES STARTING FROM 1
+classList_df <- cbind(classList_df, No_Class = 1:4)
+
+# EXTRACT EACH COLUMN OF THE DATAFRAME
+classList_df[,1]
+classList_df[,2]
+classList_df[,3]
+classList_df[,4]
+
+# EXTRACT THE FIRST TWO ROWS OF THAT DATAFRAME
+
+classList_df[1:2,]
+
+# EXTRACT THE 3RD AND 5TH ROW AND THE 1ST AND 3RD COLUMN OF THE DATAFRAME
+
+classList_df[c(3,5), c(1,3)]
 
 
+# ADD A COLUMN WITH THE TIME OF DAY EACH CLASS TAKES PLACE
+
+classList_df <- cbind(classList_df, time = c("4:00", "12:00", "3:00", "7:00"))
 
 
+# ADD A ROW WITH A MADE UP CLASS YOU'D LIKE TO TAKE
+classList_df <- rbind(classList_df,c("R Coding", 11, "Thursday", 5, 5,  "10:00"))
 
 
+#  # ORGANZIE THE CLASSES IN ALPHABETICAL ORDER
 
-
-
-###################### back to slides
+sort(classList_df$Classes)
+     
+     
+################### back to slides
 
 # IF STATEMENTS -----------------------------------------------------------
 

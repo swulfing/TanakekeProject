@@ -16,7 +16,7 @@ timeDatelt<- as.POSIXlt("2015-10-19 10:15")
 str(timeDatelt)
 
 
-dateInfo <- as.POSIXct("January 30, 25") #Doesn't work
+dateInfo <- as.POSIXct("January 30, 25 10:15 PM") #Doesn't work
 dateInfo <- as.POSIXct("January 30, 25 10:15 PM", format = "%B %d, %y %I:%M %p")
 str(dateInfo)
 
