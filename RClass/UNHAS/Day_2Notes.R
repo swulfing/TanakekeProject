@@ -109,6 +109,9 @@ boxplot(expression ~ treatment, data = dat)
 # ANOVA IN R
 one.way_ANOVA <- lm(expression ~ treatment, data = dat)
 #Using a categorical variable (treatment) with a continuous (expression)
+
+one.way_ANOVA <- aov(expression ~ treatment, data = dat)
+
 summary(one.way_ANOVA)
 
 

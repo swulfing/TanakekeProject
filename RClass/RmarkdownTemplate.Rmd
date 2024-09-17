@@ -1,0 +1,67 @@
+---
+output:
+  pdf_document:
+    toc: no
+  bookdown::pdf_document2:
+    fig_caption: yes
+    toc: no
+    keep_tex: yes
+  bookdown::html_document2:
+    fig_caption: yes
+    toc: no
+  word_document: default
+bibliography:
+header-includes:  \usepackage{lineno} \usepackage{placeins} \usepackage{setspace}\doublespacing
+# editor_options: 
+#   chunk_output_type: console
+---
+
+\begin{center}
+	
+\textbf{\Large PUT YOUR TITLE HERE}
+	
+\textsc{AUTHOR1$^{1*}$, AUTHOR2$^{2}$, AUTHOR3$^{3}$}
+\vspace{3 mm}
+\normalsize{\indent $^1$AFFILLIATION 1 \\ $^2$AFFILIATION2 \\ $^3$AFFILIATION3}
+$\text{*}$ Corresponding authors: CORRESPONDING AUTHOR NAME AND CONTACT INFO (IN THE AUTHOR SECTION, PUT THE ASTRIK NEXT TO THE CORRESPONDING AUTHOR)
+\end{center}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf", cache = FALSE)
+
+# THIS IS YOUR SET UP CHUNK. HERE YOU UPLOAD PACKAGES AND DATA
+```
+
+\newpage
+
+\linenumbers
+
+# ABSTRACT
+
+WRITE YOUR ABSTRACT HERE
+
+ Keywords: WRITE KEYWORDS HERE
+
+# THIS IS HOW YOU MAKE A NEW HEADER
+
+## THIS IS HOW YOU MAKE A SUB HEADER
+
+THIS IS HOW YOU WRITE NORMAL TEXT (NO # SIGN). THIS IS WHERE YOU DO YOUR NORMAL WRITING. YOU CAN REFERENCE FIGURES BY \@ref(fig:NAMECODECHUNK)
+
+
+<!-- IN ORDER TO MAKE A REFERENCE, YOU MUST WRITE [@BibtexCODEFORREFERENCE].  -->
+
+```{r NAMECODECHUNK, fig.cap = 'CHANGE FIGURE CAPTION HERE'}
+
+plot(x = mtcars$mpg, y = mtcars$qsec)
+
+#THIS IS CALLED A CODE CHUNK, WHERE YOU WRITE R, TO MAKE A NEW CODE CHUNK, COPY THIS CODE WITHOUT THE COMMENT. EACH CODE CHUNK MUST HAVE A DIFFERENT NAME
+
+# ```{r CHANGECODECHUNKNAME, fig.cap = "CHANGE FIG CAP"}
+#   #WRITE R CODE HERE
+# 
+# ```
+
+
+
+```

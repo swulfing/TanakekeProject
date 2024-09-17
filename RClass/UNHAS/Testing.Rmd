@@ -1,0 +1,76 @@
+---
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    toc: no
+    lof: yes
+    lot: yes
+    keep_tex: yes
+  pdf_document: default
+  html_document: default
+---
+
+\begin{center}
+	
+\textbf{\Large PUT YOUR TITLE HERE}
+	
+\textsc{AUTHOR1$^{1*}$, AUTHOR2$^{2}$, AUTHOR3$^{3}$}
+
+\normalsize{\indent $^1$AFFILLIATION 1 \\ $^2$AFFILIATION2 \\ $^3$AFFILIATION3}
+
+$\text{*}$ Corresponding authors: CORRESPONDING AUTHOR NAME AND CONTACT INFO (IN THE AUTHOR SECTION, PUT THE ASTRIK NEXT TO THE CORRESPONDING AUTHOR)
+\end{center}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, cache = FALSE)
+
+# THIS IS YOUR SET UP CHUNK. HERE YOU UPLOAD PACKAGES AND DATA
+```
+
+\newpage
+
+
+# ABSTRACT
+
+WRITE YOUR ABSTRACT HERE
+
+ Keywords: WRITE KEYWORDS HERE
+
+# THIS IS HOW YOU MAKE A NEW HEADER
+
+## THIS IS HOW YOU MAKE A SUB HEADER
+
+THIS IS HOW YOU WRITE NORMAL TEXT (NO # SIGN). THIS IS WHERE YOU DO YOUR NORMAL WRITING. YOU CAN REFERENCE FIGURES BY (Figure \@ref(fig:NAMECODECHUNK)). Every code chunk needs to have a different name.
+
+
+<!-- IN ORDER TO MAKE A REFERENCE, YOU MUST WRITE [@BibtexCODEFORREFERENCE].  -->
+
+```{r NAMECODECHUNK, fig.cap = 'CHANGE FIGURE CAPTION HERE'}
+
+plot(x = mtcars$mpg, y = mtcars$qsec)
+
+#THIS IS CALLED A CODE CHUNK, WHERE YOU WRITE R, TO MAKE A NEW CODE CHUNK, COPY THIS WHOLE CODE CHUNK. EACH CODE CHUNK MUST HAVE A DIFFERENT NAME
+
+
+```
+
+
+THIS IS MY NEW FIGURE (Figure\@ref(fig:NEWCODECHUNK))
+
+```{r NEWCODECHUNK, fig.cap = 'THI IS JUST AN EXAMPLE PLOT'}
+
+plot(x = 1:10, Y = 1:10)
+
+#THIS IS CALLED A CODE CHUNK, WHERE YOU WRITE R, TO MAKE A NEW CODE CHUNK, COPY THIS WHOLE CODE CHUNK. EACH CODE CHUNK MUST HAVE A DIFFERENT NAME
+
+
+```
+
+```{r ADDDOWNLOADEDFIGURE, fig.cap = 'DOWNLOADED FIGURE'}
+
+#UNCOMMENT OUT THE BELOW LINE
+#knitr::include_graphics("INSERT FILE PATH TO DOWNLOADED FIGURE HERE.PNG OR .JPEG DEPENDING ON WHAT THE FILETYPE")
+
+
+
+```
