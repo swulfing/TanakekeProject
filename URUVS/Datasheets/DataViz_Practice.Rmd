@@ -23,6 +23,7 @@ library(lubridate)
 library(ggpubr)
 
 
+
 #Make a MasterDatasheet with all months data
 # CHANGE EVERY MONTH
 completedData <- c("02.2024", "03.2024", "04.2024", "05.2024", "06.2024")
@@ -72,16 +73,28 @@ combineSpecies <- function(NAME1, NAME2, NEWNAME) {
     select(contains(NAME1) | contains(NAME2))
   
   # Remove these columns from original dataset
-   NEW_URUV <- URUV_data[,!names(URUV_data) %in% colnames(SPECIES_Compare)]
+  NEW_URUV <- URUV_data[,!names(URUV_data) %in% colnames(SPECIES_Compare)]
   
-  
+  # CALCULATE NEW MAXN  
   MAXN_cols <- grep("MAXN", names(SPECIES_Compare), value = TRUE)
-  # CALCULATE NEW MAXN
-  SPECIES_Compare <- pmax(SPECIES_Compare[MAXN_cols[1]], SPECIES_Compare[MAXN_cols[2]])
-  colnames(SPECIES_Compare) <- paste0("MAXN_", NEWNAME)
+  MAXN_Compare <- pmax(SPECIES_Compare[MAXN_cols[1]], SPECIES_Compare[MAXN_cols[2]])
+  colnames(MAXN_Compare) <- paste0("MAXN_", NEWNAME)
+  
+  
+#FIX THIS IT STILL DOESN'T WORK
+  # # CALCULATE NEW TIME_1ST
+  # TIME_1ST_cols <- grep("TIME_1ST", names(SPECIES_Compare), value = TRUE)
+  # SPECIES_Compare[TIME_1ST_cols[1]] <- as.POSIXct(SPECIES_Compare[TIME_1ST_cols[1]], format = "%H:%M:%S", na.rm = TRUE)
+  # TIME_1ST_Compare <- pmin(SPECIES_Compare[TIME_1ST_cols[1]], SPECIES_Compare[TIME_1ST_cols[2]], na.rm = TRUE)
+  # colnames(TIME_1ST_Compare) <- paste0("TIME_1ST", NEWNAME)
+  # 
+  # # CALCULATE NEW T1_
+  # T1__cols <- grep("T1_", names(SPECIES_Compare), value = TRUE)
+  # T1_cols_Compare <- pmin(SPECIES_Compare[T1__cols[1]], SPECIES_Compare[T1__cols[2]], na.rm = TRUE)
+  # colnames(T1_cols_Compare) <- paste0("T1_", NEWNAME)
   
   #APPEND TO DATASET AND REPLACE
-  NEW_URUV <- cbind(NEW_URUV, SPECIES_Compare)
+  NEW_URUV <- cbind(NEW_URUV, MAXN_Compare)
   
   URUV_data <<- NEW_URUV
   
@@ -92,6 +105,8 @@ combineSpecies <- function(NAME1, NAME2, NEWNAME) {
 ```{r dataClean}
 
 #NOTE: IF YOU USE T1 YOU HAVE TO CONVERT ALL OF THE TIME COLUMNS INTO TIME FORMATS. FIX FUNCTION ABOVE AS WELL TO CREATE SMALLER T1 VALUES
+library(chron)
+URUV_data <- masterData
 
 URUV_data$DATE <- as.Date(URUV_data$DATE, format = "%d/%m/%Y")
 
@@ -99,13 +114,53 @@ URUV_data <- URUV_data %>% #Take out unused videos
   rowwise() %>%
   mutate(WATER_DEPTH_AVERAGE = mean(c(WATER_DEPTH_BEFORE, WATER_DEPTH_AFTER), na.rm=TRUE)) #Take avg depth during recording
 
-#View(URUV_data)
+# Making months factors
+URUV_data$MONTH <- factor(URUV_data$MONTH, levels = c("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"))
 
-# COMBINING SPECIES ORIGINALLY SEPARATED IN DATA
+# COMBINING SPECIES ORIGINALLY SEPARATED IN DATA - THIS NEEDS TO BE BEFORE CHANGING ALL COLUMNS TO READ AS TIMES!!!
 combineSpecies("FISHF", "GUPPYC", "FISHF")
 combineSpecies("FISHM", "FISHG", "FISHM")
 combineSpecies("FISHL", "FISHK", "FISHK")
 
+#Change all time columns to be read as times
+for(i in 1:ncol(URUV_data)){
+  if(colnames(URUV_data[i]) %in% c("TIME_DROPPED", "TIME_PICKEDUP", "TIME_TOTALFOOTAGE")){
+    #URUV_data[[i]] <- strptime(URUV_data[[i]], format = "%H:%M")
+    URUV_data[[i]] <- times(paste0(URUV_data[[i]], ":00"))
+  }
+  else if(colnames(URUV_data[i]) != "NOTES_TIME" & (colnames(URUV_data[i]) %in% c("TOTALTIME_RECORDING", "ANALYSISTIME_START", "ANALYSISTIME_END", "TOTALTIME_ANALYSIS") | grepl("_TIME", colnames(URUV_data[i])) | grepl("TIME_1ST", colnames(URUV_data[i])) | grepl("T1_", colnames(URUV_data[i])))){
+    URUV_data[[i]] <- times(URUV_data[[i]])
+  }
+}
+
+
+
+# # COMBINING SPECIES ORIGINALLY SEPARATED IN DATA
+# combineSpecies("FISHF", "GUPPYC", "FISHF")
+# combineSpecies("FISHM", "FISHG", "FISHM")
+# combineSpecies("FISHL", "FISHK", "FISHK")
+
+
+```
+
+
+
+```{r speciesQs, eval = FALSE}
+FISHE <- URUV_data %>%
+  filter(MAXN_FISHE != 0)
+
+FISHM <- URUV_data %>%
+  filter(MAXN_FISHM !=0)
+
+FISHF <- URUV_data %>%
+  filter(MAXN_FISHF !=0) %>%
+  select(DATE, DESA, SITENAME_COMBINE, MAXN_FISHF)
+
+GUPPYBOTH <- URUV_data %>%
+  filter(MAXN_GUPPYBOTH !=0) %>%
+  select(DATE, DESA, SITENAME_COMBINE, MAXN_GUPPYBOTH)
+
+hist(URUV_data$TOTALTIME_ANALYSIS)
 
 ```
 
