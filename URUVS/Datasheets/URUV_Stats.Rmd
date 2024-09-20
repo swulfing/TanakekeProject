@@ -1,0 +1,84 @@
+---
+title: "URUV_Stats"
+author: "Sophie Wulfing"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
+
+library(FactoMineR)
+#library(vcd)
+library(factoextra)
+library(dplyr)
+
+# NOTE: STILL NEED TO STANDARDIZE FOR WATER VISIBILITY AND VIDEO LENGTH!!!!
+URUV_clean <- read.csv("MasterRecordingData_clean.csv")
+
+URUV_clean$MONTH <- factor(URUV_clean$MONTH, levels = c("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"))
+URUV_clean$SITE_TYPE <- factor(URUV_clean$SITE_TYPE, levels = c("D", "E", "L"))
+URUV_clean$DESA <- factor(URUV_clean$DESA)
+
+```
+
+```{r FactorAnalysis, eval = FALSE}
+data_PCA <- URUV_clean %>%
+  select(MONTH, SITE_TYPE, DESA, WATER_DEPTH_BEFORE, TIDE_HEIGHT, VEGITATION, SHANNON_DIV, MAXN_TOTAL)
+
+FAMD(data_PCA, graph=TRUE)
+
+# Still not sure how to interpret and how to signify maxn total and shannon div are the dependent variables
+
+#Remove month Data
+data_PCANoMonth <- URUV_clean %>%
+  select(SITE_TYPE, DESA, WATER_DEPTH_BEFORE, TIDE_HEIGHT, VEGITATION, SHANNON_DIV, MAXN_TOTAL)
+Fanal <- FAMD(data_PCANoMonth, graph=FALSE)
+
+#fviz_screeplot(Fanal)
+
+# Plot of variables
+fviz_famd_var(Fanal, repel = TRUE)
+# Contribution to the first dimension
+fviz_contrib(Fanal, "var", axes = 1)
+# Contribution to the second dimension
+fviz_contrib(Fanal, "var", axes = 2)
+
+```
+
+```{r lmSHANNON}
+Shannon_lm <- lm(formula = SHANNON_DIV ~ MONTH + SITE_TYPE + DESA + WATER_DEPTH_BEFORE + TIDE_HEIGHT + VEGITATION, data = data_PCA)
+summary(Shannon_lm)
+
+#Remove month
+Shannon_lm_noMonth <- lm(formula = SHANNON_DIV ~ SITE_TYPE + DESA + WATER_DEPTH_BEFORE + TIDE_HEIGHT + VEGITATION, data = data_PCA)
+summary(Shannon_lm_noMonth)
+
+#Remove veg
+Shannon_lm_noVeg <- lm(formula = SHANNON_DIV ~ SITE_TYPE + DESA + WATER_DEPTH_BEFORE + TIDE_HEIGHT, data = data_PCA)
+summary(Shannon_lm_noVeg)
+```
+
+```{r lmTOTAL}
+Total_lm <- lm(formula = MAXN_TOTAL ~ MONTH + SITE_TYPE + DESA + WATER_DEPTH_BEFORE + TIDE_HEIGHT + VEGITATION, data = data_PCA)
+summary(Total_lm)
+
+#Remove month
+Total_lm_noMonth <- lm(formula = MAXN_TOTAL ~ SITE_TYPE + DESA + WATER_DEPTH_BEFORE + TIDE_HEIGHT + VEGITATION, data = data_PCA)
+summary(Total_lm_noMonth)
+
+#Remove veg
+Total_lm_noVeg <- lm(formula = MAXN_TOTAL ~ SITE_TYPE + DESA + WATER_DEPTH_BEFORE + TIDE_HEIGHT, data = data_PCA)
+summary(Total_lm_noVeg)
+```
+
+
+
+
+
+
+
+
+
+
+

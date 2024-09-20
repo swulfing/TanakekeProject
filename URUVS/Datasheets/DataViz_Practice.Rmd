@@ -98,7 +98,8 @@ combineSpecies <- function(NAME1, NAME2, NEWNAME) {
   
   URUV_data <<- NEW_URUV
   
-  }
+}
+
 
 ```
 
@@ -116,6 +117,8 @@ URUV_data <- URUV_data %>% #Take out unused videos
 
 # Making months factors
 URUV_data$MONTH <- factor(URUV_data$MONTH, levels = c("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"))
+URUV_data$SITE_TYPE <- factor(URUV_data$SITE_TYPE, levels = c("D", "E", "L"))
+URUV_data$DESA <- factor(URUV_data$DESA)
 
 # COMBINING SPECIES ORIGINALLY SEPARATED IN DATA - THIS NEEDS TO BE BEFORE CHANGING ALL COLUMNS TO READ AS TIMES!!!
 combineSpecies("FISHF", "GUPPYC", "FISHF")
@@ -133,6 +136,27 @@ for(i in 1:ncol(URUV_data)){
   }
 }
 
+#TotalMaxN and Shannon's Diversity for each observation
+dontInclude <- c("UNIDGUPPY", "PIPEFISH")
+
+for(i in 1:nrow(URUV_data)){
+  species_counts <- c()
+  k <- 1
+  for(j in 1:ncol(URUV_data)){
+    if(grepl(paste(dontInclude, collapse = "|"), colnames(URUV_data[j])) == FALSE & grepl("MAXN", colnames(URUV_data[j])) & URUV_data[i,j] > 0){
+      species_counts[k] <- URUV_data[i,j]
+      k <- k+1
+    }
+  }
+  
+  species_proportions <- species_counts / sum(species_counts)
+  shannon_diversity <- -sum(species_proportions * log(species_proportions))
+  URUV_data$SHANNON_DIV[i] <- shannon_diversity
+  URUV_data$MAXN_TOTAL[i] <- sum(species_counts)
+  
+}
+checkData <- URUV_data %>%
+  select(SHANNON_DIV, MAXN_TOTAL, NO_FISHSPECIES, contains("MAXN"))
 
 
 # # COMBINING SPECIES ORIGINALLY SEPARATED IN DATA
@@ -140,7 +164,7 @@ for(i in 1:ncol(URUV_data)){
 # combineSpecies("FISHM", "FISHG", "FISHM")
 # combineSpecies("FISHL", "FISHK", "FISHK")
 
-
+write.csv(URUV_data, "MasterRecordingData_clean.csv")
 ```
 
 
@@ -204,23 +228,6 @@ ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_FISHSPECIES)) +
 # shannon_diversity <- -sum(species_proportions * log(species_proportions))
 # print(shannon_diversity)
 
-dontInclude <- c("UNIDGUPPY")
-
-for(i in 1:nrow(URUV_data)){
-  species_counts <- c()
-  k <- 1
-  for(j in 1:ncol(URUV_data)){
-    if(grepl("MAXN", colnames(URUV_data[j])) & URUV_data[i,j] > 0){
-      species_counts[k] <-URUV_data[i,j]
-      k <- k+1
-    }
-  }
-  
-  species_proportions <- species_counts / sum(species_counts)
-  shannon_diversity <- -sum(species_proportions * log(species_proportions))
-  URUV_data$SHANNON_DIV[i] <- shannon_diversity
-  
-}
 
 shannon <- URUV_data %>%
       group_by(SITE_TYPE) %>%
@@ -360,7 +367,7 @@ for(i in 1:ncol(URUV_data)){
     data1 <- URUV_data %>%
       rename("MAXN_TARGET" = colnames(URUV_data[i]))
     
-    data1$MONTH <- month(data1$DATE)
+    #data1$MONTH <- month(data1$DATE)
     
     #Graph boxplot per desa
     print(ggplot(data1, aes(x=DESA, y=MAXN_TARGET)) +
@@ -382,16 +389,17 @@ for(i in 1:ncol(URUV_data)){
       summarize(sum(MAXN_TARGET))
     colnames(SpeciesPerMonth) <-c("MONTH", "TOTAL")
 
-    SpeciesPerMonth$MONTH <- as.integer(SpeciesPerMonth$MONTH)
+    # SpeciesPerMonth$MONTH <- as.integer(SpeciesPerMonth$MONTH)
+    # 
+    # MONTHLIST <- data.frame(MONTH = c(1:12))
+    # 
+    # temporalSpeciesData <- left_join(MONTHLIST, SpeciesPerMonth)
+    # 
+    # temporalSpeciesData[is.na(temporalSpeciesData)] <- 0
 
-    MONTHLIST <- data.frame(MONTH = c(1:12))
-
-    temporalSpeciesData <- left_join(MONTHLIST, SpeciesPerMonth)
-    
-    temporalSpeciesData[is.na(temporalSpeciesData)] <- 0
-
-    print(ggplot(temporalSpeciesData, aes(x = MONTH, y = TOTAL)) +
-      geom_bar(stat = "identity"))
+    print(ggplot(SpeciesPerMonth, aes(x = MONTH, y = TOTAL)) +
+      geom_bar(stat = "identity") + 
+       ylab(Yaxistitle) )
     
     # Graph total number of fish in each siteType
     
@@ -484,7 +492,8 @@ points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "L"],
 
 ```
 
-```{r batterycheck}
+```{r batterycheck, eval = FALSE }
+
 
 ggplot(URUV_data, aes(x=NO_BATTERY, y=TOTALTIME_RECORDING)) + 
   geom_bar(stat='identity')
