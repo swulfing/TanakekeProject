@@ -84,9 +84,9 @@ We used Unbaited Remote Underwater Video (URUV) methods which are non-invasive a
 
 # Result and Discussion:  
 
-<!-- FILL HERE -->
+Figure \ref{FishSpecies} Shows the distribution of the number of fish species in each desa, as well as in each site type. Here we can see that the median number of fish species is similar in both Lantangpeo and Tompotanah. However, when the data is organized by site type, both the EMR and Lush sites had higher numbers of fish species when compared to the destructed site.
 
-(ref:fishspecies) PUT FIG CAP HERE
+(ref:fishspecies) Distribution of number of fish species found per video organized by a) desa and b) site type.
 
 ```{r FishSpecies, results = 'asis', echo = FALSE, fig.show = "hold", out.width = "50%", fig.cap = '(ref:fishspecies) \\label{FishSpecies}'}
 
@@ -100,7 +100,10 @@ ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_FISHSPECIES)) +
 
 ```
 
-(ref:jumlahikan) TOTAL FISH FIG CAP
+MaxN was then totaled across all of the months for each site type (Figure \ref{JumlahIkan}). Both EMR and Lush mangrove sites have the highest total number of ikan found. Here, the highest total was found in EMR sites. However, cardinal fish were a huge contributor to this datapoint, with 293 found in EMR sites and only 58 found in Lush mangroves. If this species is removed from the count, lush mangroves have the highest total MaxN.
+
+
+(ref:jumlahikan) Total MaxN found in each site type
 
 ```{r JumlahIkan, echo = FALSE, fig.cap = '(ref:jumlahikan) \\label{JumlahIkan}'}
 
@@ -120,8 +123,9 @@ ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_FISHSPECIES)) +
 
 ```
 
+Shannon's Diversity Index was then counted across all of the months. Here in Figure \ref{ShannonsDiversity} EMR and Lush sites have the highest diversity when compared to the destructed sites.
 
-(ref:shannonsdiversity) FIG CAP FOR SHANNON'S DIVERSITY HERE
+(ref:shannonsdiversity) Total Shannon's Diversity Index found in each site type.
 
 ```{r ShannonsDiversity, echo = FALSE, fig.cap = '(ref:shannonsdiversity) \\label{ShannonsDiversity}'}
 
@@ -157,7 +161,6 @@ ggplot(data=shannon, aes(x=SITE_TYPE, y=SHANNON_AVG, fill = SITE_TYPE)) +
 ```
 
 
-(ref:anova_total) ANOVA FIG CAP HERE
 
 ```{r ANOVA_total, echo = FALSE, fig.cap = '(ref:anova_total) \\label{ANOVA_total}'}
 
@@ -172,6 +175,8 @@ summary(one.way_Overall)
 one.way_Desa <- aov(MAXN_TOTAL ~ DESA, data = URUV_data)
 summary(one.way_Desa)
 
+cat("The ANOVA test shown above shows that site type has a significant effect on the total \n number of fish found in a site with a p value of 0.00068. Desa also has a somewhat \n significant effect with a P value of .127")
+
 
 ```
 
@@ -179,30 +184,17 @@ summary(one.way_Desa)
 
 ## The benefit for Indonesian development program.  
 
-<!-- FILL HERE -->
+The results above all indicate that lush mangroves and EMR sites have higher total numbers of fish and biodiversity in those areas. Therefore, the community and Blue Forests' efforts to replant mangroves on Tanakeke island have shown indirect benefits such as increasing fish biodiversity and supporting fish stocks.
 
 # Conclusion, include:  
 ## Crucial points which may be encountered from research result.
 
-<!-- FILL HERE -->
+Mangrove replanting has increased fish stocks and biodiversity on Tanakeke island
+
 
 ## Problem solving of research, encouraging or discouraging of hypotheses stated in the research  objectives.
-<!-- FILL HERE -->
+
+Our hypothesis was supported as the number of fish were increased in EMR and natural mangrove areas
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\newpage
