@@ -115,15 +115,15 @@ E5_avg$month <- factor(E5_avg$month, levels=c("2", "3", "4", "5", "6", "7", "8",
 
 ggplot() +
   geom_smooth(data = D6_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meantemp), colour="red") +
-  geom_smooth(data = L4_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meantemp), colour="green") +
-  geom_smooth(data = E5_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meantemp), colour="blue") +
+  geom_smooth(data = L4_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meantemp), colour="blue") +
+  geom_smooth(data = E5_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meantemp), colour="yellow") +
     theme_bw()+
     labs(title= "Daily temperature means", y="Daily mean temperature (°C) with 95% CI", x="Date")
 
 ggplot() +
   geom_smooth(data = D6_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meanlight), colour="red") +
-  geom_smooth(data = L4_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meanlight), colour="green") +
-  geom_smooth(data = E5_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meanlight), colour="blue") +
+  geom_smooth(data = L4_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meanlight), colour="blue") +
+  geom_smooth(data = E5_avg, aes(x=as.Date(longdate, format= "%m / %d / %Y"), y=meanlight), colour="yellow") +
     theme_bw()+
     labs(title= "Daily temperature means", y="Daily mean light (°C) with 95% CI", x="Date")
 

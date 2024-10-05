@@ -45,6 +45,10 @@ for(i in 2:length(completedData)){
 masterData <- masterData %>%
   filter( F1_TIME != "") %>%
   filter(!is.na(F1_TIME))
+# 
+# # DELETE THIS AFTER PRESENTATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# masterData <- masterData %>%
+#   filter(MONTH != "JUNE")
 
 #Need to chage NAs again
 for(j in 1:ncol(masterData)){
@@ -137,7 +141,7 @@ for(i in 1:ncol(URUV_data)){
 }
 
 #TotalMaxN and Shannon's Diversity for each observation
-dontInclude <- c("UNIDGUPPY", "PIPEFISH")
+dontInclude <- c("UNIDGUPPY", "PIPEFISH", "FISHF")
 
 for(i in 1:nrow(URUV_data)){
   species_counts <- c()
@@ -246,21 +250,21 @@ ggplot(data=shannon, aes(x=SITE_TYPE, y=SHANNON_AVG, fill = SITE_TYPE)) +
 ```
 
 ```{r totalMaxN}
+# 
+# Maxn_List <- c()
+# 
+# for(i in 1:ncol(URUV_data)){
+#   if(grepl("MAXN", colnames(URUV_data[i]))){
+#     Maxn_List <- append(Maxn_List,i)
+#   }}
+# 
+# URUV_data$MAXN_TOTAL <- rowSums(URUV_data[ , Maxn_List], na.rm=TRUE)
 
-Maxn_List <- c()
-
-for(i in 1:ncol(URUV_data)){
-  if(grepl("MAXN", colnames(URUV_data[i]))){
-    Maxn_List <- append(Maxn_List,i)
-  }}
-
-URUV_data$MAXN_OVERALL <- rowSums(URUV_data[ , Maxn_List], na.rm=TRUE)
-
-ggplot(URUV_data, aes(x=DESA, y=MAXN_OVERALL)) + 
+ggplot(URUV_data, aes(x=DESA, y=MAXN_TOTAL)) + 
   geom_boxplot() 
   #geom_jitter(shape=16, position=position_jitter(0.1))
 
-ggplot(URUV_data, aes(x=SITE_TYPE, y=MAXN_OVERALL)) + 
+ggplot(URUV_data, aes(x=SITE_TYPE, y=MAXN_TOTAL)) + 
   geom_boxplot() 
   #geom_jitter(shape=16, position=position_jitter(0.1))
 
@@ -269,31 +273,31 @@ ggplot(URUV_data, aes(x=SITE_TYPE, y=MAXN_OVERALL)) +
 \newpage
 
 # ANOVAS AND STATS
-```{r ANOVA_oneway}
+```{r ANOVA_MAXN}
 
 # LATER maybe try a PCA https://builtin.com/data-science/step-step-explanation-principal-component-analysis
 
 # ONE WAY ANOVA CHECKING EFFECT OF SITE AND DESA
 # https://www.scribbr.com/statistics/anova-in-r/
 
-one.way_Overall <- aov(MAXN_OVERALL ~ SITE_TYPE, data = URUV_data)
+one.way_Overall <- aov(MAXN_TOTAL ~ SITE_TYPE, data = URUV_data)
 summary(one.way_Overall)
 
-one.way_Desa <- aov(MAXN_OVERALL ~ DESA, data = URUV_data)
+one.way_Desa <- aov(MAXN_TOTAL ~ DESA, data = URUV_data)
 summary(one.way_Desa)
 
 
 ```
 
-```{r ANOVA_2WAY}
+```{r ANOVA_SHANNON}
 
 # one.way_Total <- aov(NO_FISHSPECIES ~ SITE_TYPE, data = URUV_data)
 # 2 WAY ANOVA CHECKING SITE AND OVERALL MAXN
 
-two.way_Overall <- aov(MAXN_OVERALL ~ SITE_TYPE + DESA, data = URUV_data)
+two.way_Overall <- aov(SHANNON_DIV ~ SITE_TYPE + DESA, data = URUV_data)
 summary(two.way_Overall)
 
-Interaction_Overall <- aov(MAXN_OVERALL ~ SITE_TYPE * DESA, data = URUV_data)
+Interaction_Overall <- aov(SHANNON_DIV ~ SITE_TYPE * DESA, data = URUV_data)
 summary(Interaction_Overall)
 
 
@@ -304,12 +308,12 @@ summary(Interaction_Overall)
 # STATS
 ```{r depthplotting}
 
-# plot(URUV_data$WATER_DEPTH_BEFORE, URUV_data$MAXN_OVERALL)
-# abline(lm(MAXN_OVERALL ~ WATER_DEPTH_BEFORE, data = URUV_data))
+# plot(URUV_data$WATER_DEPTH_BEFORE, URUV_data$MAXN_TOTAL)
+# abline(lm(MAXN_TOTAL ~ WATER_DEPTH_BEFORE, data = URUV_data))
 # 
-# lm(MAXN_OVERALL ~ WATER_DEPTH_BEFORE, data = URUV_data)
+# lm(MAXN_TOTAL ~ WATER_DEPTH_BEFORE, data = URUV_data)
 
-ggplot(data=URUV_data, aes(x=WATER_DEPTH_BEFORE, y=MAXN_OVERALL)) +
+ggplot(data=URUV_data, aes(x=WATER_DEPTH_BEFORE, y=MAXN_TOTAL)) +
         geom_smooth(method="lm") +
         geom_point() +
         stat_regline_equation(label.x=15, label.y=50) +
@@ -319,9 +323,9 @@ ggplot(data=URUV_data, aes(x=WATER_DEPTH_BEFORE, y=MAXN_OVERALL)) +
 
 ```{r tideplotting}
 
-# plot(URUV_data$TIDE_HEIGHT, URUV_data$MAXN_OVERALL)
+# plot(URUV_data$TIDE_HEIGHT, URUV_data$MAXN_TOTAL)
 
-ggplot(data=URUV_data, aes(x=TIDE_HEIGHT, y=MAXN_OVERALL)) +
+ggplot(data=URUV_data, aes(x=TIDE_HEIGHT, y=MAXN_TOTAL)) +
         geom_smooth(method="lm") +
         geom_point() +
         stat_regline_equation(label.x=.1, label.y=50) +
@@ -330,9 +334,9 @@ ggplot(data=URUV_data, aes(x=TIDE_HEIGHT, y=MAXN_OVERALL)) +
 ```
 
 ```{r vegplotting}
-#plot(URUV_data$VEGITATION, URUV_data$MAXN_OVERALL)
+#plot(URUV_data$VEGITATION, URUV_data$MAXN_TOTAL)
 
-ggplot(data=URUV_data, aes(x=VEGITATION, y=MAXN_OVERALL)) +
+ggplot(data=URUV_data, aes(x=VEGITATION, y=MAXN_TOTAL)) +
         geom_smooth(method="lm") +
         geom_point() +
         stat_regline_equation(label.x=15, label.y=50) +
@@ -342,14 +346,49 @@ ggplot(data=URUV_data, aes(x=VEGITATION, y=MAXN_OVERALL)) +
 
 ```{r plottingVis}
 
-plot(URUV_data$VISIBILITY, URUV_data$MAXN_OVERALL)
+plot(URUV_data$VISIBILITY, URUV_data$MAXN_TOTAL)
 
-ggplot(data=URUV_data, aes(x=VISIBILITY, y=MAXN_OVERALL)) +
+ggplot(data=URUV_data, aes(x=VISIBILITY, y=MAXN_TOTAL)) +
         geom_smooth(method="lm") +
         geom_point() +
         stat_regline_equation(label.x=15, label.y=50) +
         stat_cor(aes(label=..rr.label..), label.x=15, label.y=40)
 ```
+
+\newpage
+```{r MAXN_bymonth}
+
+StackedBar <- URUV_data %>% 
+   group_by(MONTH, SITE_TYPE) %>% 
+   summarise(JUMLAH_IKAN = sum(MAXN_TOTAL), SHANNON_MEAN = mean(SHANNON_DIV))
+
+ggplot(StackedBar, aes(fill=SITE_TYPE, y=JUMLAH_IKAN, x=MONTH)) + 
+    geom_bar(position="stack", stat="identity", color = "black") +
+    xlab("Bulan") +
+    ylab("Jumlah Ikan") +
+    theme_minimal() +
+    scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                  labels = c("Dihancur","EMR", "Alami")) +
+    theme(legend.title=element_blank())
+
+
+```
+
+```{r Shannon_bymonth}
+
+ggplot(StackedBar, aes(fill=SITE_TYPE, y=SHANNON_MEAN, x=MONTH)) + 
+    geom_bar(position="stack", stat="identity", color = "black") +
+    xlab("Bulan") +
+    ylab("SDI") +
+    theme_minimal() +
+    scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                  labels = c("Dihancur","EMR", "Alami")) +
+    theme(legend.title=element_blank())
+
+
+```
+
+
 
 \newpage
 

@@ -1,0 +1,505 @@
+---
+title: "DataViz_practice"
+author: "Sophie Wulfing"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
+
+# Temporal Trends
+# Shannon’s diversity Index
+# Principal Component Analysis
+# Community Structures
+
+
+library(plyr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(ggpubr)
+
+
+
+#Make a MasterDatasheet with all months data
+# CHANGE EVERY MONTH
+completedData <- c("02.2024", "03.2024", "04.2024", "05.2024", "06.2024")
+
+masterData <- data.frame(read.csv("URUV/RecordingData_02.2024.csv"))
+
+for(i in 2:length(completedData)){
+  addedData <- data.frame(read.csv(paste0("URUV/RecordingData_",completedData[i],".csv")))
+  
+  #All NA maxN's changed to 0s
+  for(k in 1:ncol(addedData)){
+    if(grepl("MAXN", colnames(addedData[k]))){
+      addedData[k][is.na(addedData[k])] <- 0
+    }}
+  
+  masterData <- rbind.fill(masterData, addedData)
+}
+
+masterData <- masterData %>%
+  filter( F1_TIME != "") %>%
+  filter(!is.na(F1_TIME))
+# 
+# # DELETE THIS AFTER PRESENTATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+masterData <- masterData %>%
+  filter(MONTH != "JUNE")
+
+#Need to chage NAs again
+for(j in 1:ncol(masterData)){
+    if(grepl("MAXN", colnames(masterData[j]))){
+      masterData[j][is.na(masterData[j])] <- 0
+    }}
+
+#View(masterData)
+write.csv(masterData, "Master_RecordingData.csv")
+
+URUV_data <- masterData
+
+
+
+```
+
+```{r fxnCombineSpecies}
+
+combineSpecies <- function(NAME1, NAME2, NEWNAME) {
+# NAME1 <- "FISHF"
+# NAME2 <- "GUPPYC"
+# NEWNAME <- "FISHF"
+
+
+  SPECIES_Compare <- URUV_data %>%
+    select(contains(NAME1) | contains(NAME2))
+  
+  # Remove these columns from original dataset
+  NEW_URUV <- URUV_data[,!names(URUV_data) %in% colnames(SPECIES_Compare)]
+  
+  # CALCULATE NEW MAXN  
+  MAXN_cols <- grep("MAXN", names(SPECIES_Compare), value = TRUE)
+  MAXN_Compare <- pmax(SPECIES_Compare[MAXN_cols[1]], SPECIES_Compare[MAXN_cols[2]])
+  colnames(MAXN_Compare) <- paste0("MAXN_", NEWNAME)
+  
+  
+#FIX THIS IT STILL DOESN'T WORK
+  # # CALCULATE NEW TIME_1ST
+  # TIME_1ST_cols <- grep("TIME_1ST", names(SPECIES_Compare), value = TRUE)
+  # SPECIES_Compare[TIME_1ST_cols[1]] <- as.POSIXct(SPECIES_Compare[TIME_1ST_cols[1]], format = "%H:%M:%S", na.rm = TRUE)
+  # TIME_1ST_Compare <- pmin(SPECIES_Compare[TIME_1ST_cols[1]], SPECIES_Compare[TIME_1ST_cols[2]], na.rm = TRUE)
+  # colnames(TIME_1ST_Compare) <- paste0("TIME_1ST", NEWNAME)
+  # 
+  # # CALCULATE NEW T1_
+  # T1__cols <- grep("T1_", names(SPECIES_Compare), value = TRUE)
+  # T1_cols_Compare <- pmin(SPECIES_Compare[T1__cols[1]], SPECIES_Compare[T1__cols[2]], na.rm = TRUE)
+  # colnames(T1_cols_Compare) <- paste0("T1_", NEWNAME)
+  
+  #APPEND TO DATASET AND REPLACE
+  NEW_URUV <- cbind(NEW_URUV, MAXN_Compare)
+  
+  URUV_data <<- NEW_URUV
+  
+}
+
+
+```
+
+```{r dataClean}
+
+#NOTE: IF YOU USE T1 YOU HAVE TO CONVERT ALL OF THE TIME COLUMNS INTO TIME FORMATS. FIX FUNCTION ABOVE AS WELL TO CREATE SMALLER T1 VALUES
+library(chron)
+URUV_data <- masterData
+
+URUV_data$DATE <- as.Date(URUV_data$DATE, format = "%d/%m/%Y")
+
+URUV_data <- URUV_data %>% #Take out unused videos
+  rowwise() %>%
+  mutate(WATER_DEPTH_AVERAGE = mean(c(WATER_DEPTH_BEFORE, WATER_DEPTH_AFTER), na.rm=TRUE)) #Take avg depth during recording
+
+# Making months factors
+URUV_data$MONTH <- factor(URUV_data$MONTH, levels = c("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"))
+URUV_data$SITE_TYPE <- factor(URUV_data$SITE_TYPE, levels = c("D", "E", "L"))
+URUV_data$DESA <- factor(URUV_data$DESA)
+
+# COMBINING SPECIES ORIGINALLY SEPARATED IN DATA - THIS NEEDS TO BE BEFORE CHANGING ALL COLUMNS TO READ AS TIMES!!!
+combineSpecies("FISHF", "GUPPYC", "FISHF")
+combineSpecies("FISHM", "FISHG", "FISHM")
+combineSpecies("FISHL", "FISHK", "FISHK")
+
+#Change all time columns to be read as times
+for(i in 1:ncol(URUV_data)){
+  if(colnames(URUV_data[i]) %in% c("TIME_DROPPED", "TIME_PICKEDUP", "TIME_TOTALFOOTAGE")){
+    #URUV_data[[i]] <- strptime(URUV_data[[i]], format = "%H:%M")
+    URUV_data[[i]] <- times(paste0(URUV_data[[i]], ":00"))
+  }
+  else if(colnames(URUV_data[i]) != "NOTES_TIME" & (colnames(URUV_data[i]) %in% c("TOTALTIME_RECORDING", "ANALYSISTIME_START", "ANALYSISTIME_END", "TOTALTIME_ANALYSIS") | grepl("_TIME", colnames(URUV_data[i])) | grepl("TIME_1ST", colnames(URUV_data[i])) | grepl("T1_", colnames(URUV_data[i])))){
+    URUV_data[[i]] <- times(URUV_data[[i]])
+  }
+}
+
+#TotalMaxN and Shannon's Diversity for each observation
+dontInclude <- c("UNIDGUPPY", "PIPEFISH") #, "FISHF")
+
+for(i in 1:nrow(URUV_data)){
+  species_counts <- c()
+  k <- 1
+  for(j in 1:ncol(URUV_data)){
+    if(grepl(paste(dontInclude, collapse = "|"), colnames(URUV_data[j])) == FALSE & grepl("MAXN", colnames(URUV_data[j])) & URUV_data[i,j] > 0){
+      species_counts[k] <- URUV_data[i,j]
+      k <- k+1
+    }
+  }
+  
+  species_proportions <- species_counts / sum(species_counts)
+  shannon_diversity <- -sum(species_proportions * log(species_proportions))
+  URUV_data$SHANNON_DIV[i] <- shannon_diversity
+  URUV_data$MAXN_TOTAL[i] <- sum(species_counts)
+  
+}
+checkData <- URUV_data %>%
+  select(SHANNON_DIV, MAXN_TOTAL, NO_FISHSPECIES, contains("MAXN"))
+
+
+# # COMBINING SPECIES ORIGINALLY SEPARATED IN DATA
+# combineSpecies("FISHF", "GUPPYC", "FISHF")
+# combineSpecies("FISHM", "FISHG", "FISHM")
+# combineSpecies("FISHL", "FISHK", "FISHK")
+
+write.csv(URUV_data, "MasterRecordingData_clean.csv")
+```
+
+
+
+```{r speciesQs, eval = FALSE}
+FISHE <- URUV_data %>%
+  filter(MAXN_FISHE != 0)
+
+FISHM <- URUV_data %>%
+  filter(MAXN_FISHM !=0)
+
+FISHF <- URUV_data %>%
+  filter(MAXN_FISHF !=0) %>%
+  select(DATE, DESA, SITENAME_COMBINE, MAXN_FISHF)
+
+GUPPYBOTH <- URUV_data %>%
+  filter(MAXN_GUPPYBOTH !=0) %>%
+  select(DATE, DESA, SITENAME_COMBINE, MAXN_GUPPYBOTH)
+
+hist(URUV_data$TOTALTIME_ANALYSIS)
+
+```
+
+```{r AllSpecies, results = 'asis', echo = FALSE, fig.show = "hold", out.width = "50%"}
+
+ggplot(URUV_data, aes(x=DESA, y=NO_ALLSPECIES)) + 
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.2))
+
+ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_ALLSPECIES)) + 
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.2))
+
+```
+
+```{r FishSpecies, results = 'asis', echo = FALSE, fig.show = "hold", out.width = "50%"}
+
+ggplot(URUV_data, aes(x=DESA, y=NO_FISHSPECIES)) + 
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.1))
+
+ggplot(URUV_data, aes(x=SITE_TYPE, y=NO_FISHSPECIES)) + 
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.1))
+
+```
+
+```{r ShannonsDiversity}
+
+# MAKE LIST OF SPECIES NOT TO INCLUDE UNIDGUPPY, 
+
+# DOUBLE CHECK THIS CALCULATION. based off this https://sqlpad.io/tutorial/shannon-diversity-calculate/
+
+# # Sample data: species counts
+# species_counts <- c(10, 20, 30, 40)
+# 
+# # Calculate proportions
+# species_proportions <- species_counts / sum(species_counts)
+# 
+# # Calculate Shannon Diversity Index
+# shannon_diversity <- -sum(species_proportions * log(species_proportions))
+# print(shannon_diversity)
+
+
+shannon <- URUV_data %>%
+      group_by(SITE_TYPE) %>%
+      summarise(SHANNON_AVG = mean(SHANNON_DIV))
+
+ggplot(data=shannon, aes(x=SITE_TYPE, y=SHANNON_AVG, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      xlab("Jenis Mangrove") +
+      ylab("Index") +
+      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Dihancur","EMR", "Alami")) +
+      theme(legend.title=element_blank())
+
+```
+
+```{r totalMaxN}
+# 
+# Maxn_List <- c()
+# 
+# for(i in 1:ncol(URUV_data)){
+#   if(grepl("MAXN", colnames(URUV_data[i]))){
+#     Maxn_List <- append(Maxn_List,i)
+#   }}
+# 
+# URUV_data$MAXN_TOTAL <- rowSums(URUV_data[ , Maxn_List], na.rm=TRUE)
+
+ggplot(URUV_data, aes(x=DESA, y=MAXN_TOTAL)) + 
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.1))
+
+ggplot(URUV_data, aes(x=SITE_TYPE, y=MAXN_TOTAL)) + 
+  geom_boxplot() 
+  #geom_jitter(shape=16, position=position_jitter(0.1))
+
+```
+
+\newpage
+
+# ANOVAS AND STATS
+```{r ANOVA_MAXN}
+
+# LATER maybe try a PCA https://builtin.com/data-science/step-step-explanation-principal-component-analysis
+
+# ONE WAY ANOVA CHECKING EFFECT OF SITE AND DESA
+# https://www.scribbr.com/statistics/anova-in-r/
+
+one.way_Overall <- aov(MAXN_TOTAL ~ SITE_TYPE, data = URUV_data)
+summary(one.way_Overall)
+
+one.way_Desa <- aov(MAXN_TOTAL ~ DESA, data = URUV_data)
+summary(one.way_Desa)
+
+
+```
+
+```{r ANOVA_SHANNON}
+
+# one.way_Total <- aov(NO_FISHSPECIES ~ SITE_TYPE, data = URUV_data)
+# 2 WAY ANOVA CHECKING SITE AND OVERALL MAXN
+
+two.way_Overall <- aov(SHANNON_DIV ~ SITE_TYPE + DESA, data = URUV_data)
+summary(two.way_Overall)
+
+Interaction_Overall <- aov(SHANNON_DIV ~ SITE_TYPE * DESA, data = URUV_data)
+summary(Interaction_Overall)
+
+
+```
+
+\newpage
+
+# STATS
+```{r depthplotting}
+
+# plot(URUV_data$WATER_DEPTH_BEFORE, URUV_data$MAXN_TOTAL)
+# abline(lm(MAXN_TOTAL ~ WATER_DEPTH_BEFORE, data = URUV_data))
+# 
+# lm(MAXN_TOTAL ~ WATER_DEPTH_BEFORE, data = URUV_data)
+
+ggplot(data=URUV_data, aes(x=WATER_DEPTH_BEFORE, y=MAXN_TOTAL)) +
+        geom_smooth(method="lm") +
+        geom_point() +
+        stat_regline_equation(label.x=15, label.y=50) +
+        stat_cor(aes(label=..rr.label..), label.x=15, label.y=40)
+
+```
+
+```{r tideplotting}
+
+# plot(URUV_data$TIDE_HEIGHT, URUV_data$MAXN_TOTAL)
+
+ggplot(data=URUV_data, aes(x=TIDE_HEIGHT, y=MAXN_TOTAL)) +
+        geom_smooth(method="lm") +
+        geom_point() +
+        stat_regline_equation(label.x=.1, label.y=50) +
+        stat_cor(aes(label=..rr.label..), label.x=.1, label.y=40)
+
+```
+
+```{r vegplotting}
+#plot(URUV_data$VEGITATION, URUV_data$MAXN_TOTAL)
+
+ggplot(data=URUV_data, aes(x=VEGITATION, y=MAXN_TOTAL)) +
+        geom_smooth(method="lm") +
+        geom_point() +
+        stat_regline_equation(label.x=15, label.y=50) +
+        stat_cor(aes(label=..rr.label..), label.x=15, label.y=40)
+
+```
+
+```{r plottingVis}
+
+plot(URUV_data$VISIBILITY, URUV_data$MAXN_TOTAL)
+
+ggplot(data=URUV_data, aes(x=VISIBILITY, y=MAXN_TOTAL)) +
+        geom_smooth(method="lm") +
+        geom_point() +
+        stat_regline_equation(label.x=15, label.y=50) +
+        stat_cor(aes(label=..rr.label..), label.x=15, label.y=40)
+```
+
+\newpage
+
+# INDIVIDUAL SPECIES
+
+```{r speciesSort}
+colList <- c()
+
+for(i in 1:ncol(URUV_data)){
+  if(grepl("MAXN", colnames(URUV_data[i])) & sum(URUV_data[i] > 0) > 5){ #Sort Through all MaxN's calculated
+    colList <- append(colList, i)
+    # & sum(colnames(URUV_data[i]) > 0) > 5
+    #Need to fully rename column so ggplot can read it. Make separate datasheet
+    Yaxistitle <- colnames(URUV_data[i])
+    data1 <- URUV_data %>%
+      rename("MAXN_TARGET" = colnames(URUV_data[i]))
+    
+    #data1$MONTH <- month(data1$DATE)
+    
+    #Graph boxplot per desa
+    print(ggplot(data1, aes(x=DESA, y=MAXN_TARGET)) +
+      geom_boxplot() +
+      geom_jitter(shape=16, position=position_jitter(0.2)) +
+      ylab(Yaxistitle))
+
+    #Graph boxplot per site type
+    print(ggplot(data1, aes(x=SITE_TYPE, y=MAXN_TARGET)) +
+      geom_boxplot() +
+      geom_jitter(shape=16, position=position_jitter(0.2)) +
+      ylab(Yaxistitle))
+    
+    
+    #Graph temporal patterns
+    
+    SpeciesPerMonth <- data1 %>%
+      group_by(MONTH) %>%
+      summarize(sum(MAXN_TARGET))
+    colnames(SpeciesPerMonth) <-c("MONTH", "TOTAL")
+
+    # SpeciesPerMonth$MONTH <- as.integer(SpeciesPerMonth$MONTH)
+    # 
+    # MONTHLIST <- data.frame(MONTH = c(1:12))
+    # 
+    # temporalSpeciesData <- left_join(MONTHLIST, SpeciesPerMonth)
+    # 
+    # temporalSpeciesData[is.na(temporalSpeciesData)] <- 0
+
+    print(ggplot(SpeciesPerMonth, aes(x = MONTH, y = TOTAL)) +
+      geom_bar(stat = "identity") + 
+       ylab(Yaxistitle) )
+    
+    # Graph total number of fish in each siteType
+    
+    ikanTotal <- data1 %>%
+      group_by(SITE_TYPE) %>%
+      summarise(TOTAL_FISH = sum(MAXN_TARGET))
+    
+    print(ggplot(data=ikanTotal, aes(x=SITE_TYPE, y=TOTAL_FISH, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      xlab("Jenis Mangrove") +
+      ylab(paste("Jumlah Ikan", Yaxistitle)) +
+      geom_text(aes(label=TOTAL_FISH), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Dihancur","EMR", "Alami")) +
+      theme(legend.title=element_blank()))
+      
+      
+    
+  }
+  
+  
+  
+}
+
+
+
+```
+
+\newpage
+
+# QUALITY CHECKS
+
+```{r vegitationcheck}
+
+plot(x = 1,
+     type = "n",
+     xlim = c(0, 100), 
+     ylim = c(0, 10),
+     pch = 16,
+     xlab = "Vegitation", 
+     ylab = "Total Species")
+
+# Add coral2 points for male data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "D"],
+       y = URUV_data$NO_ALLSPECIES[URUV_data$SITE_TYPE == "D"],
+       pch = 16,
+       col = "coral2", trans.val = .8)
+
+# Add steelblue points for female data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "E"],
+       y = URUV_data$NO_ALLSPECIES[URUV_data$SITE_TYPE == "E"],
+       pch = 16,
+       col = "steelblue3", trans.val = .8)
+
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "L"],
+       y = URUV_data$NO_ALLSPECIES[URUV_data$SITE_TYPE == "L"],
+       pch = 16,
+       col = "chartreuse2", trans.val = .8)
+
+```
+
+```{r vegitationcheck2}
+
+plot(x = 1,
+     type = "n",
+     xlim = c(0, 100), 
+     ylim = c(0, 10),
+     pch = 16,
+     xlab = "Vegitation", 
+     ylab = "Total Species")
+
+# Add coral2 points for degraded data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "D"],
+       y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "D"],
+       pch = 16,
+       col = "coral2", trans.val = .8)
+
+# Add steelblue points for EMR data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "E"],
+       y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "E"],
+       pch = 16,
+       col = "steelblue3", trans.val = .8)
+
+#Green points for lush data
+points(x = URUV_data$VEGITATION[URUV_data$SITE_TYPE == "L"],
+       y = URUV_data$NO_FISHSPECIES[URUV_data$SITE_TYPE == "L"],
+       pch = 16,
+       col = "chartreuse2", trans.val = .8)
+
+```
+
+```{r batterycheck, eval = FALSE }
+
+
+ggplot(URUV_data, aes(x=NO_BATTERY, y=TOTALTIME_RECORDING)) + 
+  geom_bar(stat='identity')
+
+```
