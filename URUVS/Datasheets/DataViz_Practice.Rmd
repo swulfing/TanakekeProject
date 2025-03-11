@@ -61,8 +61,6 @@ write.csv(masterData, "Master_RecordingData.csv")
 
 URUV_data <- masterData
 
-
-
 ```
 
 ```{r fxnCombineSpecies}
@@ -141,7 +139,7 @@ for(i in 1:ncol(URUV_data)){
 }
 
 #TotalMaxN and Shannon's Diversity for each observation
-dontInclude <- c("UNIDGUPPY", "PIPEFISH", "FISHF")
+dontInclude <- c("UNIDGUPPY", "PIPEFISH", "TOTAL")
 
 for(i in 1:nrow(URUV_data)){
   species_counts <- c()
@@ -397,8 +395,9 @@ ggplot(StackedBar, aes(fill=SITE_TYPE, y=SHANNON_MEAN, x=MONTH)) +
 ```{r speciesSort}
 colList <- c()
 
+#REMOVE SPECIES IN DONT INCLUDE FROM HERE
 for(i in 1:ncol(URUV_data)){
-  if(grepl("MAXN", colnames(URUV_data[i])) & sum(URUV_data[i] > 0) > 5){ #Sort Through all MaxN's calculated
+  if(grepl("MAXN", colnames(URUV_data[i])) & sum(URUV_data[i] > 0) > 20){ #Sort Through all MaxN's calculated
     colList <- append(colList, i)
     # & sum(colnames(URUV_data[i]) > 0) > 5
     #Need to fully rename column so ggplot can read it. Make separate datasheet
