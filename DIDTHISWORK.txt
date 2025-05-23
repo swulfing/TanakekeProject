@@ -1,1 +1,17 @@
-HAVING A GITHUB PUSHING ERROR. DID THIS WORK
+# Next Steps - DO THESE AFTER COMPLETING THE WHOLE COURSE
+
+Your turn to add features!
+
+Suggestions:
+
+1. Produce a trade-off plot (hint: perhaps think about some alternative performance statistics that integrate across iterations)
+
+2. Add a model-based control rule by performing a stock assessment (e.g. production model) each year in the projection period. Then use the catch associated with the estimated FMSY as the TAC. Be careful not to give the assessment model the true parameter values from the operating model.
+
+DONE 3. Implement the HCR every 3 yrs rather than every 1.
+
+4. Add a more complicated implementation function (say based on price?)
+
+DONE 5. Add environmental variability (process error) into the population dynamics
+
+AM I ADDING A PRICE VECTOR FOR 1 AND 4
