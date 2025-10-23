@@ -21,12 +21,13 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(ggpubr)
+library(rlang)
 
 
 
 #Make a MasterDatasheet with all months data
 # CHANGE EVERY MONTH
-completedData <- c("02.2024", "03.2024", "04.2024", "05.2024", "06.2024")
+completedData <- c("02.2024", "03.2024", "04.2024", "05.2024", "06.2024", "07.2024", "08.2024")
 
 masterData <- data.frame(read.csv("URUV/RecordingData_02.2024.csv"))
 
@@ -169,8 +170,6 @@ checkData <- URUV_data %>%
 write.csv(URUV_data, "MasterRecordingData_clean.csv")
 ```
 
-
-
 ```{r speciesQs, eval = FALSE}
 FISHE <- URUV_data %>%
   filter(MAXN_FISHE != 0)
@@ -266,6 +265,42 @@ ggplot(URUV_data, aes(x=SITE_TYPE, y=MAXN_TOTAL)) +
   geom_boxplot() 
   #geom_jitter(shape=16, position=position_jitter(0.1))
 
+```
+
+```{r habitatPreference, fig.cap = 'habitat preference'}
+
+#TotalMaxN and Shannon's Diversity for each observation
+dontInclude <- c("UNIDGUPPY", "PIPEFISH", "TOTAL")
+
+preference_dataframe <- data.frame(SITE_TYPE = as.factor(c("D", "E", "L")))
+
+# for(i in 1:nrow(URUV_data)){
+#   species_counts <- c()
+#   k <- 1
+  for(j in 1:ncol(URUV_data)){
+    if(grepl(paste(dontInclude, collapse = "|"), colnames(URUV_data[j])) == FALSE & grepl("MAXN", colnames(URUV_data[j]))){
+      tot_obs <- sum(URUV_data[,j])
+      calc_df <- data.frame(SITE_TYPE = URUV_data$SITE_TYPE,
+                            SPECIES = URUV_data[,j])
+      prop <- calc_df %>%
+        group_by(SITE_TYPE)%>%
+        summarise(!!paste0('prop_',colnames(URUV_data[j])) := (sum(SPECIES)/tot_obs))
+      
+      preference_dataframe <- left_join(preference_dataframe, prop, by = 'SITE_TYPE')
+    }
+  }
+
+preference_dataframe$totProps <- rowSums(preference_dataframe[,2:ncol(preference_dataframe)])
+
+ggplot(data=preference_dataframe, aes(x=SITE_TYPE, y=totProps, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      xlab("Jenis Mangrove") +
+      ylab("Index") +
+      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Dihancur","EMR", "Alami")) +
+      theme(legend.title=element_blank())
 ```
 
 \newpage
