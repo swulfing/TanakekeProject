@@ -234,6 +234,10 @@ shannon <- URUV_data %>%
       group_by(SITE_TYPE) %>%
       summarise(SHANNON_AVG = mean(SHANNON_DIV))
 
+desa <- URUV_data %>%
+      group_by(DESA) %>%
+      summarise(SHANNON_AVG = mean(SHANNON_DIV))
+
 ggplot(data=shannon, aes(x=SITE_TYPE, y=SHANNON_AVG, fill = SITE_TYPE)) +
       geom_bar(stat="identity", color = "black") +
       xlab("Jenis Mangrove") +
@@ -243,6 +247,16 @@ ggplot(data=shannon, aes(x=SITE_TYPE, y=SHANNON_AVG, fill = SITE_TYPE)) +
       scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
                     labels = c("Dihancur","EMR", "Alami")) +
       theme(legend.title=element_blank())
+
+# ggplot(data=desa, aes(x=DESA, y=SHANNON_AVG, fill = DESA)) +
+#       geom_bar(stat="identity", color = "black") +
+#       xlab("Desa") +
+#       ylab("Index") +
+#       #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+#       theme_minimal() +
+#       scale_fill_manual(values = c("green", "#0474c4"),
+#                     labels = c("Lantangpeo","Tompotanah")) +
+#       theme(legend.title=element_blank())
 
 ```
 
