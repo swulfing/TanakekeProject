@@ -25,9 +25,10 @@ editor_options:
 \textsc{Sophie Wulfing$^{1*}$, Muhammad Sahid$^{1}$, Rohani Ambo-Rappe$^{3}$, and Easton R. White$^{1}$}
 \vspace{3 mm}
 \normalsize{\indent $^1$Department of Biological Sciences, University of New Hampshire, 03824, NH, USA \\ $^2$Blue Forests Foundation, Makassar, South Sulawesi, Indonesia \\ $^3$Marine Science Department, Faculty of Marine Science and Fisheries, University of Hasanuddin, Makassar, South Sulawesi, Indonesia}
-$\text{*}$ Corresponding authors: Sophie Wulfing (SophieWulfing@gmail.com)
+$\text{*}$ Corresponding author: Sophie Wulfing (SophieWulfing@gmail.com)
 \end{center}
 
+\newpage
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev="cairo_pdf")
@@ -86,6 +87,8 @@ Camera calibrationswere conducted by counting the number of tick marks visible o
 After video data was analyzed and fish species were identified and counted, data was analyzed using RStudio software (CITE). At each village and mangrove type, total fish, total species of fish, and Shannon’s Diversity Index (CITE) was calculated. We also conducted an ANOVA analysis on the mangrove type and village to see if habitat preference was significantly different for fish.
 
 # RESULTS
+
+START BY OUTLINE TOTAL DATA COLLECTED, # FISH SPECIES, %IDED TO SPECIES LEVEL, DAYS, TIDES, ETC.
 
 
 

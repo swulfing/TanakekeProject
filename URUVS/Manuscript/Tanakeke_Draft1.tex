@@ -1,0 +1,218 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\usepackage{lineno} \usepackage{placeins} \usepackage{setspace}\doublespacing
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\begin{center}
+    
+\textbf{\Large The effects of mangrove restoration on fish stocks and marine biodiversity in Indonesia}
+    
+\textsc{Sophie Wulfing$^{1*}$, Muhammad Sahid$^{1}$, Rohani Ambo-Rappe$^{3}$, and Easton R. White$^{1}$}
+\vspace{3 mm}
+\normalsize{\indent $^1$Department of Biological Sciences, University of New Hampshire, 03824, NH, USA \\ $^2$Blue Forests Foundation, Makassar, South Sulawesi, Indonesia \\ $^3$Marine Science Department, Faculty of Marine Science and Fisheries, University of Hasanuddin, Makassar, South Sulawesi, Indonesia}
+$\text{*}$ Corresponding author: Sophie Wulfing (SophieWulfing@gmail.com)
+\end{center}
+
+\section{ABSTRACT}\label{abstract}
+
+WHAT SHOULD YOUR AFFILIATION BE?????
+Mangroves are an essential biome for many tropical ecosystems and coastal communities. They exhibit high carbon sequestration, protect coastal areas from floods and extreme weather events, and foster biodiversity in their habitats. They have also been shown to increase fish stocks in surrounding fisheries. As the country with the most extensive mangrove habitats in the world, the Indonesian government has committed to restoring 600,000 hectars of mangroves throughout the country. One such place where this restoration effort is taking place is Pulau Tanakeke in South Sulawesi. Here, an NGO called Blue Forests has been conducing mangrove restoration since 2012. In the project, we use Unbaited Remote Underwater Video to assess how these replanting efforts are effecting local fish stocks and biodiversity. We compare three types of mangrove forests: natural (old-growth forests), EMR (replanted mangroves), and areas with destroyed mangroves. We have found that destroyed sites have the lowset fish biodiversity as well as total number of fish present. Natural mangroves had the highest fish biodiversity. There were certain species such as cardinal fish which greatly preferred the EMR sites, but total number of fish were highest in the EMR and natural sites. This research serves to show the benefits of mangroves for small scale fisheries and highlights the importance of environmental restoration for ensuring food security.
+
+\section{INTRODUCTION}\label{introduction}
+
+Mangroves are inter-tidal forests that are essential components to many tropical ecosystems. As the effects of climate change grow stronger worldwide, the need for carbon mitigation and protection against extreme weather are becoming more urgent. Mangroves biomes comprise about 14 \% of marine carbon sequestration and may result in high gas emissions when these ecosystems are disturbed (Daniel M. Alongi 2012), while more established mangroves are more efficient in absorbing atmospheric carbon (Cameron, Hutley, and Friess 2019). Beyond their benefits of protecting against extreme weather events, mangroves are also key actors in maintaining the biodiversity of the ecosystems they inhabit. Mangroves have been reported to support up 20\% of the benthic biodiversity in their habitats (Carugati et al. 2018). They provide essential nutrients, temperature controls, and protection from predators for marine life (Blue Forests 2012). Further, Mangroves have been shown to increase fishery yields in their surrounding areas, therefore increasing fisher income (Aburto-Oropeza et al. 2008). The root systems of mangroves provide shelter and protection for juvenile fish, allowing them to grow and develop safely away from predators and also also act as a buffer against strong currents and waves, creating calmer and more stable environments where fish can feed and reproduce (Daniel M. Alongi 2008). Areas with intact mangrove forests have been shown to support higher fish abundance and diversity compared to areas without mangroves (Nagelkerken et al. 2008). Mangroves provide a rich food web, with leaf litter and detritus serving as a source of nutrients that fuel the basis of the food chain, supporting the growth and survival of various fish species (Daniel M. Alongi 2008). Furthermore, mangroves act as a buffer against coastal erosion and storm surges, safeguarding the habitats of both fish and fishermen (Nagelkerken et al. 2008). Mangroves offer a crucial line of defense against the impacts of climate change on fisheries. The dense root systems of mangroves stabilize shorelines and protect coastal areas from erosion caused by rising sea levels and extreme weather events (Daniel M. Alongi 2008). As the largest archipelago in the world, marine fisheries are an extremely important resource in Indonesia for food security and fisher income. Fisheries contribute to about 3\% of the GDP in Indonesia, and over 80\% of fishery catches are from small scale fisheries, however these systems are currently subject to over-exploitation, threatening the food security of those who are reliant on these fisheries (Ayunda, Sapota, and Pawelec 2018).
+
+Despite all of their contributions to ecosystem health, mangrove environments are being threatened worldwide. Rising sea-levels has been shown to be a major contributor to mangrove loss (Gilman et al. 2008). Further, as extreme events are becoming more intense and more frequent, these could potentially threaten mangroves due to defoliation, soil erosion, or by altering the chemical makeup or temperature of soils (Gilman et al. 2008). Mangroves are also directly threatened by anthropogenic activity. Pollution, coastal development, and aquaculture development have also contributed to mangrove ecosystem loss (Adeel and Pomeroy 2002). Mangrove forests in the Western Tropical Pacific are the most diverse of these habitats globally (Ellison, Farnsworth, and Merkt 1999). Indonesia has the most extensive mangrove forests in the world (Kusmana 2011). As Indonesia is also the largest archipelagic country, mangroves' contribution to flood protection and extreme weather mitigation is vital to the health and safety of many of its inhabitants. However, due to timber production, aquaculture, and human development, the Ministry of Forestry reported in 2007 that around 69\% of mangroves were in damaged condition in the country (Kusmana 2011). As a response to this habitat loss, the Indonesian government has committed to restoring 600,000 hectares of mangroves in the country in 2024, the most ambitious mangrove restoration project in the world. Tanakeke Island in South Sulawesi, Takalar Regency, is one location where this restoration effort is taking place. Here, mangrove habitats are generally privately owned, and the main driver of mangrove loss has been timber production and shrimp aquaculture (Blue Forests 2012). 1,200 hectares of mangroves were converted into aquaculture ponds in the 1980s and 1990s, which is about 70\% of its historical cover (Brown et al., n.d.). Recently, there have been reports of increased flooding on this island which could be attributed to the loss of protection from mangroves (Blue Forests 2012). However, in response to mangrove restoration, the community has seen great success in both engagement and successful mangrove rehabilitation, where hundreds of community members have participated since the 1990's (Blue Forests 2012; {``Past and {Present} on {Tanakeke} {Island}''} 2013). Further, small scale fishing is an essential part of peoples' livelihoods on Tanakeke. Locally caught seafood is the main source of protein on this island (Blue Forests 2012).
+
+Mangroves provide refuge for about 55\% fish catch biomass in Indonesia (World Bank 2022). Fisher income has been shown to be negatively affected by mangrove habitat loss, and because of this, the financial gain of mangrove restoration is predicted to be more lucrative than any alternative land use such as aquaculture (Yamamoto 2023). For this reason, mangroves are an essential component to the health of Indonesia's fisheries and contribute significantly to the food security of those directly reliant on small scale fisheries as a key source of nutrition, including on Tanakeke Island (Blue Forests 2012). While these mangrove restoration efforts have resulted in increased flood prevention and ecotourism, little research has been done to assess the improvements in marine biodiversity and benefits to fish stocks. In this project, we aim to understand how this restoration is affecting local marine biodiversity and abundance of fish species on Tanakeke Island. We will use Unbaited Remote Underwater Video (URUV) methods to assess the marine biodiversity of mangrove habitats and compare them to the biodiversity of areas that have not undergone mangrove rehabilitation.
+
+\section{METHODS}\label{methods}
+
+\subsection{Site description:}\label{site-description}
+
+Pulau Tanakeke (Figure \ref{Tanakeke}) is situated about 40 km southwest of Makassar in South Sulawesi, Takalar Regency. The island is a coral atoll covering about 3,930 hectares. About 392.25 hectares of mangrove has been restored (Cameron, Hutley, and Friess 2019). Access to the island presents a challenge as rough seas make sea crossings difficult during rainy seasons. The island comprises of five villages or desa: Balangdatu, Maccinibaji, Mattirobaji, Rewataya, and Tompotana. Historically, the island was populated with about 1,776 hectares of Mangroves, most of which has been destroyed for aquaculture.
+
+
+
+\begin{figure}
+\includegraphics[width=0.45\linewidth]{Tanakeke_Villages} \includegraphics[width=0.45\linewidth]{Tanakeke_Sites} \caption{A map of Tanakeke Island with village (desa) names (left). The right image shows the mangrove restoration sites on Tanakeke Island by Blue forests. Both images are courtesy of Blue Forests. \label{Tanakeke}}\label{fig:Tanakeke}
+\end{figure}
+
+\subsection{URUVs}\label{uruvs}
+
+The study was conducted on Tanakeke Island in the Takalar Regency of South Sulawesi, Indonesia in the villages of Tompotanah and Lantangpeo (Fig MAKE MAP). In each village, mangroves were classified into three type: degraded, natural and EMR. EMR (Ecological Mangrove Restoration) refers to a low-cost, socially focused mangrove restoration method used by Blue Forests where local communities are involved in every step of the restoration process, and various mangrove replanting techniques are applied to the restoration site. Three drop sites were selected in each mangrove type in each village based on mangrove type, water depth, and permission from land owners. Further, cameras were placed next to vegetation because this reduced the likelihood of boat traffic knocking over camera stands.
+
+URUV methods followed standard BRUV methods outlined in LANGLOISE ET AL 2018 AND 2020 but bait was not used. GoPro SJCAM SJ4000 Action Camera 4K30fps WiFi Cameras were installed on a 1 meter-tall PVC pipe partially buried in the sediment. Two villages were sampled and three cameras were installed in each village in each mangrove type, a total of 18 sites (GIVE FIGURE, ASK AIS). The cameras were deployed horizontally to the ground with an additional 1 m PVC pipe extending parallel to the ground below the camera so that the length of that pipe was visible in the video. Tick marks spaced 10 cm apart were painted onto the pipe visible in the video. This allowed for a standardization of water visibility, as the number of ticks was counted for each video vile. Because this region experiences a wide tidal range, with mangrove forests being fully exposed to air at low tide, camera depths varied as they were deployed at high tide between the hours of 07:00 and 18:30 MAKE SURE THAT'S STILL TRUE to ensure sufficient sunlight and that the camera stayed fully submerged during the duration of filming. Cameras faced vegetation in all sites. Site locations were chosen based on low-boat traffic and consent of the landowner. Date, time of day, tide height, water height at location, weather, and water temperature were recorded at each data collection.
+
+\subsection{Video Analysis}\label{video-analysis}
+
+Camera calibrationswere conducted by counting the number of tick marks visible on the extending PVC pipe. Videos were then cut to approximately one hour, starting from five minutes after the camera was set. Videos were watched manually on Windows Media Player and MaxN and T1st were counted and recorded for each fish species found on the video. Fish were identified down the lowest possible taxonomic level and crabs were identified at the family-level. Gastropods were not counted as video-clarity was not sufficient to get accurate counts. A sub-sample of images were cross checked in order to avoid misidentified fish species, and species were identified using GET BOOK NAME AND FROM TOFI.
+After video data was analyzed and fish species were identified and counted, data was analyzed using RStudio software (CITE). At each village and mangrove type, total fish, total species of fish, and Shannon's Diversity Index (CITE) was calculated. We also conducted an ANOVA analysis on the mangrove type and village to see if habitat preference was significantly different for fish.
+
+\section{RESULTS}\label{results}
+
+START BY OUTLINE TOTAL DATA COLLECTED, \# FISH SPECIES, \%IDED TO SPECIES LEVEL, DAYS, TIDES, ETC.
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-aburto-oropezaMangrovesGulfCalifornia2008}
+Aburto-Oropeza, Octavio, Exequiel Ezcurra, Gustavo Danemann, Víctor Valdez, Jason Murray, and Enric Sala. 2008. {``Mangroves in the {Gulf} of {California} Increase Fishery Yields.''} \emph{Proceedings of the National Academy of Sciences} 105 (30): 10456--59. \url{https://doi.org/10.1073/pnas.0804601105}.
+
+\bibitem[\citeproctext]{ref-adeelAssessmentManagementMangrove2002}
+Adeel, Zafar, and Robert Pomeroy. 2002. {``Assessment and Management of Mangrove Ecosystems in Developing Countries.''} \emph{Trees} 16 (2-3): 235--38. \url{https://doi.org/10.1007/s00468-002-0168-4}.
+
+\bibitem[\citeproctext]{ref-alongiCarbonSequestrationMangrove2012}
+Alongi, Daniel M. 2012. {``Carbon Sequestration in Mangrove Forests.''} \emph{Carbon Management} 3 (3): 313--22. \url{https://doi.org/10.4155/cmt.12.20}.
+
+\bibitem[\citeproctext]{ref-alongiMangroveForestsResilience2008}
+Alongi, Daniel M. 2008. {``Mangrove Forests: {Resilience}, Protection from Tsunamis, and Responses to Global Climate Change.''} \emph{Estuarine, Coastal and Shelf Science} 76 (1): 1--13. \url{https://doi.org/10.1016/j.ecss.2007.08.024}.
+
+\bibitem[\citeproctext]{ref-ayundaImpactSmallScaleFisheries2018}
+Ayunda, Nisa, Mariusz R. Sapota, and Anna Pawelec. 2018. {``The {Impact} of {Small}-{Scale} {Fisheries} {Activities} {Toward} {Fisheries} {Sustainability} in {Indonesia}.''} In \emph{Interdisciplinary {Approaches} for {Sustainable} {Development} {Goals}}, edited by Tymon Zielinski, Iwona Sagan, and Waldemar Surosz, 147--67. Cham: Springer International Publishing. \url{https://doi.org/10.1007/978-3-319-71788-3_11}.
+
+\bibitem[\citeproctext]{ref-blueforestsAdaptiveCollaborativeManagement2012new}
+Blue Forests. 2012. {``Adaptive {Collaborative} {Management} {Plan} for {Building} {Mangrove} {Resilience} in {Tanakeke} {Island}.''}
+
+\bibitem[\citeproctext]{ref-brownCASESTUDYCommunity}
+Brown, Ben, Gaëll Mainguy, Ratna Fadillah, Yusran Nurdin, Iona Soulsby, and Rio Ahmad. n.d. {``{CASE} {STUDY}: {Community} {Based} {Ecological} {Mangrove} {Rehabilitation} ({CBEMR}) in {Indonesia}.''}
+
+\bibitem[\citeproctext]{ref-cameronEstimatingFullGreenhouse2019}
+Cameron, Clint, Lindsay B. Hutley, and Daniel A. Friess. 2019. {``Estimating the Full Greenhouse Gas Emissions Offset Potential and Profile Between Rehabilitating and Established Mangroves.''} \emph{Science of The Total Environment} 665 (May): 419--31. \url{https://doi.org/10.1016/j.scitotenv.2019.02.104}.
+
+\bibitem[\citeproctext]{ref-carugatiImpactMangroveForests2018}
+Carugati, Laura, Beatrice Gatto, Eugenio Rastelli, Marco Lo Martire, Caterina Coral, Silvestro Greco, and Roberto Danovaro. 2018. {``Impact of Mangrove Forests Degradation on Biodiversity and Ecosystem Functioning.''} \emph{Scientific Reports} 8 (1): 13298. \url{https://doi.org/10.1038/s41598-018-31683-0}.
+
+\bibitem[\citeproctext]{ref-ellisonOriginsMangroveEcosystems1999}
+Ellison, Aaron M., Elizabeth J. Farnsworth, and Rachel E. Merkt. 1999. {``Origins of Mangrove Ecosystems and the Mangrove Biodiversity Anomaly: {Mangrove} Biodiversity Anomaly.''} \emph{Global Ecology and Biogeography} 8 (2): 95--115. \url{https://doi.org/10.1046/j.1466-822X.1999.00126.x}.
+
+\bibitem[\citeproctext]{ref-gilmanThreatsMangrovesClimate2008}
+Gilman, Eric L., Joanna Ellison, Norman C. Duke, and Colin Field. 2008. {``Threats to Mangroves from Climate Change and Adaptation Options: {A} Review.''} \emph{Aquatic Botany} 89 (2): 237--50. \url{https://doi.org/10.1016/j.aquabot.2007.12.009}.
+
+\bibitem[\citeproctext]{ref-kusmanaManagementMangroveEcosystem2011}
+Kusmana, Cecep. 2011. {``Management of Mangrove Ecosystem in {Indonesia}.''}
+
+\bibitem[\citeproctext]{ref-nagelkerkenHabitatFunctionMangroves2008}
+Nagelkerken, I., S. J. M. Blaber, S. Bouillon, P. Green, M. Haywood, L. G. Kirton, J.-O. Meynecke, et al. 2008. {``The Habitat Function of Mangroves for Terrestrial and Marine Fauna: {A} Review.''} \emph{Aquatic Botany} 89 (2): 155--85. \url{https://doi.org/10.1016/j.aquabot.2007.12.007}.
+
+\bibitem[\citeproctext]{ref-PresentTanakekeIsland2013}
+{``Past and {Present} on {Tanakeke} {Island}.''} 2013. \emph{Blue Forests}. \url{https://blue-forests.org/en/newsroom/news/past-and-present-on-tanakeke-island/}.
+
+\bibitem[\citeproctext]{ref-theworldbankNewProjectWill2022new}
+World Bank. 2022. {``New {Project} Will {Support} {Large}-{Scale} {Mangrove} {Conservation} and {Restoration} in {Indonesia}.''} Text/\{HTML\}. \emph{The World Bank}. \url{https://www.worldbank.org/en/news/press-release/2022/06/07/new-project-will-support-large-scale-mangrove-conservation-and-restoration-in-indonesia}.
+
+\bibitem[\citeproctext]{ref-yamamotoLivingEcosystemDegradation2023}
+Yamamoto, Yuki. 2023. {``Living Under Ecosystem Degradation: {Evidence} from the Mangrove--Fishery Linkage in {Indonesia}.''} \emph{Journal of Environmental Economics and Management} 118 (March): 102788. \url{https://doi.org/10.1016/j.jeem.2023.102788}.
+
+\end{CSLReferences}
+
+\end{document}
