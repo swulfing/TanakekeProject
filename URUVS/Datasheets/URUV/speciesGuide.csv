@@ -1,0 +1,42 @@
+dataCode,colName,NameChanged,SpeciesName,LevelID,CommonName_ENG,CommonName_IND
+UNIDGUPPY,MAXN_UNIDGUPPY,,Unidentified Fish,,,
+GUPPYBOTH,MAXN_GUPPYBOTH,,Parioglossus,Genus,Dartfish,
+GUPPYA,MAXN_GUPPYA,UNID_JUVENILE,Unidentified Juvenile,,,
+GUPPYB,MAXN_GUPPYB,SHRIMP,Unidentified Shrimp,,Shrimp,Udang
+BLOWFISH,MAXN_BLOWFISH,,Aronthron,Genus,Puffer Fish,Ikan Buntal
+FISHD,MAXN_FISHD,,Toxotes jaculatrix,Species,Banded Archerfish,Ikan Sumpit
+FISHE,MAXN_FISHE,,Lutjanus ehrenbergii,Species,Blackspot Snapper,Kakap Garis
+FISHF,MAXN_FISHF,,Fibramia lateralis,Species,Humpback Cardinal,
+FISHG,MAXN_FISHG,FISHM,Lutjanus argentimaculatus ,Species,Mangrove Red Snapper,Ikan Lencam
+FISHH,MAXN_FISHH,,Mugilidae,Family,Mullet,Ikan Belanak
+FISHJ,MAXN_FISHJ,,Scatophagus argus,Species,Spotted Scat,Ikan Kiper
+PIPEFISH,MAXN_PIPEFISH,,Hyporhampus,Genus,Halfbeak,Ikan julung-julung
+MUDCRAB,MAXN_MUDCRAB,,,,,
+SWIMMERCRAB,MAXN_SWIMMERCRAB,,Portunidae,Genus,Swimmer Crab,
+ULAR,MAXN_ULAR,,Acrochordus granulatus,Species,Marine File Snake,
+GUPPYC,MAXN_GUPPYC,FISHF,Fibramia lateralis,Species,Humpback Cardinal,
+FISHK,MAXN_FISHK,,Gerres oyena,Species,Blacktip Silverbiddy,Ikan Kapas-kapas
+FISHL,MAXN_FISHL,FISHK,Gerres oyena,Species,Blacktip Silverbiddy,Ikan Kapas-kapas
+FISHM,MAXN_FISHM,,Lutjanus argentimaculatus ,Species,Mangrove Red Snapper,Ikan Lencam
+FISHN,MAXN_FISHN,,Sphaeramia orbicularis,Species,Orbicular Cardinalfish,
+FISHO,MAXN_FISHO,,Siganus,Genus,Gold Spotted Rabbitfish,Ikan Baronang
+CHEETAGIRLZ,MAXN_CHEETAGIRLZ,FISHO,Siganus,Genus,Gold Spotted Rabbitfish,Ikan Baronang
+KERONGKERONG,MAXN_KERONGKERONG,,Terapon jarbua ,Species,Crescent Grunter,Kerong Kerong
+YL,MAXN_YL,,Chaetodon,Genus,Butterfly Fish,Ikan Kepe-kepe
+BFLY1,MAXN_BFLY1,,Monodactylus,Genus,Moonyfishes or fingerfishes,Ikan Bebulan
+VERTFISH,MAXN_VERTFISH,BIGBOI,Sphyraena barracuda,Species,Great Barracuda,Barakuda
+SANDFISH,MAXN_SANDFISH,,Omobranchus,Genus,Blenny,Jabingan
+SHRIMP,MAXN_SHRIMP,,Unidentified Shrimp,,Shrimp,Udang
+YELLOWGUPPY,MAXN_YELLOWGUPPY,FISHA,Ostorhinchus ocellicaudus OR ostorhinchus franssedai,Species,Tailspot Frans' cardinalfish,
+YELLOWSTRIPE,MAXN_YELLOWSTRIPE,,Monodactylus argenteus,Species,Diamondfish,
+GARONGGONG,MAXN_GARONGGONG,,Epinephelus coioides,Species,Orangespotted Grouper,kerapu lumpur
+FISHP,MAXN_FISHP,FISHQ,Carangoides,Genus,Golden Trevally OR Bluerunner,Ikan Kuwe
+LILFREAK,MAXN_LILFREAK,SANDFISH,Omobranchus,Genus,Blenny,Jabingan
+FISHA,MAXN_FISHA,,Ostorhinchus ocellicaudus,Species,Tailspot cardinalfish,
+FISHQ,MAXN_FISHQ,,Carangoides,Genus,Golden Trevally OR Bluerunner,Ikan Kuwe
+FISHR,MAXN_FISHR,FISHF,Fibramia lateralis,Species,Humpback Cardinal,
+FISHS,MAXN_FISHS,FISHQ,Carangoides,Genus,Golden Trevally OR Bluerunner,Ikan Kuwe
+EYELINER,MAXN_EYELINER,FISHE,Lutjanus ehrenbergii,Species,Blackspot Snapper,Kakap Garis
+BIGBOI,MAXN_BIGBOI,,Sphyraena barracuda,Species,Great Barracuda,Barakuda
+FISHBT,MAXN_FISHBT,FISHO,Siganus,Genus,Gold Spotted Rabbitfish,Ikan Baronang
+FISHWTH,MAXN_FISHWTH,,,,,
