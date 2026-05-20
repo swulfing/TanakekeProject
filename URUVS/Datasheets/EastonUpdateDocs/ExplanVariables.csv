@@ -1,0 +1,9 @@
+Variable,Description,Type,Spline Used
+Month,"Note: I think time of dat and month are correlated because we went out at high tide every month, which changes the time of day we left. In each model I test which to use by comparing AIC scores",Ordered Categorical,Cyclic smooth
+Time of day,,Continuous,Nonlinear smooth
+Village,Referred to as 'Desa',Categorical,Fixed Effects factor
+Habitat Type,"D - Destroyed, E - EMR (replanted), L - Natural",Ordered Categorical,Ordered fixed effects factor
+Visibility,Visibility of video. Not a variable but a correction,NA,
+Vegitation,% of screen covered by vegitation,Continuous,Nonlinear smooth
+Weather,"Description of weather events: Sunny, Cloudy, Rainy",Ordered Categorical,Ordered fixed effects factor
+Tide Height,Tide height at beginning of recording. From Fishing Points App. I think this is more accurate than the on-site depth measurements we took,Continuous,Nonlinear smooth

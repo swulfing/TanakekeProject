@@ -3,12 +3,25 @@ library(corrplot)
 #library(hms)
 library(lubridate)
 library(mgcv)
-
+library(gratia)
 # https://noamross.github.io/gams-in-r-course/chapter2
-# SHOULD I PULL IN DAILY TEMPERATURE DATA
+# Qs for easton on document
+  # Journal Ideas, can I use that UNH free open-access list or no?
+      # https://quantmarineecolab.github.io/lab-manual/10-producing-quality-work.html#where-to-publish
+  # SHOULD I PULL IN DAILY TEMPERATURE DATA
+  # % canopy cover
+  # Random effects on Desa and site type even though sampled an even amount (-1 lost datapoint)
+  # Give quick intro to data and types
+
+# BEFORE SUBMISSION
+# Come up with some journal ideas - CHECK PROPOSAL
+# HOW TO CONSIDER VIDEO TIME AND VISIBILITY?
+# Test if to use time of day or month
 # MODEL TESTS: VIF (Variance Inflation Factor) after an initial model fit — VIF > 5–10 is a warning sign. 
 #   always inspect each smooth's effective degrees of freedom (edf): if edf ≈ 1
-#   Samples are pseudorepolicated in Desa and Habitat type. 
+#   Samples are pseudorepolicated in Desa and Habitat type.
+# Rerun all cleaning cause you changed some data
+# CALLIE EMAIL
 
 setwd('C:/Users/swulfing/Documents/GitHub/TanakekeProject/URUVS/Datasheets')
 URUV_data <- read.csv('MasterRecordingData_clean.csv')
@@ -92,60 +105,88 @@ corrplot(idk, type = 'upper', order = "hclust",
 # 
 # gam.check(m1.1)
 
-# m1.2 <- gam(MAXN_TOTAL ~ # QQ PLOT TOO STEEP. TESTING OTHER DISTRIBUTIONS
-#               s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
-#               s(TIDE_HEIGHT) +
-#               s(VEGITATION) +
-#               # Month +                      
-#               s(SITE_TYPE, bs = 're') +               # ordered factor
-#               s(DESA, bs = 're') +                       # nominal factor
-#               as.factor(WEATHER_CAT),
-#             family = nb(),                 
-#             method = "REML",              
-#             data = URUV_model)
-# 
-# summary(m1.2)
-# 
-# 
-# plot(m1.2, pages = 1, all.terms = TRUE, shade = TRUE)
-# 
-# plot(m1.2, rug = TRUE, residuals = TRUE, pch = 1, cex = 1, shade = TRUE, seWithMean = TRUE, shift = coef(m1.2)[1])
-# 
-# gam.check(m1.2)
-#concurvity(m1.2, full = TRUE)
-#concurvity(m1.2, full = FALSE)
-
-m1.3 <- gam(MAXN_TOTAL ~ # QQ PLOT TOO STEEP. TESTING OTHER DISTRIBUTIONS
-              s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
-              s(TIDE_HEIGHT) +
-              s(VEGITATION) +
-              # Month +                      
-              SITE_TYPE +               # ordered factor
-              DESA +                       # nominal factor
+m1.2 <- gam(MAXN_TOTAL ~ # QQ PLOT TOO STEEP. TESTING OTHER DISTRIBUTIONS
+              s(TIME_DROPPED, bs = "cc", k = 15) +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT, k = 15) +
+              s(VEGITATION, k = 15) +
+              # Month +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +                       # nominal factor
               as.factor(WEATHER_CAT),
-            family = nb(),                 
-            method = "REML",              
+            family = nb(),
+            method = "REML",
             data = URUV_model)
 
+# summary(m1.2)
+
+gam.check(m1.2, rep = 500) # rep creates confidence intervals on QQ plot
+
+# NOTES: 
+# CHANGED MODEL TO NEG BINOMIAL BECAUSE THIS GREATLY IMPROVED THE QQ PLOT
+# CHANGED K'S TO 15 TO INCREASE K INDEX TO ALMOST 1 (SOME ARE STILL SLIGHTLY BELOW 1 BUT NOT SIGNFICANTLY)
+# WE'RE NOT SEEING A PERFECT FIT BECAUSE WE DO HAVE ONE OUTLIER DATAPOINT (SHOW HISTOGRAM OF DATA)
+#     REMOVING THE OUTLIER FIXES THE RESIDUAL VS LINEAR PREDICTOR PLOT, BUT NOT REALLY THE RESPONSE VS FITTED VALUES PLOT
+#     GREATLY INCREASING K IN EACH SPLINE DID NOT GREATLY IMPROVE DIAGNOSTICS. iT DID IMPROVE THE RESIDUAL VS LINEAR PREDICTOR PLOT BUT SIMILAR TO SIMPLY REMOVING THE OUTLIER
+
+
+# DOES INCLUDING INTERACTION BETWEEN SITE AT DESA HELPS FITTING. THIS IMPROVED THE RESPONSE VS LINEAR PREDICTOR ISSUE BUT NOT RESPONSE VS FITTED VALUES AND OUR K INDEX IS PERFORMING POORER (ALL SPLINES LESS THAN 1). but once again, increasing k in this model didn't really improve anything
+# Result of AIC shows we don't want interaction betwen desa and site type (2 df higher, 3 pt higher AIC criterion)
+
+# Turning on select = TRUE for model selection
+
+m1.3 <- gam(MAXN_TOTAL ~ 
+              s(TIME_DROPPED, bs = "cc", k = 15) +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT, k = 15) +
+              s(VEGITATION, k = 15) +
+              # Month +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +                       # nominal factor
+              as.factor(WEATHER_CAT),
+            family = nb(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+            )
+
+
+m1.3.1 <-  gam(MAXN_TOTAL ~ # testing model stuff. Still using 1.3 bc 1.3.1 doesn't outperform
+                 s(TIME_DROPPED, bs = "cc", k = -1) +   # cyclic smooth for time of day
+                 s(TIDE_HEIGHT, k = 15) +
+                 s(VEGITATION, k = 15) +
+                 # Month +
+                 s(SITE_TYPE, bs = 're') +               # ordered factor
+                 s(DESA, bs = 're') +                       # nominal factor
+                 as.factor(WEATHER_CAT),
+               family = nb(),
+               method = "REML",
+               data = URUV_model,
+               select = TRUE)
+
+
+
+
+# Check if no effect: EDF = 0ish, 
+# p vals are test of null that there is flat fxn 
 summary(m1.3)
 
+# Check k index >=1, if not increase k on that spline
+# Don't want a tiny pval
+gam.check(m1.3, rep = 500)
 
-plot(m1.3, pages = 1, all.terms = TRUE, shade = TRUE)
+# Plot partial effects
+gratia::draw(m1.3, scales = 'fixed', overall_uncertainty = TRUE)
 
-plot(m1.3, rug = TRUE, residuals = TRUE, pch = 1, cex = 1, shade = TRUE, seWithMean = TRUE, shift = coef(m1.3)[1])
+# Plot w 95% intervales
+plot.gam(m1.3, seWithMean = TRUE)
 
-gam.check(m1.3)
-concurvity(m1.3, full = TRUE)
 
-# NEXT STEPS: GO THROUGH DIAGNOSTICS
-# HOW TO CONSIDER VIDEO TIME AND VISIBILITY?
-# SOO NOTES ABOVE FOR OTHER TESTS
-# DO MODELS FOR OTHER RESPONSE VARIABLES
+# plot(m1.3, pages = 1, scheme = 2, shade = TRUE) Doesnt tell you anything plot.gam
 
+# AIC(m1.3, m1.3.1)
 
 # TOTAL SPECIES MODELS --------------------------------------------------------
 
-m2.1 <- gam(NO_FISHSPECIES ~ 
+m2.1 <- gam(NO_ALLSPECIES ~ 
                         s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
                         s(TIDE_HEIGHT) +
                         s(VEGITATION) +
@@ -157,14 +198,7 @@ m2.1 <- gam(NO_FISHSPECIES ~
                       method = "REML",
                       data = URUV_model)
 
-summary(m2.1)
-
-
-plot(m2.1, pages = 1, all.terms = TRUE, shade = TRUE)
-
-plot(m2.1, rug = TRUE, residuals = TRUE, pch = 1, cex = 1, shade = TRUE, seWithMean = TRUE, shift = coef(m1)[1])
-
-gam.check(m2.1)
+gam.check(m2.1, rep = 500)
 
 # TOTAL SPECIES MODELS --------------------------------------------------------
 

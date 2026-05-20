@@ -1,0 +1,702 @@
+---
+title: "Easton Check In"
+author: ""
+date: "May 19, 2026"
+output:
+  bookdown::pdf_document2:
+    toc: no
+    fig_caption: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+library(dplyr)
+library(corrplot)
+#library(hms)
+library(lubridate)
+library(mgcv)
+library(gratia)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(brms)
+# https://noamross.github.io/gams-in-r-course/chapter2
+# Qs for easton on document
+  # Journal Ideas, can I use that UNH free open-access list or no?
+      # https://quantmarineecolab.github.io/lab-manual/10-producing-quality-work.html#where-to-publish
+  # SHOULD I PULL IN DAILY TEMPERATURE DATA
+  # % canopy cover
+  # Random effects on Desa and site type even though sampled an even amount (-1 lost datapoint)
+  # Give quick intro to data and types
+
+# BEFORE SUBMISSION
+# Give some overall goal explanation
+# Send AIS Crab vids
+# Come up with some journal ideas - CHECK PROPOSAL
+# MODEL TESTS: VIF (Variance Inflation Factor) after an initial model fit — VIF > 5–10 is a warning sign. 
+#   always inspect each smooth's effective degrees of freedom (edf): if edf ≈ 1
+# CALLIE EMAIL
+
+
+setwd('C:/Users/swulfing/Documents/GitHub/TanakekeProject/URUVS/Datasheets')
+URUV_data <- read.csv('MasterRecordingData_clean.csv')
+
+URUV_model <- URUV_data %>%
+  select("MONTH", "DESA", "SITENAME_COMBINE",  "SITE_TYPE", "TIME_DROPPED", "VEGITATION", "VISIBILITY", "WEATHER", "TIDE_HEIGHT", "TIDE_DIRECTION", "WATER_DEPTH_AVERAGE", "TOTALTIME_ANALYSIS", "NO_ALLSPECIES", "NO_FISHSPECIES", "MAXN_TOTAL", "SHANNON_DIV", "SIMPSON_DIV" )%>%
+  mutate(MONTH_NO = case_when(
+    MONTH == "FEBRUARY" ~ 2,
+    MONTH == "MARCH" ~ 3,
+    MONTH == "APRIL" ~ 4,
+    MONTH == "MAY" ~ 5,
+    MONTH == "JUNE" ~ 6,
+    MONTH == "JULY" ~ 7,
+    MONTH == "AUGUST" ~ 8,
+    MONTH == "SEPTEMBER" ~ 9,
+  )) %>%
+  mutate(WEATHER_CAT = case_when(
+    WEATHER == "CLOUDY, JUST AFTER RAIN" ~ "CLOUDY",
+    WEATHER == "SUNNY, NO RAIN, LIGHT CLOUDS" ~ "SUNNY",
+    WEATHER == "SUNNY, RAINED EARLIER" ~ "SUNNY",
+    WEATHER == "RAIN DURING RECORDING" ~ "RAINY",
+    WEATHER == "SUNNY" ~ "SUNNY",
+    WEATHER == "CLOUDY" ~ "CLOUDY",
+    WEATHER == "DRIZZLE" ~ "RAINY",
+    WEATHER == "SLIGHTLY CLOUDY" ~ "CLOUDY",
+    WEATHER == "RAINY" ~ "RAINY",
+  ))
+
+# Fixing time variables and making factors
+URUV_model$TIME_DROPPED <- period_to_seconds(lubridate::hms(URUV_model$TIME_DROPPED))
+URUV_model$MONTH <- factor(URUV_model$MONTH, levels = c("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+                                                      "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"))
+URUV_model$SITE_TYPE <- factor(URUV_model$SITE_TYPE, levels = c("D", "E", "L"))
+URUV_model$WEATHER_CAT <- factor(URUV_model$WEATHER_CAT, levels = c("SUNNY", "CLOUDY", "RAINY"))
+URUV_model$DESA <- factor(URUV_model$DESA)
+
+URUV_model_cont <- URUV_model %>%
+  select(-c('MONTH', 'WEATHER_CAT', 'WEATHER', 'DESA', 'SITENAME_COMBINE', 'TIDE_DIRECTION', "SITE_TYPE"))
+  
+```
+
+
+# Update
+
+So basically, simple tests of species abundance and diversity wasn't really giving me clear results (not super surprising given the sample size) so I'm trying to fit GAMs to the data to try to parse out some sort of scientific story beyond 'here are the fish we found and the local names' as that's really all I have besides that.
+
+I have some specific questions for you (below) but then what I could really use help on is just getting another pair of eyes on my models, my thought processes, and if there's anything useable here. As I've said before, I'm actually not really a stats person, just pretending to be so this is actually my first time trying to fit a GAM and write a stats paper. The purpose of this document is to walk you through my thinking and decisions so you can tell me if I made a wrong assumption somewhere. I was also following a lot of the advice that came up in this GAM tutorial: <https://www.youtube.com/watch?v=sgw4cu8hrZM>
+
+Specific questions:
+
+1.  Looking for journal ideas. Can I use this UNH free open-access list you sent during the MADA meeting or no? <https://quantmarineecolab.github.io/lab-manual/10-producing-quality-work.html#where-to-publish>
+
+2.  In the models below, I include random effects on Desa (village) and site type (destroyed, replanted, and natural mangroves) because they were sampled repeatedly. Is that necessary as they were all sampled an equal amount (with the exception of one datapoint because we did lose one video in June)?
+
+3.  Some other data ideas for explanatory variables: I don't think there exists a daily temperature log for this region, and I'm mad I didn't bother to write this down. However, I may be able to pull it from the local airport, which is about an hour away. Another data idea is for one month, we measured % canopy cover for all of the sites, but we only did this one time, not repeatedly at each time we measured. Would that be worth trying to incorporate or does that not make sense statistically because it's just one point?
+
+\newpage
+
+# Intro to the data
+
+```{r responseVars, echo = FALSE}
+
+RVar <- read.csv("EastonUpdateDocs/ResponseVariables.csv")
+
+# Display the table
+knitr::kable(RVar, caption = "Response variables I'm testing", format = "latex", booktabs = TRUE) %>%
+  column_spec(2, width = "4cm") %>%
+  kable_styling(latex_options = "striped") %>%
+  kable_styling(latex_options = "HOLD_position")
+
+```
+
+
+```{r explanVars, echo = FALSE}
+
+EVar <- read.csv("EastonUpdateDocs/ExplanVariables.csv")
+
+# Display the table
+knitr::kable(EVar, caption = "Explanatory variables I'm considering", format = "latex", booktabs = TRUE) %>%
+  column_spec(2, width = "4cm") %>%
+  kable_styling(latex_options = "striped") %>%
+  kable_styling(latex_options = "HOLD_position")
+
+```
+
+\newpage
+
+# Testing for correlations
+
+I think Month and Time of Day are correlated because we went out every month at high tide, which of course is at a slightly different time every month (see figure \@ref(fig:monthboxplot)). Will expand on that at each model.
+
+```{r Testing, fig.cap = 'checking correlations between data variables'}
+# Here I am combining some of the weather data and assigning numbers to months
+
+idk <- cor(URUV_model_cont, method = "pearson", use="complete.obs")# cor(URUV_model_cont, method = c("pearson", "kendall", "spearman"), use="complete.obs")
+
+corrplot(idk, type = 'upper', order = "hclust", 
+         tl.col = "black", tl.srt = 45)
+
+## The pearsons coeff for Tide height and time of day is -0.26546621 and time of day vs avg water depth is 0.14719866. Tide height vs water depth was 0.22811888. indicating not collinear which makes sense because high tide changed drastically throughout the day and high tide had a big month to month depth range.
+
+# WARNING I THINK MONTH AND TIME DROPPED ARE COLLINEAR WHICH MAKES SENSE BECAUSE WE PRETTY MUCH HAD A DIFFERETN START TIME BASED ON TIDES EACH MONTH
+
+```
+
+```{r monthboxplot, fig.cap = 'relationship between month and time of day video was taken'}
+
+ggplot(URUV_model, aes(x = MONTH, y = TIME_DROPPED)) +
+  geom_boxplot()
+
+```
+
+\newpage
+
+# Modeling Total MaxN
+
+## Steps of my thinking
+
+Ultimately I landed on the model outlined below based on the following decisions:
+
+1. Changed model from poisson to negative binomial because this greatly improved the QQ plot (see figure \@ref(fig:m11))
+
+2. Increased the k values (from the default of 10) because this increased the k index to be almost 1 for the continuous splines (but none of them are above 1 which apparently is ideal)
+
+3. I included visibility as a spline even though this was considered a corrective measure (higher visibility means you will see more fish). I asked Claude what to do with that and it suggested a shrinkage basis (bs = "ts"). I've also included an offset for total video time as there is a few seconds variation in how long the videos are. Including both of these improved AIC scores compared to not including them
+
+4. Even so, we're not seeing a perfect fit of data. There's an outlier (see figure \@ref(fig:TotMaxNHist)) that is messing with some things. Removing it improves the response vs linear predictor plot but doesn't have an effect on response vs fitted values plot. To be clear, I'm not just going to take outliers out of the data, I just wanted to see what kind of effect that was going to have.
+
+5. Greatly increasing k (>20 for each variable) didn't greatly improve diagnostics. Similar to removing the outlier, it improved the residual vs linear predictor plot but in a similar way to simply removing the outlier
+
+6. I tried a model where there was an interaction between Site Type and Desa, however this had a similar effect on the diagnostics to #3 and #4 above. Result of AIC shows we don't want interaction between desa and site type (2 df higher, 3 pt higher AIC criterion for the interaction model vs non-interaction model)
+
+7. I tested whether or not we should include month or time of day dropped. Including both variables had the lowest DF and AIC score (by a TINY margin), but I still feel like these variables are related so I just included month in this model.
+
+```{r m11, echo = FALSE, fig.cap= 'I decided not to use a poisson distribution because the QQ plot looked like this. Chose negative binomial instead which greatly improved the fit (see below for negative binomial QQ plot)'}
+m1.1 <- gam(MAXN_TOTAL ~ # QQ PLOT TOO STEEP. TESTING OTHER DISTRIBUTIONS
+            s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+            s(TIDE_HEIGHT) +
+            s(VEGITATION) +
+            # Month +
+            s(SITE_TYPE, bs = 're') +               # ordered factor
+            s(DESA, bs = 're') +                       # nominal factor
+            as.factor(WEATHER_CAT),
+            offset = log(TOTALTIME_ANALYSIS),
+          family = poisson(),
+          method = "REML",
+          data = URUV_model)
+
+type <- "deviance"
+
+qq.gam(m1.1, rep = 0, level = 0.9, type = type, rl.col = 2, 
+       rep.col = "gray80")
+
+```
+
+```{r TotMaxNHist, echo = FALSE, fig.cap = 'Histogram of Total MaxN results. The outlier is residual vs linear predictor'}
+hist(URUV_model$MAXN_TOTAL, main = '')
+```
+
+## Where I'm at on this
+
+The model itself seems fine but isn't describing most of the variation (see diagnostics below). Not sure if I'm going to report anything about this because there remains a lot of variation not described by the model.
+
+\newpage
+
+## Total MaxN model and Diagnostics
+
+```{r m12, results = 'asis', fig.width = 6, fig.height = 6}
+
+m1.2 <- gam(MAXN_TOTAL ~ 
+              s(TIME_DROPPED, bs = "cc", k = 30) +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT, k = 15) +
+              s(VEGITATION, k = 15) +
+              # Month +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + # shrinkage smooth — let model determine its importance. AI: By using a shrinkage basis (bs = "ts"), if visibility genuinely has no additional ecological signal beyond its calibration role, the model can shrink it toward zero. You still account for it, but you don't overinterpret it.
+              as.factor(WEATHER_CAT),
+            offset = log(TOTALTIME_ANALYSIS), # According to AI: The offset goes inside a log() because Poisson and Negative Binomial models use a log link
+            family = nb(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+# summary(m1.2)
+
+#gam.check(m1.2, rep = 500) # rep creates confidence intervals on QQ plot
+
+capture.output({
+  par(mfrow = c(2, 2)) # Arrange plots in a 2x2 grid
+  gam.check(m1.2, rep = 500)
+  par(mfrow = c(1, 1)) # Reset graphic parameters
+})
+
+
+```
+
+```{r m12plots}
+capture.output({
+  par(mfrow = c(2, 3)) # Arrange plots in a 2x2 grid
+  plot.gam(m1.2, seWithMean = TRUE)
+  par(mfrow = c(1, 1)) # Reset graphic parameters
+})
+```
+
+\newpage
+
+# Modeling Total Number of species
+
+## Steps of my thinking
+
+I think I'm going through a similar set of steps as total MaxN because both are count data.
+
+1. Kept poisson dist as QQ plot looks alright and using negative binomial didn't improve anything
+
+2. Ks didn't need much tweaking as most k indices were already above 1
+
+3. Testing using visibility spline and offset of video length. Need to include both of these because doing so results in lowest AIC score but also EDF exceeds k values in gam.check for models that don't have both. However for site type, desa, and visibiltiy, EDF is really low so not sure if there's even an effect there. Even taking out select = TRUE results in really low EDF
+
+4. Including interaction between site type and desa did not improve model
+
+5. I'm using time of day, not month for this model as it improved the AIC score without resulting in almost null EDFs for every variable.
+
+## Where I'm at on this
+
+This feels similar to the first model where the parametrizations themselves seem fine but isn't describing most of the variation (see diagnostics below). Not sure if I'm going to report anything about this because there remains a lot of variation not described by the model.
+
+\newpage
+
+## Total soecues model and Diagnostics
+
+```{r m22, results = 'asis', fig.width = 6, fig.height = 6}
+
+m2.2 <- gam(NO_ALLSPECIES ~ 
+              s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT) +
+              s(VEGITATION, k = 15) +
+              # MONTH +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + # shrinkage smooth — let model determine its importance. AI: By using a shrinkage basis (bs = "ts"), if visibility genuinely has no additional ecological signal beyond its calibration role, the model can shrink it toward zero. You still account for it, but you don't overinterpret it.
+              as.factor(WEATHER_CAT),
+            offset = log(TOTALTIME_ANALYSIS), # According to AI: The offset goes inside a log() because Poisson and Negative Binomial models use a log link
+            family = poisson(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+# summary(m1.2)
+
+#gam.check(m1.2, rep = 500) # rep creates confidence intervals on QQ plot
+
+capture.output({
+  par(mfrow = c(2, 2)) # Arrange plots in a 2x2 grid
+  gam.check(m2.2, rep = 500)
+  par(mfrow = c(1, 1)) # Reset graphic parameters
+})
+
+
+```
+
+```{r m22plots}
+capture.output({
+  par(mfrow = c(2, 3)) # Arrange plots in a 2x2 grid
+  plot.gam(m2.2, seWithMean = TRUE)
+  par(mfrow = c(1, 1)) # Reset graphic parameters
+})
+```
+
+
+\newpage
+
+# Modeling Shannon's Diversity Index
+
+## Steps of my thinking
+
+1. I guess there are two ways to handle using the video time as an offset. I can just divide Shannon by time or I can include as a spline. Comparing those models, it seems like dividing shannon by time is the move. However, every variable has a very low edf in both cases
+
+2. Using month or time of day. To be honest, this seems like the difference is pretty negligible. I'm inclined to use just month (model 4 in table \@ref(tab:shannontimevars))
+
+3. Similar to the time vs month conversation, testing the interaction between desa and site type had negligible effect on the AIC performance or any diagnostic performance (AIC results shown in table \@ref(tab:shannoninteraction)). I'm inclined to not include the interaction for parsimony reasons by again, this model isn't really describing the data that well anyways.
+
+## Where I'm at on this
+
+Once again, none of my variables are really explaining the observed data very well
+
+```{r shannontimevars, echo = FALSE}
+
+URUV_model <- URUV_model %>%
+  rowwise() %>%
+  mutate(SHANNONPERUNIT = SHANNON_DIV / TOTALTIME_ANALYSIS)
+
+
+m3.1 <- gam(SHANNONPERUNIT ~ 
+              s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT) +
+              s(VEGITATION) +
+              MONTH +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + 
+              as.factor(WEATHER_CAT),  
+            family = gaussian(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+# gam.check(m3.1, rep = 500) # ks and edf and k index look good but VERY small effect from anything. Residuals vs predicotr and response vs fitted values plots don't look good
+
+
+m3.2 <- gam(SHANNONPERUNIT ~ 
+              #s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT) +
+              s(VEGITATION) +
+              #MONTH +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + 
+              as.factor(WEATHER_CAT),  
+            family = gaussian(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+# gam.check(m3.2, rep = 500) # Taking out both time vars improved the edf problem but still not a hufe effect
+
+# AIC(m3.1, m3.2)
+
+
+m3.3 <- gam(SHANNONPERUNIT ~ 
+              s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT) +
+              s(VEGITATION) +
+              #MONTH +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + 
+              as.factor(WEATHER_CAT),  
+            family = gaussian(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+# gam.check(m3.3, rep = 500)
+
+m3.4 <- gam(SHANNONPERUNIT ~ 
+              #s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT) +
+              s(VEGITATION) +
+              MONTH +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + 
+              as.factor(WEATHER_CAT),  
+            family = gaussian(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+# gam.check(m3.4, rep = 500)
+
+ShannonTimeTable <- AIC(m3.1, m3.2, m3.3, m3.4)
+
+
+
+
+knitr::kable(ShannonTimeTable, caption = "AIC for time considerations in shannon diversity index. 1 = Use both time of day and month, 2 = neither, 3 = Just time of day, 4 = just month", format = "latex", booktabs = TRUE) %>%
+  kable_styling(latex_options = "striped") %>%
+  kable_styling(latex_options = "HOLD_position")
+
+```
+
+```{r shannoninteraction, echo = FALSE}
+
+m3.1 <- gam(SHANNONPERUNIT ~ 
+              #s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT) +
+              s(VEGITATION) +
+              MONTH +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + 
+              as.factor(WEATHER_CAT),  
+            family = gaussian(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+m3.2 <- gam(SHANNONPERUNIT ~ 
+              #s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT) +
+              s(VEGITATION) +
+              MONTH +
+              s(SITE_TYPE, DESA, bs = 're') +               # ordered factor
+              # s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + 
+              as.factor(WEATHER_CAT),  
+            family = gaussian(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+ShannonInteractionTable <- AIC(m3.1, m3.2)
+
+knitr::kable(ShannonInteractionTable, caption = "AIC for a model that doesn't include an interaction between Desa and site type (m1) and a model that does include that interation (m2)", format = "latex", booktabs = TRUE) %>%
+  kable_styling(latex_options = "striped") %>%
+  kable_styling(latex_options = "HOLD_position")
+
+```
+
+\newpage
+
+## Diagnostics for Shannon's Diversity
+
+```{r m33, results = 'asis', fig.width = 6, fig.height = 6}
+
+m3.3 <- gam(SHANNONPERUNIT ~ 
+              #s(TIME_DROPPED, bs = "cc") +   # cyclic smooth for time of day
+              s(TIDE_HEIGHT) +
+              s(VEGITATION) +
+              MONTH +
+              s(SITE_TYPE, bs = 're') +               # ordered factor
+              s(DESA, bs = 're') +  # nominal factor
+              s(VISIBILITY, bs = "ts", k = 8)  + 
+              as.factor(WEATHER_CAT),  
+            family = gaussian(),
+            method = "REML",
+            data = URUV_model,
+            select = TRUE
+)
+
+
+capture.output({
+  par(mfrow = c(2, 2)) # Arrange plots in a 2x2 grid
+  gam.check(m3.3, rep = 500)
+  par(mfrow = c(1, 1)) # Reset graphic parameters
+})
+```
+
+```{r m33plots}
+capture.output({
+  par(mfrow = c(2, 3)) # Arrange plots in a 2x2 grid
+  plot.gam(m3.3, seWithMean = TRUE)
+  par(mfrow = c(1, 1)) # Reset graphic parameters
+})
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+# Modeling Simpson's Diversity index
+
+## Steps of my thinking
+
+1. There are too many 1s and 0s so apparently I can't use a beta logit link in the mgcv package according to stack overflow (figure \@ref(fig:simpsondatacheck)). The specific warning I got when I tried was 'Warning message: In family$saturated.ll(y, prior.weights, theta) : saturated likelihood may be inaccurate'. Trying a 0-1 inflated beta model in the brms package but this is a bayesian approach, not empirical so it would feel weird to report both types of models in one paper? Or am I being dramatic?
+
+2. Okay so 
+
+3. With Simpson's index
+
+
+``` {r simpsondatacheck, echo = FALSE}
+hist(URUV_model$SIMPSON_DIV)
+```
+
+```{r simpsonBoxplot}
+
+ggplot(URUV_model, aes(x = SITE_TYPE, y = SIMPSON_DIV)) +
+  geom_boxplot()
+
+```
+
+
+```{r simpsonmodel}
+library(brms)
+library(tidyverse)
+library(bayesplot)
+library(tidybayes)
+
+# Check exact zeros and ones
+sum(yourdata$Simpson == 0, na.rm = TRUE)
+sum(yourdata$Simpson == 1, na.rm = TRUE)
+mean(yourdata$Simpson == 0, na.rm = TRUE)  # proportion of zeros
+mean(yourdata$Simpson == 1, na.rm = TRUE)  # proportion of ones
+
+yourdata <- yourdata %>%
+  mutate(
+    TimeOfDay_s    = scale(TIME_DROPPED),
+    Visibility_s   = scale(VISIBILITY),
+    Vegetation_s   = scale(VEGITATION),
+    TideHeight_s   = scale(TIDE_HEIGHT),
+    TotalVideoTime_s = scale(TOTALTIME_ANALYSIS)
+  )
+
+priors <- c(
+  # Priors on the beta regression intercept and coefficients (logit scale)
+  prior(normal(0, 2), class = "b"),               # regression coefficients
+  prior(normal(0, 2), class = "Intercept"),        # intercept for mu
+  
+  # Prior on precision parameter (phi) - higher = less variance in beta part
+  prior(gamma(2, 0.1), class = "phi"),
+  
+  # Priors for zero and one inflation components (logit scale)
+  prior(normal(0, 2), class = "Intercept", dpar = "zoi"),   # zero-one inflation
+  prior(normal(0, 2), class = "Intercept", dpar = "coi")    # conditional one inflation
+)
+
+# What these parameters mean:
+#   
+# mu — the mean of the Beta distribution (values strictly between 0 and 1)
+# phi — precision of the Beta distribution (higher = tighter around the mean)
+# zoi — probability of being a zero or one (zero-one inflation)
+# coi — given it's a zero or one, probability it's a one (conditional one inflation)
+
+
+# CHECKING NAS IN SIMPSON DIVERSITY
+
+test <- URUV_data %>%
+  filter(is.na(SIMPSON_DIV))
+
+m_simpson <- brm(
+  bf(
+    Simpson ~ 
+      s(TimeOfDay_s) +
+      s(TideHeight_s) +
+      s(Visibility_s, k = 8) +
+      s(Vegetation_s) +
+      TotalVideoTime_s +       # nuisance covariate, linear
+      MONTH +                   # ordered factor
+      SITE_TYPE +             # ordered factor
+      DESA +                    # nominal factor
+      WEATHER_CAT,
+    
+    # Optionally model zero-one inflation as a function of predictors too
+    zoi ~ TotalVideoTime_s + Visibility_s,   # fewer observations = more zeros
+    coi ~ 1                                   # simple intercept for ones
+  ),
+  
+  data = yourdata,
+  family = zero_one_inflated_beta(),
+  prior = priors,
+  
+  # Sampler settings
+  chains = 4,          # 4 independent MCMC chains
+  iter = 4000,         # iterations per chain (2000 warmup + 2000 sampling)
+  warmup = 2000,
+  cores = 4,           # parallel processing
+  seed = 123,          # reproducibility
+  
+  control = list(
+    adapt_delta = 0.99,    # increase if you get divergent transitions: I got two so increasing to 0.99 which seems to have worked
+    max_treedepth = 12     # increase if you get max treedepth warnings
+  )
+)
+
+summary(m_simpson)
+# Rhat = 1
+# Bulk_ESS: 12404
+# Tail_ESS: 6278
+# According to claudia, rhat should be close to 1 and then the ESSs should be >1000
+
+mcmc_trace(m_simpson, 
+           pars = c("b_Intercept", "phi", "b_zoi_Intercept")) # traceplots look good
+
+
+# Check for divergent transitions (should be 0 or very few)
+nuts_params(m_simpson) %>% 
+  filter(Parameter == "divergent__") %>% 
+  summarise(total_divergences = sum(Value)) #0 total divergences
+
+
+# Posterior Predictive Check
+
+# Overall distribution check
+pp_check(m_simpson, ndraws = 100)
+
+# Specifically check the zeros and ones are being captured
+pp_check(m_simpson, type = "stat", stat = function(y) mean(y == 0))
+pp_check(m_simpson, type = "stat", stat = function(y) mean(y == 1)) # I think these all look good, observed statistic falls within simulataed vals
+
+
+
+# Conditional effects plots (equivalent to GAM smooth plots)
+plot(conditional_effects(m_simpson), ask = FALSE)
+
+# For the smooth terms specifically
+conditional_effects(m_simpson, effects = "TideHeight_s")
+conditional_effects(m_simpson, effects = "Visibility_s")
+
+# Extract posterior summaries yeah idk what this is telling me
+as_draws_df(m_simpson) %>%
+  select(starts_with("b_")) %>%
+  summarise(across(everything(), 
+                   list(mean = mean, 
+                        lower = ~quantile(.x, 0.025),
+                        upper = ~quantile(.x, 0.975))))
+
+# MOdel comparison using LOO: LOO estimates out-of-sample predictive accuracy without actually refitting the model repeatedly, using Pareto-smoothed importance sampling (PSIS).
+
+# Add LOO criterion to your fitted model
+m_simpson <- add_criterion(m_simpson, "loo")
+
+loo(m_simpson)
+
+# elpd_loo — the main metric, higher is better
+# looic — like AIC but Bayesian, lower is better
+# p_loo — effective parameters; if this is close to or exceeds the actual number of parameters, the model may be misspecified
+
+
+plot(loo(m_simpson)) # most of my k values are below 0.5 so I think that's good?
+
+
+# Find the problematic observations
+loo_result <- loo(m_simpson)
+pareto_k_ids <- which(loo_result$diagnostics$pareto_k > 0.7)
+yourdata[pareto_k_ids, ]   # inspect these rows. IDK this seems fine to me
+
+# THen can start checking alternative models by:
+# Define new model
+# add_criterion(modelname, 'loo')
+# loo_compare(model names) will result in a ranking of the models. Claude then goes into deets about this interpretation when we get here
+
+```
+
+
+
+
+
+
+
+
+
+
+
+

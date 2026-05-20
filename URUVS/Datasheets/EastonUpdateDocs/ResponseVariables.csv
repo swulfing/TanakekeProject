@@ -1,0 +1,5 @@
+Variable,Description,Type,Distrbutions Used
+Total MaxN,Sum of all the MaxNs across species for each recording,Count,"Poisson, Negative Binomial"
+Total Species,Total number of different species that showed up per recording,Count,"Poisson, Negative Binomial"
+Shannon,Shannon's diversity index per recording,Continuous,Gaussian
+Simpson,Simpson's diversity index,Continuous 0-1,Beta Regression
