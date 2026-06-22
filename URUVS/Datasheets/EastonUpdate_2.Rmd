@@ -74,7 +74,6 @@ URUV_model$MONTH <- factor(URUV_model$MONTH, levels = c("JANUARY", "FEBRUARY", "
 URUV_model$SITE_TYPE <- factor(URUV_model$SITE_TYPE, levels = c("D", "E", "L"))
 URUV_model$WEATHER_CAT <- factor(URUV_model$WEATHER_CAT, levels = c("SUNNY", "CLOUDY", "RAINY"))
 URUV_model$DESA <- factor(URUV_model$DESA)
-URUV_model$SITENAME_COMBINE <- factor(URUV_model$SITENAME_COMBINE)
 
 URUV_model_cont <- URUV_model %>%
   select(-c('MONTH', 'WEATHER_CAT', 'WEATHER', 'DESA', 'SITENAME_COMBINE', 'TIDE_DIRECTION', "SITE_TYPE"))

@@ -232,12 +232,13 @@ for(i in 1:nrow(URUV_data)){
   }
   
   species_proportions <- species_counts / sum(species_counts)
+  sps <- species_proportions^2
   shannon_diversity <- -sum(species_proportions * log(species_proportions))
   
   maxn_tot <- sum(species_counts)
-  simpson_NUM <- species_counts * (species_counts - 1)
-  simpson_DEN <- maxn_tot * (maxn_tot - 1)
-  simpson_diversity <- sum(simpson_NUM)/simpson_DEN
+  #simpson_NUM <- species_counts * (species_counts - 1)
+  #simpson_DEN <- maxn_tot * (maxn_tot - 1)
+  simpson_diversity <- 1 - sum(sps)# sum(simpson_NUM)/simpson_DEN
   
   
   URUV_data$SHANNON_DIV[i] <- shannon_diversity
