@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.1)  1 JUN 2026 14:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.7.13)  28 JUL 2026 11:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Tanakeke_Draft1.tex
 (./Tanakeke_Draft1.tex
 LaTeX2e <2026-06-01>
-L3 programming layer <2026-05-26>
+L3 programming layer <2026-06-18>
 (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -380,7 +380,7 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 ) (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2026-05-21 v1.32 PDF bookmarks (HO)
 (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2026-04-24 v7.01q Hypertext links for LaTeX
+Package: hyperref 2026-06-17 v7.01r Hypertext links for LaTeX
 (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
@@ -410,7 +410,7 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 \Hy@linkcounter=\count334
 \Hy@pagecounter=\count335
 (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2026-04-24 v7.01q Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-06-17 v7.01r Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -418,7 +418,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count336
 (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2026-04-24 v7.01q Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-06-17 v7.01r Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -458,7 +458,7 @@ Package hyperref Info: PDF/A mode OFF on input line 6121.
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2026-04-24 v7.01q Hyperref driver for pdfTeX
+File: hpdftex.def 2026-06-17 v7.01r Hyperref driver for pdfTeX
 \Fld@listcount=\count342
 \c@bookmark@seq@number=\count343
 (c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
@@ -584,104 +584,113 @@ File: Tanakeke_Sites.png Graphic file (type png)
 Package pdftex.def Info: Tanakeke_Sites.png  used on input line 163.
 (pdftex.def)             Requested size: 211.34244pt x 149.50291pt.
 [4] [5 <./Tanakeke_Villages.png> <./Tanakeke_Sites.png (PNG copy)>] [6]
-Overfull \vbox (2.71375pt too high) has occurred while \output is active []
+Overfull \hbox (18.83241pt too wide) in paragraph at lines 194--225
+ [][] 
+ []
+
+[7
+
+]
+Overfull \vbox (13.35858pt too high) has occurred while \output is active []
 
 
-Overfull \vbox (2.71375pt too high) has occurred while \output is active []
+Overfull \vbox (13.35858pt too high) has occurred while \output is active []
 
-[7]
+[8]
 
-LaTeX Warning: Reference `speciesFound' on page 8 undefined on input line 233.
+LaTeX Warning: Reference `speciesFound' on page 9 undefined on input line 228.
 
 
-LaTeX Warning: Reference `timeseries' on page 8 undefined on input line 235.
+LaTeX Warning: Reference `Timeseries' on page 9 undefined on input line 230.
 
-<Tanakeke_Draft1_files/figure-latex/timeseries-1.pdf, id=53, 452.69125pt x 312.16624pt>
-File: Tanakeke_Draft1_files/figure-latex/timeseries-1.pdf Graphic file (type pdf)
-<use Tanakeke_Draft1_files/figure-latex/timeseries-1.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/timeseries-1.pdf  used on input line 237.
+<Tanakeke_Draft1_files/figure-latex/Timeseries-1.pdf, id=57, 452.69125pt x 312.16624pt>
+File: Tanakeke_Draft1_files/figure-latex/Timeseries-1.pdf Graphic file (type pdf)
+<use Tanakeke_Draft1_files/figure-latex/Timeseries-1.pdf>
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/Timeseries-1.pdf  used on input line 234.
 (pdftex.def)             Requested size: 452.69014pt x 312.16548pt.
-<Tanakeke_Draft1_files/figure-latex/timeseries-2.pdf, id=54, 452.69125pt x 312.16624pt>
-File: Tanakeke_Draft1_files/figure-latex/timeseries-2.pdf Graphic file (type pdf)
-<use Tanakeke_Draft1_files/figure-latex/timeseries-2.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/timeseries-2.pdf  used on input line 237.
+<Tanakeke_Draft1_files/figure-latex/Timeseries-2.pdf, id=58, 452.69125pt x 312.16624pt>
+File: Tanakeke_Draft1_files/figure-latex/Timeseries-2.pdf Graphic file (type pdf)
+<use Tanakeke_Draft1_files/figure-latex/Timeseries-2.pdf>
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/Timeseries-2.pdf  used on input line 234.
 (pdftex.def)             Requested size: 452.69014pt x 312.16548pt.
-<Tanakeke_Draft1_files/figure-latex/timeseries-3.pdf, id=55, 452.69125pt x 312.16624pt>
-File: Tanakeke_Draft1_files/figure-latex/timeseries-3.pdf Graphic file (type pdf)
-<use Tanakeke_Draft1_files/figure-latex/timeseries-3.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/timeseries-3.pdf  used on input line 237.
+<Tanakeke_Draft1_files/figure-latex/Timeseries-3.pdf, id=59, 452.69125pt x 312.16624pt>
+File: Tanakeke_Draft1_files/figure-latex/Timeseries-3.pdf Graphic file (type pdf)
+<use Tanakeke_Draft1_files/figure-latex/Timeseries-3.pdf>
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/Timeseries-3.pdf  used on input line 234.
 (pdftex.def)             Requested size: 452.69014pt x 312.16548pt.
-<Tanakeke_Draft1_files/figure-latex/timeseries-4.pdf, id=56, 452.69125pt x 312.16624pt>
-File: Tanakeke_Draft1_files/figure-latex/timeseries-4.pdf Graphic file (type pdf)
-<use Tanakeke_Draft1_files/figure-latex/timeseries-4.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/timeseries-4.pdf  used on input line 237.
+<Tanakeke_Draft1_files/figure-latex/Timeseries-4.pdf, id=60, 452.69125pt x 312.16624pt>
+File: Tanakeke_Draft1_files/figure-latex/Timeseries-4.pdf Graphic file (type pdf)
+<use Tanakeke_Draft1_files/figure-latex/Timeseries-4.pdf>
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/Timeseries-4.pdf  used on input line 234.
 (pdftex.def)             Requested size: 452.69014pt x 312.16548pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
 []
  []
 
-[8 <./Tanakeke_Draft1_files/figure-latex/timeseries-1.pdf>] [9 <./Tanakeke_Draft1_files/figure-latex/timeseries-2.pdf> <./Tanakeke_Draft1_files/figure-latex/timeseries-3.pdf
+[9
 
-pdfTeX warning: pdflatex.exe (file ./Tanakeke_Draft1_files/figure-latex/timeseries-3.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] [10 <./Tanakeke_Draft1_files/figure-latex/timeseries-4.pdf>]
-<Tanakeke_Draft1_files/figure-latex/intermonthVAR-1.pdf, id=113, 452.69125pt x 312.16624pt>
+ <./Tanakeke_Draft1_files/figure-latex/Timeseries-1.pdf>] [10 <./Tanakeke_Draft1_files/figure-latex/Timeseries-2.pdf> <./Tanakeke_Draft1_files/figure-latex/Timeseries-3.pdf
+
+pdfTeX warning: pdflatex.exe (file ./Tanakeke_Draft1_files/figure-latex/Timeseries-3.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] [11 <./Tanakeke_Draft1_files/figure-latex/Timeseries-4.pdf>]
+<Tanakeke_Draft1_files/figure-latex/intermonthVAR-1.pdf, id=117, 452.69125pt x 312.16624pt>
 File: Tanakeke_Draft1_files/figure-latex/intermonthVAR-1.pdf Graphic file (type pdf)
 <use Tanakeke_Draft1_files/figure-latex/intermonthVAR-1.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/intermonthVAR-1.pdf  used on input line 247.
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/intermonthVAR-1.pdf  used on input line 244.
 (pdftex.def)             Requested size: 452.69014pt x 312.16548pt.
-<Tanakeke_Draft1_files/figure-latex/habitatPreference-1.pdf, id=114, 452.69125pt x 314.17375pt>
+<Tanakeke_Draft1_files/figure-latex/habitatPreference-1.pdf, id=118, 452.69125pt x 314.17375pt>
 File: Tanakeke_Draft1_files/figure-latex/habitatPreference-1.pdf Graphic file (type pdf)
 <use Tanakeke_Draft1_files/figure-latex/habitatPreference-1.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/habitatPreference-1.pdf  used on input line 253.
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/habitatPreference-1.pdf  used on input line 250.
 (pdftex.def)             Requested size: 452.69014pt x 314.17297pt.
-<Tanakeke_Draft1_files/figure-latex/monthPreference-1.pdf, id=115, 462.72874pt x 314.17375pt>
+<Tanakeke_Draft1_files/figure-latex/monthPreference-1.pdf, id=119, 462.72874pt x 314.17375pt>
 File: Tanakeke_Draft1_files/figure-latex/monthPreference-1.pdf Graphic file (type pdf)
 <use Tanakeke_Draft1_files/figure-latex/monthPreference-1.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/monthPreference-1.pdf  used on input line 259.
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/monthPreference-1.pdf  used on input line 256.
 (pdftex.def)             Requested size: 462.73466pt x 314.17776pt.
-<Tanakeke_Draft1_files/figure-latex/villagePreference-1.pdf, id=116, 458.71375pt x 314.17375pt>
+<Tanakeke_Draft1_files/figure-latex/villagePreference-1.pdf, id=120, 458.71375pt x 314.17375pt>
 File: Tanakeke_Draft1_files/figure-latex/villagePreference-1.pdf Graphic file (type pdf)
 <use Tanakeke_Draft1_files/figure-latex/villagePreference-1.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/villagePreference-1.pdf  used on input line 265.
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/villagePreference-1.pdf  used on input line 262.
 (pdftex.def)             Requested size: 458.73363pt x 314.18735pt.
-<Tanakeke_Draft1_files/figure-latex/trophicLevel-1.pdf, id=117, 458.71375pt x 312.16624pt>
+<Tanakeke_Draft1_files/figure-latex/trophicLevel-1.pdf, id=121, 458.71375pt x 312.16624pt>
 File: Tanakeke_Draft1_files/figure-latex/trophicLevel-1.pdf Graphic file (type pdf)
 <use Tanakeke_Draft1_files/figure-latex/trophicLevel-1.pdf>
-Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/trophicLevel-1.pdf  used on input line 271.
+Package pdftex.def Info: Tanakeke_Draft1_files/figure-latex/trophicLevel-1.pdf  used on input line 268.
 (pdftex.def)             Requested size: 458.71962pt x 312.17024pt.
-[11 <./Tanakeke_Draft1_files/figure-latex/intermonthVAR-1.pdf>] [12 <./Tanakeke_Draft1_files/figure-latex/habitatPreference-1.pdf>] [13 <./Tanakeke_Draft1_files/figure-latex/monthPreference-1.pdf>] [14 <./Tanakeke_Draft1_files/figure-latex/villagePreference-1.pdf>] [15 <./Tanakeke_Draft1_files/figure-latex/trophicLevel-1.pdf>] [16] [17] (./Tanakeke_Draft1.aux)
+[12 <./Tanakeke_Draft1_files/figure-latex/intermonthVAR-1.pdf>] [13 <./Tanakeke_Draft1_files/figure-latex/habitatPreference-1.pdf>] [14 <./Tanakeke_Draft1_files/figure-latex/monthPreference-1.pdf>] [15 <./Tanakeke_Draft1_files/figure-latex/villagePreference-1.pdf>] [16 <./Tanakeke_Draft1_files/figure-latex/trophicLevel-1.pdf>] [17] [18] (./Tanakeke_Draft1.aux)
  ***********
 LaTeX2e <2026-06-01>
-L3 programming layer <2026-05-26>
+L3 programming layer <2026-06-18>
  ***********
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 13420 strings out of 469157
- 216235 string characters out of 5458369
- 640212 words of memory out of 5000000
- 42141 multiletter control sequences out of 15000+600000
+ 13428 strings out of 469158
+ 216431 string characters out of 5458382
+ 641889 words of memory out of 5000000
+ 42147 multiletter control sequences out of 15000+600000
  671855 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  83i,8n,93p,2690b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/swulfing/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Tanakeke_Draft1.pdf (17 pages, 16338790 bytes).
+Output written on Tanakeke_Draft1.pdf (18 pages, 16339702 bytes).
 PDF statistics:
- 321 PDF objects out of 1000 (max. 8388607)
- 246 compressed objects within 3 object streams
- 51 named destinations out of 1000 (max. 500000)
+ 325 PDF objects out of 1000 (max. 8388607)
+ 249 compressed objects within 3 object streams
+ 52 named destinations out of 1000 (max. 500000)
  128 words of extra memory for PDF output out of 10000 (max. 10000000)
 

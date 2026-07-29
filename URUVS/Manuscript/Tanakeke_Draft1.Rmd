@@ -49,6 +49,11 @@ setwd("C:/Users/swulfing/Documents/GitHub/TanakekeProject/URUVS")
 URUV_data <- read.csv("Datasheets/MasterRecordingData_clean.csv")
 
 ID_data <- read.csv('Datasheets/URUV/speciesguide.csv')
+Bahasa_data <- read.csv('Datasheets/URUV/speciesBahasa.csv') %>%
+  select(Name_Data, Name_Local, Ditangkap) %>%
+  rename(dataCode = Name_Data)
+
+ID_data <- merge(x = ID_data, y = Bahasa_data, by = 'dataCode')
 
 URUV_data$MONTH <- factor(URUV_data$MONTH, levels = c("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"))
 URUV_data$SITE_TYPE <- factor(URUV_data$SITE_TYPE, levels = c("D", "E", "L"))
@@ -120,20 +125,29 @@ FIRST FIGURE (BESIDES MAP OF SITES) WILL BE TIME SERIES OF DATA
     WE SEE A DIP IN DIVERSITY AROUND JUNE BUT NOT IN TOTAL NUMBER OF FISH FOUND
     
 
-(ref:speciesfound) All animal groups found in video analysis. Village fishers were then asked for fish names used locally in the Makassar language.
+(ref:speciesfound) All animal groups found in video analysis. Village fishers were then asked for fish names used locally in the Makassar language. TO DO: FILL IN INDO NAME FOR MISSING, TAKE OUT NON-FISH, EXPLAIN LOCAL NAME MAY HAVE COME FROM TWO SOURCES
 
 ```{r speciesFound, echo = FALSE, fig.show="hold", results = "asis", fig.cap = '(ref:speciesfound) \\label{speciesFound}'}
 
-ID_dataCLEAN <- ID_data %>%
-  select(SpeciesName, LevelID, CommonName_ENG, CommonName_IND) %>%
-  arrange(SpeciesName) %>%
-  mutate(LevelID = na_if(LevelID, ""))
 
-colnames(ID_dataCLEAN) <- c('Group Name','ID Level','Common Name (Eng)','Common Name (Ind)')
+ID_dataCLEAN <- ID_data %>%
+  select(SpeciesName, LevelID, CommonName_ENG, CommonName_IND, Name_Local, Ditangkap) %>%
+  arrange(SpeciesName) %>%
+  mutate(LevelID = na_if(LevelID, "")) %>%
+  mutate(Catch = case_when(
+    Ditangkap == "dimakan"     ~ 'Yes',
+    Ditangkap == "sebagai umpan" ~ 'Yes*',
+    Ditangkap == 'hias' ~ 'Yes**',
+    Ditangkap == '' ~ 'No'
+  )) %>%
+  select(!Ditangkap)
+
+colnames(ID_dataCLEAN) <- c('Group Name','ID Level','Common Name (Eng)','Common Name (Ind)', 'Pulau Tanakeke Local Name', 'Locally Caught')
 
 kable(ID_dataCLEAN, caption = 'Animal groups identified. I WILL GET LOCAL NAMES SHORTLY', format = "latex", booktabs = TRUE) %>%
   kable_styling(latex_options = "striped") %>%
-  kable_styling(latex_options = "HOLD_position")
+  kable_styling(latex_options = "HOLD_position") %>%
+  landscape()
 
 
 ```

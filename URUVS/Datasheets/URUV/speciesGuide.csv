@@ -22,14 +22,14 @@ FISHN,MAXN_FISHN,,Sphaeramia orbicularis,Species,Orbicular Cardinalfish,,3.6,0.5
 FISHO,MAXN_FISHO,,Siganus,Genus,Gold Spotted Rabbitfish,Ikan Baronang,2.355555556,0.39891829,18
 CHEETAGIRLZ,MAXN_CHEETAGIRLZ,FISHO,Siganus,Genus,Gold Spotted Rabbitfish,Ikan Baronang,2.355555556,0.39891829,18
 KERONGKERONG,MAXN_KERONGKERONG,,Terapon jarbua ,Species,Crescent Grunter,Kerong Kerong,3.9,0.5,
-YL,MAXN_YL,,Chaetodon,Genus,Butterfly Fish,Ikan Kepe-kepe,3.22173913,0.413843619,46
+FISHYL,MAXN_YL,,Chaetodon,Genus,Butterfly Fish,Ikan Kepe-kepe,3.22173913,0.413843619,46
 BFLY1,MAXN_BFLY1,,Monodactylus argenteus,Species,Moonyfishes or fingerfishes,Ikan Bebulan,3.1,0.26,
 VERTFISH,MAXN_VERTFISH,BIGBOI,Sphyraena barracuda,Species,Great Barracuda,Barakuda,4.5,0.6,
 SANDFISH,MAXN_SANDFISH,,Omobranchus,Genus,Blenny,Jabingan,2.771428571,0.305727637,7
 SHRIMP,MAXN_SHRIMP,,Unidentified Shrimp,,,,,,
 YELLOWGUPPY,MAXN_YELLOWGUPPY,FISHA,Ostorhinchus ocellicaudus OR ostorhinchus franssedai,Species,Tailete or Frans' cardinalfish,,3.5,0.4,
 YELLOWSTRIPE,MAXN_YELLOWSTRIPE,,Monodactylus argenteus,Species,Diamondfish,,3.1,0.26,
-GARONGGONG,MAXN_GARONGGONG,,Epinephelus coioides,Species,Orangespotted Grouper,kerapu lumpur,4,0,
+GARONGGONG,MAXN_GARONGGONG,,Epinephelus coioides,Species,Orangespotted Grouper,Kerapu,4,0,
 FISHP,MAXN_FISHP,FISHQ,Caranx,Genus,Trevally,Ikan Kuwe,4.2,0.254950976,8
 LILFREAK,MAXN_LILFREAK,SANDFISH,Omobranchus,Genus,Blenny,Jabingan,2.771428571,0.305727637,7
 FISHA,MAXN_FISHA,,Ostorhinchus ocellicaudus,Species,Tailspot cardinalfish,,3.4,0.4,
