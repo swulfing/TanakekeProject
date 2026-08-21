@@ -20,7 +20,7 @@ editor_options:
 
 \begin{center}
 	
-\textbf{\Large The effects of mangrove restoration on fish stocks and marine biodiversity in Indonesia}
+\textbf{\Large Fish assemblages in mangrove environments in South Sulawesi, Indonesia}
 	
 \textsc{Sophie Wulfing$^{1*}$, Muhammad Sahid$^{1}$, Rohani Ambo-Rappe$^{3}$, and Easton R. White$^{1}$}
 \vspace{3 mm}
@@ -42,6 +42,7 @@ library(lubridate)
 library(ggpubr)
 library(knitr)
 library(kableExtra)
+library(gridExtra)
 
 
 setwd("C:/Users/swulfing/Documents/GitHub/TanakekeProject/URUVS")
@@ -77,7 +78,12 @@ ID_data <- ID_data %>%
 
 # ABSTRACT
 
-Mangroves are an essential biome for many tropical ecosystems and coastal communities. They exhibit high carbon sequestration, protect coastal areas from floods and extreme weather events, and foster biodiversity in their habitats. They have also been shown to increase fish stocks in surrounding fisheries. As the country with the most extensive mangrove habitats in the world, the Indonesian government has committed to restoring 600,000 hectars of mangroves throughout the country. One such place where this restoration effort is taking place is Pulau Tanakeke in South Sulawesi. Here, an NGO called Blue Forests has been conducing mangrove restoration since 2012. In the project, we use Unbaited Remote Underwater Video to assess how these replanting efforts are effecting local fish stocks and biodiversity. We compare three types of mangrove forests: natural (old-growth forests), EMR (replanted mangroves), and areas with destroyed mangroves. We have found I WILL FILL THIS IN ONCE WE KIND OF PARSE OUT WHAT I WANT TO CONCLUDE. This research serves to show the benefits of mangroves for small scale fisheries and highlights the importance of environmental restoration for ensuring food security.
+Mangroves are an essential biome for many tropical ecosystems and coastal communities. They exhibit high carbon sequestration, protect coastal areas from floods and extreme weather events, and foster biodiversity in their habitats. They have also been shown to increase fish stocks in surrounding fisheries. As the country with the most extensive mangrove habitats in the world, the Indonesian government has committed to restoring 600,000 hectars of mangroves throughout the country. One such place where this restoration effort is taking place is Pulau Tanakeke in South Sulawesi. Here, an NGO called Blue Forests has been conducing mangrove restoration since 2012. In the project, we use Unbaited Remote Underwater Video to assess how these replanting efforts are effecting local fish stocks and biodiversity. We compare three types of mangrove forests: natural (old-growth forests), EMR (replanted mangroves), and areas with destroyed mangroves. While we were unable to demonstrate a clear statistical relationship between our sampling sites in regards to fish diversity and abundance, this project serves as a baseline survey of the fish groups that live in these ecosystems in South Sulawesi. The benefits of mangroves for small scale fisheries is multi-dimensional and this research highlights the importance of environmental restoration for community engagement and ensuring food security.
+
+<!-- Citations -->
+<!-- Table1 Still has some kinks-->
+<!-- Finish Acknowledgements -->
+<!-- Ais Map -->
 
 # INTRODUCTION
 
@@ -85,17 +91,15 @@ Mangroves are inter-tidal forests that are essential components to many tropical
 
 Despite all of their contributions to ecosystem health, mangrove environments are being threatened worldwide. Rising sea-levels has been shown to be a major contributor to mangrove loss [@gilmanThreatsMangrovesClimate2008]. Further, as extreme events are becoming more intense and more frequent, these could potentially threaten mangroves due to defoliation, soil erosion, or by altering the chemical makeup or temperature of soils [@gilmanThreatsMangrovesClimate2008]. Mangroves are also directly threatened by anthropogenic activity. Pollution, coastal development, and aquaculture development have also contributed to mangrove ecosystem loss [@adeelAssessmentManagementMangrove2002]. Mangrove forests in the Western Tropical Pacific are the most diverse of these habitats globally [@ellisonOriginsMangroveEcosystems1999]. Indonesia has the most extensive mangrove forests in the world [@kusmanaManagementMangroveEcosystem2011]. As Indonesia is also the largest archipelagic country, mangroves’ contribution to flood protection and extreme weather mitigation is vital to the health and safety of many of its inhabitants. However, due to timber production, aquaculture, and human development, the Ministry of Forestry reported in 2007 that around 69% of mangroves were in damaged condition in the country [@kusmanaManagementMangroveEcosystem2011]. As a response to this habitat loss, the Indonesian government has committed to restoring 600,000 hectares of mangroves in the country in 2024, the most ambitious mangrove restoration project in the world.
 
-Tanakeke Island in South Sulawesi, Takalar Regency, is one location where this restoration effort is taking place. Here, mangrove habitats are generally privately owned, and the main driver of mangrove loss has been timber production and shrimp aquaculture [@blueforestsAdaptiveCollaborativeManagement2012new]. 1,200 hectares of mangroves were converted into aquaculture ponds in the 1980s and 1990s, which is about 70% of its historical cover [@brownCASESTUDYCommunity]. Recently, there have been reports of increased flooding on this island which could be attributed to the loss of protection from mangroves [@blueforestsAdaptiveCollaborativeManagement2012new]. However, in response to mangrove restoration, the community has seen great success in both engagement and successful mangrove rehabilitation, where hundreds of community members have participated since the 1990’s [@blueforestsAdaptiveCollaborativeManagement2012new; @PresentTanakekeIsland2013]. Further, small scale fishing is an essential part of peoples’ livelihoods on Tanakeke. Locally caught seafood is the main source of protein on this island [@blueforestsAdaptiveCollaborativeManagement2012new]. Mangroves provide refuge for about 55% fish catch biomass in Indonesia [@theworldbankNewProjectWill2022new]. Fisher income has been shown to be negatively affected by mangrove habitat loss, and because of this, the financial gain of mangrove restoration is predicted to be more lucrative than any alternative land use such as aquaculture [@yamamotoLivingEcosystemDegradation2023]. For this reason, mangroves are an essential component to the health of Indonesia’s fisheries and contribute significantly to the food security of those directly reliant on small scale fisheries as a key source of nutrition, including on Tanakeke Island [@blueforestsAdaptiveCollaborativeManagement2012new]. While these mangrove restoration efforts have resulted in increased flood prevention and ecotourism, little research has been done to assess the marine biodiversity and benefits to fish stocks. In this project, we aim to understand how this restoration is affecting local marine biodiversity and abundance of fish species on Tanakeke Island. We will use Unbaited Remote Underwater Video (URUV) methods to assess the marine biodiversity of mangrove habitats and compare them to the biodiversity of areas that have not undergone mangrove rehabilitation.
+Tanakeke Island in South Sulawesi, Takalar Regency, is one location where this restoration effort is taking place. Here, mangrove habitats are generally privately owned, and the main driver of mangrove loss has been timber production and shrimp aquaculture [@blueforestsAdaptiveCollaborativeManagement2012new]. 1,200 hectares of mangroves were converted into aquaculture ponds in the 1980s and 1990s, which is about 70% of its historical cover [@brownCASESTUDYCommunity2014]. Recently, there have been reports of increased flooding on this island which could be attributed to the loss of protection from mangroves [@blueforestsAdaptiveCollaborativeManagement2012new]. However, in response to mangrove restoration, the community has seen great success in both engagement and successful mangrove rehabilitation, where hundreds of community members have participated since the 1990’s [@blueforestsAdaptiveCollaborativeManagement2012new; @PresentTanakekeIsland2013]. Further, small scale fishing is an essential part of peoples’ livelihoods on Tanakeke. Locally caught seafood is the main source of protein on this island [@blueforestsAdaptiveCollaborativeManagement2012new]. Mangroves provide refuge for about 55% fish catch biomass in Indonesia [@theworldbankNewProjectWill2022new]. Fisher income has been shown to be negatively affected by mangrove habitat loss, and because of this, the financial gain of mangrove restoration is predicted to be more lucrative than any alternative land use such as aquaculture [@yamamotoLivingEcosystemDegradation2023]. For this reason, mangroves are an essential component to the health of Indonesia’s fisheries and contribute significantly to the food security of those directly reliant on small scale fisheries as a key source of nutrition, including on Tanakeke Island [@blueforestsAdaptiveCollaborativeManagement2012new]. While these mangrove restoration efforts have resulted in increased flood prevention and ecotourism, little research has been done to assess the marine biodiversity and benefits to fish stocks. In this project, we aim to understand how this restoration is affecting local marine biodiversity and abundance of fish species on Tanakeke Island. We will use Unbaited Remote Underwater Video (URUV) methods to assess the marine biodiversity of mangrove habitats and compare them to the biodiversity of areas that have not undergone mangrove rehabilitation.
 
 # METHODS
 
 ## Site description:
 
-Pulau Tanakeke (Figure \ref{Tanakeke}) is situated about 40 km southwest of Makassar in South Sulawesi, Takalar Regency. The island is a coral atoll covering about 3,930 hectares. About 392.25 hectares of mangrove has been restored [@cameronEstimatingFullGreenhouse2019]. Access to the island presents a challenge as rough seas make sea crossings difficult during rainy seasons. The island comprises of five villages or desa: Balangdatu,  Maccinibaji, Mattirobaji, Rewataya, and Tompotana. Historically, the island was populated with about 1,776 hectares of Mangroves, most of which has been destroyed for aquaculture.
+Pulau Tanakeke (Figure \@ref(fig:Tanakeke)) is situated about 40 km southwest of Makassar in South Sulawesi, Takalar Regency. The island is a coral atoll covering about 3,930 hectares. About 392.25 hectares of mangrove has been restored [@cameronEstimatingFullGreenhouse2019]. Access to the island presents a challenge as rough seas make sea crossings difficult during rainy seasons. The island comprises of six villages or desa: Mattirobaji, Lantang Peo, Tompotana, Maccinibaji, Balangdatu, and Rewataya. Historically, the island was populated with about 1,776 hectares of Mangroves, most of which has been destroyed for aquaculture.
 
-(ref:tanakeke) A map of Tanakeke Island with village (desa) names (left). The right image shows the mangrove restoration sites on Tanakeke Island by Blue forests. Both images are courtesy of Blue Forests. I'M ALSO WAITING ON A MAP FROM AIS WITH THE VILLAGES AND THE SITES WE SAMPLED
-
-```{r Tanakeke, echo = FALSE, fig.show="hold", out.width="45%", results = "asis", fig.cap = '(ref:tanakeke) \\label{Tanakeke}'}
+```{r Tanakeke, echo = FALSE, fig.show="hold", out.width="45%", results = "asis", fig.cap = "A map of Tanakeke Island with village (desa) names (left). The right image shows the mangrove restoration sites on Tanakeke Island by Blue forests. Both images are courtesy of Blue Forests."}
 
 knitr::include_graphics("Tanakeke_Villages.png")
 knitr::include_graphics("Tanakeke_Sites.png")
@@ -104,30 +108,19 @@ knitr::include_graphics("Tanakeke_Sites.png")
 
 ## URUVs
 
-The study was conducted on Tanakeke Island in the Takalar Regency of South Sulawesi, Indonesia in the villages of Tompotanah and Lantangpeo (Fig AIS IS MAKING A MAP). In each village, mangroves were classified into three type: degraded, natural and EMR. EMR (Ecological Mangrove Restoration) refers to a low-cost, socially focused mangrove restoration method used by Blue Forests where local communities are involved in every step of the restoration process, and various mangrove replanting techniques are applied to the restoration site. Three drop sites were selected in each mangrove type in each village based on mangrove type, water depth, and permission from land owners. Further, cameras were placed next to vegetation because this reduced the likelihood of boat traffic knocking over camera stands. 
+The study was conducted on Tanakeke Island in the Takalar Regency of South Sulawesi, Indonesia in the villages of Tompotanah and Lantangpeo (Fig PETA_AIS). In each village, mangroves were classified into three type: degraded, natural and EMR. EMR (Ecological Mangrove Restoration) refers to a low-cost, socially focused mangrove restoration method used by Blue Forests where local communities are involved in every step of the restoration process, and various mangrove replanting techniques are applied to the restoration site [@brownCASESTUDYCommunity2014]. Three drop sites were selected in each mangrove type in each village based on mangrove type, water depth, and permission from land owners. Further, cameras were placed next to vegetation because this reduced the likelihood of boat traffic knocking over camera stands. 
 
-URUV methods followed standard BRUV methods outlined in LANGLOISE ET AL 2018 AND 2020 but bait was not used. GoPro SJCAM SJ4000 Action Camera 4K30fps WiFi Cameras were installed on a 1 meter-tall PVC pipe partially buried in the sediment. Two villages were sampled and three cameras were installed in each village in each mangrove type, a total of 18 sites (GIVE FIGURE, ASK AIS). The cameras were deployed horizontally to the ground with an additional 1 m PVC pipe extending parallel to the ground below the camera so that the length of that pipe was visible in the video. Tick marks spaced 10 cm apart were painted onto the pipe visible in the video. This allowed for a standardization of water visibility, as the number of ticks was counted for each video vile. Because this region experiences a wide tidal range, with mangrove forests being fully exposed to air at low tide, camera depths varied as they were deployed at high tide between the hours of 06:30 and 18:30 MAKE SURE THAT'S STILL TRUE to ensure sufficient sunlight and that the camera stayed fully submerged during the duration of filming. Cameras faced vegetation in all sites. Site locations were chosen based on low-boat traffic and consent of the landowner. Date, time of day, tide height, water height at location, weather, and water temperature were recorded at each data collection.
+URUV methods followed standard BRUV methods outlined in [@langloisFieldVideoAnnotation2020] but bait was not used. GoPro SJCAM SJ4000 Action Camera 4K30fps WiFi Cameras were installed on a 1 meter-tall PVC pipe partially buried in the sediment. Two villages were sampled and three cameras were installed in each village in each mangrove type, a total of 18 sites (PETA_AIS). The cameras were deployed horizontally to the ground with an additional 1 m PVC pipe extending parallel to the ground below the camera so that the length of that pipe was visible in the video. Tick marks spaced 10 cm apart were painted onto the pipe visible in the video. This allowed for a standardization of water visibility, as the number of ticks was counted for each video vile. Because this region experiences a wide tidal range, with mangrove forests being fully exposed to air at low tide, camera depths varied as they were deployed at high tide between the hours of 06:00 and 18:00 to ensure sufficient sunlight and that the camera stayed fully submerged during the duration of filming. Cameras faced vegetation in all sites. Site locations were chosen based on low-boat traffic and consent of the landowner. Date, time of day, tide height, water height at location, weather, and water temperature were recorded at each data collection.
 
-## Video Analysis > ALSO CHANGE BASED ON WHAT TYPES OF ANALYSES YOU RUN
+## Video Analysis
 
-Camera calibrationswere conducted by counting the number of tick marks visible on the extending PVC pipe. Videos were then cut to approximately one hour, starting from five minutes after the camera was set. Videos were watched manually on Windows Media Player and MaxN and T1st were counted and recorded for each fish species found on the video. Fish were identified down the lowest possible taxonomic level and crabs were identified at the family-level. Gastropods were not counted as video-clarity was not sufficient to get accurate counts. A sub-sample of images were cross checked in order to avoid misidentified fish species, and species were identified using BOOKS ON DROPBOX, ALLEN BOOOK ON UOUR SHELF. Further, we gathered input from members from both villages, Tompotanah and Lantangpeo, to collect locally-used names in the Makassar Language.
+Camera calibrations were conducted by counting the number of tick marks visible on the extending PVC pipe. Videos were then cut to approximately one hour, starting from five minutes after the camera was set. Videos were watched manually on Windows Media Player and MaxN and T1st were counted and recorded for each fish species found on the video. Fish were identified down the lowest possible taxonomic level and crabs were identified at the family-level. Gastropods were not counted as video-clarity was not sufficient to get accurate counts. A sub-sample of images were cross checked in order to avoid misidentified fish species, and species were identified using CITE DROPBOX BOOKS, BOOK ON SHELF. Further, we gathered input from members from both villages, Tompotanah and Lantangpeo, to collect locally-used names in the Makassar Language.
 
-THIS WILL CHANGE BASED ON WHAT YOU END UP REPORTING
-After video data was analyzed and fish species were identified and counted, data was analyzed using RStudio software (CITE). At each village and mangrove type, total fish, total species of fish, and Shannon’s Diversity Index (CITE) was calculated. We also conducted an ANOVA analysis on the mangrove type and village to see if habitat preference was significantly different for fish.
-
-TROPHIC ANALYSIS
+After video data was analyzed and fish species were identified and counted, data was analyzed using RStudio software [@rStudio]. At each village and mangrove type, total fish, total species of fish, Shannon’s Diversity Index and Simpson's Diversity Index [@magurranDiversityIndicesSpecies1988] was calculated. We then analyzed trends over time, as well as differences between the mangrove types with regards to fish diversity and assemblages. Finally, trophic scores were tabulated using information from FishBase [@FishBase] to determine if different mangrover types were supporting different components of marine food chains.
 
 # RESULTS
 
-START BY OUTLINE TOTAL DATA COLLECTED, # FISH SPECIES, %IDED TO SPECIES LEVEL, DAYS, TIDES, ETC.
-
-FIRST FIGURE (BESIDES MAP OF SITES) WILL BE TIME SERIES OF DATA
-    WE SEE A DIP IN DIVERSITY AROUND JUNE BUT NOT IN TOTAL NUMBER OF FISH FOUND
-    
-
-(ref:speciesfound) All animal groups found in video analysis. Village fishers were then asked for fish names used locally in the Makassar language. TO DO: FILL IN INDO NAME FOR MISSING, TAKE OUT NON-FISH, EXPLAIN LOCAL NAME MAY HAVE COME FROM TWO SOURCES
-
-```{r speciesFound, echo = FALSE, fig.show="hold", results = "asis", fig.cap = '(ref:speciesfound) \\label{speciesFound}'}
+```{r speciesFound, echo = FALSE, fig.show="hold", results = "asis"}
 
 
 ID_dataCLEAN <- ID_data %>%
@@ -144,7 +137,10 @@ ID_dataCLEAN <- ID_data %>%
 
 colnames(ID_dataCLEAN) <- c('Group Name','ID Level','Common Name (Eng)','Common Name (Ind)', 'Pulau Tanakeke Local Name', 'Locally Caught')
 
-kable(ID_dataCLEAN, caption = 'Animal groups identified. I WILL GET LOCAL NAMES SHORTLY', format = "latex", booktabs = TRUE) %>%
+kable(ID_dataCLEAN, caption = 'Animal groups identified, including local names used by villages in Tanakeke. Both members from Tompotanah (TMP) and Lantangpeo (LTP) were asked, so if answers differed, both were included in the local name.
+      \\\\** Fish group caught to be used as bait.
+      \\\\*** Fish group caught for decorative purposes.',
+      format = "latex", booktabs = TRUE) %>%
   kable_styling(latex_options = "striped") %>%
   kable_styling(latex_options = "HOLD_position") %>%
   landscape()
@@ -152,11 +148,9 @@ kable(ID_dataCLEAN, caption = 'Animal groups identified. I WILL GET LOCAL NAMES 
 
 ```
 
-In total, we identified 41 different animal groups, with 24 fish groups, 1 species of snake, 2 genuses of crab, and various species of shrimp (which were grouped together due to difficulty of identification). Of these, we were able to identify `r sum(ID_dataCLEAN == 'Species', na.rm = TRUE)` groups to the species level, `r sum(ID_dataCLEAN == 'Genus', na.rm = TRUE)` genusus, and `r sum(ID_dataCLEAN == 'Family', na.rm = TRUE)` group to the family level. After groups were identified down to their lowest taxonomic level, we asked fishers of both villages for the local name used for these fish (table \ref{speciesFound}). 
+In total, we identified 41 different animal groups, with 24 fish groups, 1 species of snake, 2 genuses of crab, and various species of shrimp (which were grouped together due to difficulty of identification). Of these, we were able to identify `r sum(ID_dataCLEAN == 'Species', na.rm = TRUE)` groups to the species level, `r sum(ID_dataCLEAN == 'Genus', na.rm = TRUE)` genuses, and `r sum(ID_dataCLEAN == 'Family', na.rm = TRUE)` groups to the family level. After groups were identified down to their lowest taxonomic level, we asked fishers of both villages for the local name used for these fish (Table \@ref(tab:speciesFound)). 
 
-Viewing the data in a time series, both diversity indices showed a low point in June, whereas the total MaxN for that month was among the highest (figure \ref{Timeseries}). This could indicate that June is a month with high fish counts, but may be dominated by only a few species.
-
-(ref:tanakeke) WRITE
+Viewing the data in a time series, both diversity indices showed a low point in June, whereas the total MaxN for that month was among the highest (Figure \@ref(fig:Timeseries)). This could indicate that June is a month with high fish counts, but may be dominated by only a few species.
 
 ```{r timeseriescalcs, echo = FALSE}
 
@@ -174,93 +168,171 @@ StackedBar <- URUV_data %>%
 
 ```
 
-```{r Timeseries, echo = FALSE, fig.show="hold", results = "asis", fig.cap = '(ref:timeseries) \\label{Timeseries}'}
+```{r Timeseries, echo = FALSE, fig.show="hold", results = "asis", fig.cap = "Montly counts of a) total MaxN among all animal groups found. b) Number of aninmal groups found, c) Shannon's Diversity Index, d) Simpson's Diversity Index"}
 
-ggplot(StackedBar, aes(fill=SITE_TYPE, y=MAXN_MEAN, x=MONTH)) + 
+p1 <- ggplot(StackedBar, aes(fill=SITE_TYPE, y=MAXN_MEAN, x=MONTH)) + 
     geom_bar(position="stack", stat="identity", color = "black") +
     xlab("Month") +
     ylab("Total MaxN") +
     theme_minimal() +
     scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
-                  labels = c("Destroyed","Restored", "Natural")) +
+                  labels = c("Destroyed","EMR", "Natural")) +
     theme(legend.title=element_blank()) +
-    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+    labs(title="a)")
 
-ggplot(StackedBar, aes(fill=SITE_TYPE, y=TOTSPECIES_MEAN, x=MONTH)) + 
+p2 <- ggplot(StackedBar, aes(fill=SITE_TYPE, y=TOTSPECIES_MEAN, x=MONTH)) + 
     geom_bar(position="stack", stat="identity", color = "black") +
     xlab("Month") +
-    ylab("Total Number of Groups") +
+    ylab("Total Number of Animal Groups") +
     theme_minimal() +
     scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
-                  labels = c("Destroyed","Restored", "Natural")) +
+                  labels = c("Destroyed","EMR", "Natural")) +
     theme(legend.title=element_blank()) +
-    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+    labs(title="b)")
 
-ggplot(StackedBar, aes(fill=SITE_TYPE, y=SHANNON_MEAN, x=MONTH)) + 
+p3 <- ggplot(StackedBar, aes(fill=SITE_TYPE, y=SHANNON_MEAN, x=MONTH)) + 
     geom_bar(position="stack", stat="identity", color = "black") +
     xlab("Month") +
     ylab("Shannon index") +
     theme_minimal() +
     scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
-                  labels = c("Destroyed","Restored", "Natural")) +
+                  labels = c("Destroyed","EMR", "Natural")) +
     theme(legend.title=element_blank()) +
-    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+    labs(title="c)")
 
-ggplot(StackedBar, aes(fill=SITE_TYPE, y=SIMPSON_MEAN, x=MONTH)) + 
+p4 <- ggplot(StackedBar, aes(fill=SITE_TYPE, y=SIMPSON_MEAN, x=MONTH)) + 
     geom_bar(position="stack", stat="identity", color = "black") +
     xlab("Month") +
     ylab("Simpson index") +
     theme_minimal() +
     scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
-                 labels = c("Destroyed","Restored", "Natural")) +
+                 labels = c("Destroyed","EMR", "Natural")) +
     theme(legend.title=element_blank()) +
-    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+    labs(title="d)")
+
+# grid.arrange(p1, p2, p3, p4, 
+#              ncol = 2, nrow = 2)
+
+library(patchwork)
+
+p1 + p2 + p3 + p4 + plot_layout(guides = "collect", ncol = 2)
 
 ```
 
-```{r June}
+
+```{r June, eval = FALSE}
 
 june <- URUV_data %>%
-  dplyr::filter(MONTH == 'JUNE') %>%
-  dplyr::select()
+  filter(MONTH == 'JUNE') %>%
+  select(MONTH, DATE, DESA, contains("MAXN_"), -MAXN_TOTAL) %>%
+  pivot_longer(cols = contains("MAXN_"),
+               names_to = 'Species',
+               values_to = 'Count')
+dominentJune <- june %>%
+  group_by(Species) %>%
+  summarize(Sum = sum(Count)) %>%
+  filter(Sum >=10)
+
+ggplot(june, aes(x = Species, y = Count)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+ggplot(dominentJune, aes(x = Species, y = Sum)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+#FishF, GuppyBoth, mudcrab, unid juvenile
+
+cardinals <- URUV_data %>%
+  select(MONTH, DATE, DESA, MAXN_FISHF, MAXN_GUPPYBOTH) %>%
+  pivot_longer(cols = c(MAXN_FISHF, MAXN_GUPPYBOTH),
+               names_to = 'FISH',
+               values_to = 'COUNT')
+
+ggplot(cardinals, aes(x = MONTH, y = COUNT)) +
+  geom_col() +
+  facet_wrap(~FISH, ncol = 1) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+  
+```
+
+Next, as mangrove replanting efforts on Tanakeke could be benefiting local fish communities, we calculated the Shannon Diversity Index, Simpson Diversity Index, overall MaxN, and total number of fish species found in each site. However, our results did not suggest a significant relationship between site type and fish abundance and diversity  (Figure \@ref(fig:DivAb)). We also tested the proportion of occurrences of each species in each site type to indicate where species tended to prefer to inhabit. Here, a stronger relationship was uncovered where more species actually seemed to prefer the EMR sites over the destroyed or natural sites (Figure \@ref(fig:habitatPreference)). 
+
+```{r DivAb, echo = FALSE, fig.show="hold", results = "asis", fig.cap = "Mean and standard deviation of a) total MaxN among all animal groups found. b) Number of aninmal groups found, c) Shannon's Diversity Index, d) Simpson's Diversity Index in each mangrove type"}
+# make 4 panel graph of shannon/simpson/maxtot/tot species
+shannon <- URUV_data %>%
+      group_by(SITE_TYPE) %>%
+      summarise(AVG = mean(SHANNON_DIV),
+                SD = sd(SHANNON_DIV))
+
+simpson <- URUV_data %>%
+      group_by(SITE_TYPE) %>%
+      summarise(AVG = mean(SIMPSON_DIV),
+                SD = sd(SIMPSON_DIV))
+
+totaln <- URUV_data %>%
+      group_by(SITE_TYPE) %>%
+      summarise(AVG = mean(MAXN_TOTAL),
+                SD = sd(MAXN_TOTAL))
+
+totalspec <- URUV_data %>%
+      group_by(SITE_TYPE) %>%
+      summarise(AVG = mean(NO_ALLSPECIES),
+                SD = sd(NO_ALLSPECIES))
+
+p1 <- ggplot(data=totaln, aes(x=SITE_TYPE, y = AVG, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      geom_errorbar( aes(x=SITE_TYPE, ymin=AVG-SD, ymax=AVG+SD)) +
+      xlab("Mangrove Type") +
+      ylab("Total MaxN") +
+      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Destroyed","EMR", "Natural")) +
+      theme(legend.title=element_blank())
+
+p2 <- ggplot(data=totalspec, aes(x=SITE_TYPE, y = AVG, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      geom_errorbar( aes(x=SITE_TYPE, ymin=AVG-SD, ymax=AVG+SD)) +
+      xlab("Mangrove Type") +
+      ylab("Total Species") +
+      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Destroyed","EMR", "Natural")) +
+      theme(legend.title=element_blank())
+
+p3 <- ggplot(data=shannon, aes(x=SITE_TYPE, y = AVG, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      geom_errorbar( aes(x=SITE_TYPE, ymin=AVG-SD, ymax=AVG+SD)) +
+      xlab("Mangrove Type") +
+      ylab("Shannon's Diversity Index") +
+      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Destroyed","EMR", "Natural")) +
+      theme(legend.title=element_blank())
+      
+p4 <- ggplot(data=simpson, aes(x=SITE_TYPE, y = AVG, fill = SITE_TYPE)) +
+      geom_bar(stat="identity", color = "black") +
+      geom_errorbar( aes(x=SITE_TYPE, ymin=AVG-SD, ymax=AVG+SD)) +
+      xlab("Mangrove Type") +
+      ylab("Simpson's Diversity Index") +
+      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
+      theme_minimal() +
+      scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
+                    labels = c("Destroyed","EMR", "Natural")) +
+      theme(legend.title=element_blank())
+      
+p1 + p2 + p3 + p4 + plot_layout(guides = "collect", ncol = 2)
 
 ```
 
-\newpage
-
-# Possible other analyses
-
-This section is mostly for you Easton, but I tried some other analyses just to try something so let me know what you think.
-
-```{r intermonthVAR, fig.cap = "I know the presentation of this data is ugly but these were calculations of intermonth variability in response variables at each site"}
-
-monthlyVar <- StackedBar %>%
-  dplyr::group_by(SITE_TYPE) %>%
-  dplyr::summarise(maxn = mean(MAXN_MEAN),
-                   maxnsd = sd(MAXN_MEAN),
-                   totspecies = mean(TOTSPECIES_MEAN),
-                   totspeciessd = sd(TOTSPECIES_MEAN),
-                   shannon = mean(SHANNON_MEAN),
-                   shannonsd = sd(SHANNON_MEAN),
-                   simpson = mean(SIMPSON_MEAN),
-                   simpsonsd = sd(SIMPSON_MEAN)) %>%
-  dplyr::mutate(maxnVAR = maxn/maxnsd,
-                totspeciesVAR = totspecies /totspeciessd ,
-                shannonVAR = shannon/shannonsd,
-                simpsonVAR = simpson/simpsonsd) %>%
-  select(SITE_TYPE, maxnVAR, totspeciesVAR, shannonVAR, simpsonVAR) %>%
-  tidyr::pivot_longer(cols = c(maxnVAR, totspeciesVAR, shannonVAR, simpsonVAR),
-               names_to = 'VAR',
-               values_to = 'Value'
-               )
-
-
-ggplot(monthlyVar, aes(fill = SITE_TYPE, y = Value, x = VAR)) + 
-    geom_bar(position="dodge", stat="identity")
-
-```
-
-```{r habitatPreference, fig.cap = 'habitat preference. This calculates the proportion of each species that were found in each site type. Most species seem to actally prefer the EMR sites, indicating a possible transition period?'}
+```{r habitatPreference, fig.cap = 'Habitat preference of each fish group. This is the proportion of each group that were found in each site type.'}
 
 #TotalMaxN and Shannon's Diversity for each observation
 dontInclude <- c("UNIDGUPPY", "PIPEFISH", "TOTAL", 'UNIDJUVENILE')
@@ -300,81 +372,7 @@ ggplot(data=preference_dataframe, aes(x=SITE_TYPE, y=totProps, fill = SITE_TYPE)
       theme(legend.title=element_blank())
 ```
 
-```{r monthPreference, fig.cap = "month preference. This calculates the proportion of each species that were found in each month. June and september was a low month for a lot of species, but we see higher preferences for March, April, and July. I don't know why R put in the rest of the months of the year but I will remove if this ever gets used"}
-
-#TotalMaxN and Shannon's Diversity for each observation
-dontInclude <- c("UNIDGUPPY", "PIPEFISH", "TOTAL", 'UNIDJUVENILE')
-
-preference_dataframe <- data.frame(MONTH = factor(c("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"), levels = c("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER")))
-
-# for(i in 1:nrow(URUV_data)){
-#   species_counts <- c()
-#   k <- 1
-  for(j in 1:ncol(URUV_data)){
-    if(grepl(paste(dontInclude, collapse = "|"), colnames(URUV_data[j])) == FALSE & grepl("MAXN", colnames(URUV_data[j]))){
-      tot_obs <- sum(URUV_data[,j])
-      calc_df <- data.frame(MONTH = URUV_data$MONTH,
-                            SPECIES = URUV_data[,j])
-      prop <- calc_df %>%
-        group_by(MONTH)%>%
-        dplyr::summarise(!!paste0('prop_',colnames(URUV_data[j])) := (sum(SPECIES)/tot_obs))
-      
-      preference_dataframe <- left_join(preference_dataframe, prop, by = 'MONTH')
-    }
-  }
-
-preference_dataframe$totProps <- rowSums(preference_dataframe[,2:ncol(preference_dataframe)])
-
-ggplot(data=preference_dataframe, aes(x=MONTH, y=totProps)) + #, fill = SITE_TYPE)) +
-      geom_bar(stat="identity", color = "black") +
-      xlab("Mangrove Type") +
-      ylab("Index") +
-      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
-      theme_minimal() 
-      # scale_fill_manual(values = c("#b41515", "#ffff00", "#0http://127.0.0.1:40655/graphics/37954335-2f66-4628-93b3-18c447570c3d.png474c4"),
-      #               labels = c("Destroyed","EMR", "Natural")) +
-      # theme(legend.title=element_blank())
-```
-
-```{r villagePreference, fig.cap = 'Village preference. This calculates the proportion of each species that were found in each Village. A larger proportion of each species were found in Tompotana'}
-
-#TotalMaxN and Shannon's Diversity for each observation
-dontInclude <- c("UNIDGUPPY", "PIPEFISH", "TOTAL", 'UNIDJUVENILE')
-
-preference_dataframe <- data.frame(DESA = as.factor(c("LANTANGPEO", "TOMPOTANA")))
-
-#URUV_data$DESA <- factor(URUV_data$DESA)
-
-# factor(URUV_data$SITE_TYPE, levels = c("D", "E", "L"))
-
-# for(i in 1:nrow(URUV_data)){
-#   species_counts <- c()
-#   k <- 1
-  for(j in 1:ncol(URUV_data)){
-    if(grepl(paste(dontInclude, collapse = "|"), colnames(URUV_data[j])) == FALSE & grepl("MAXN", colnames(URUV_data[j]))){
-      tot_obs <- sum(URUV_data[,j])
-      calc_df <- data.frame(DESA = URUV_data$DESA,
-                            SPECIES = URUV_data[,j])
-      prop <- calc_df %>%
-        group_by(DESA)%>%
-        dplyr::summarise(!!paste0('prop_',colnames(URUV_data[j])) := (sum(SPECIES)/tot_obs))
-      
-      preference_dataframe <- left_join(preference_dataframe, prop, by = 'DESA')
-    }
-  }
-
-preference_dataframe$totProps <- rowSums(preference_dataframe[,2:ncol(preference_dataframe)])
-
-ggplot(data=preference_dataframe, aes(x=DESA, y=totProps)) +
-      geom_bar(stat="identity", color = "black") +
-      xlab("Mangrove Type") +
-      ylab("Index") +
-      #geom_text(aes(label=SHANNON_AVG), vjust=-0.3, size=3.5) +
-      theme_minimal()
-      # scale_fill_manual(values = c("#b41515", "#ffff00", "#0474c4"),
-      #               labels = c("Destroyed","EMR", "Natural")) +
-      # theme(legend.title=element_blank())
-```
+After identifying fish groups, we used the trophic score reported by FishBase for that species or genus to calculate the trophic level of fish that were found in each site(Figure \@ref(fig:trophicLevel)). Here, we found that the EMR sites had a higher proprotion of fish of higher tropics levels when compared to the destructed or natural sites, which were more balanced across the foodweb.
 
 ```{r trophicLevel, fig.cap = 'Again, I acknowledge that this is not the best way to present this information but I was looking into the trophic level supported by each site type'}
 
@@ -400,16 +398,49 @@ for(i in 1:nrow(URUV_data)){
     }
   }
 }
+
+trophicDF <- trophicDF %>%
+  mutate(SITE_TYPE = case_when(
+    SITE_TYPE == 'D' ~ 'Destroyed',
+    SITE_TYPE == 'E' ~ 'EMR',
+    SITE_TYPE == 'L' ~ 'Natural'
+  ))
   
 # hist(trophicDF$TSCORE[trophicDF$SITE_TYPE == 'D']) 
 # hist(trophicDF$TSCORE[trophicDF$SITE_TYPE == 'E']) 
 # hist(trophicDF$TSCORE[trophicDF$SITE_TYPE == 'L']) 
 
+# aes(y = after_stat(count / sum(count)))
+
+# ggplot(trophicDF, aes(x = TSCORE)) +
+#   geom_histogram(binwidth = 1) +
+#   facet_wrap(~SITE_TYPE, ncol = 1)
+
 ggplot(trophicDF, aes(x = TSCORE)) +
-  geom_histogram() +
-  facet_wrap(~SITE_TYPE, ncol = 1)
+  geom_histogram(aes(y = after_stat(count / sum(count))), binwidth = 0.5) +
+  facet_wrap(~SITE_TYPE, ncol = 1) +
+  xlab('T Score') +
+  ylab('Proportion')
   
 ```
+
+# DISCUSSION
+
+@zuermgassenMangrovesSupportEstimated2025 has esstimated that mangroves support an annual abundance of over 700 biullion jivenile fish and invertebrates, and this study only incorporated targeted species. Although our findings didn't demonstrate a clear statistical relationship between habitat type and fish abundance or biodiversity, we were able to characterize the fish species that inhabit these regions, as well as which species were of interest to the local community. Further, as June was a month with high fishcounts yet low diversity, this could indicate a possible breeding season as most of these fish were either cardinal fish, or unidentifiable juveniles. The benefits of mangroves to juvenile fish are known but hard to quantify. Large-scale studies have demonstrated juvenile fish prefer mangrove habitats, even over other ares such as mudflats or seagrass [@laegdsgaardMangrovesEasternAustralia1995; @nagelkerkenEvaluationNurseryFunction2009; zuermgassenMangrovesSupportEstimated2025]. @laegdsgaardMangrovesEasternAustralia1995 also found that most of these juveniles are actually not permanent residents of mangroves, residing there primarily in summer months and moving on to other habitats after a summer growth period in mangroves. This is consistent with our findings, where the spike in fish counts in June could be attributed to large counts of juvenile fish. However, habitat preference is influenced by many factors, and growing research suggests that the preference for structural complexity versus the shade benefits of mangroves is different depending on the fish species [@cocheretdelamoriniereWhatAttractsJuvenile2004; @iguluMangroveHabitatUse2014]. This could possibly explain why higher counts of fish were recorded at EMR sites vs the natural or destroyed mangroves; tidal patterns, shade, and benthic and water chemistry may also be factors in fish habitat preference. Mangrove destruction and fragmentation has been demonstrated to have negative impacts specifically on juvenile assemblages [@zuermgassenMangrovesSupportEstimated2025]. However, although video data may be the best method for studying juvenile assemblages, identifying juveniles from video analysis alone is difficult and certainly a challenge in this study. Stereo-BRUVS or stereo-URUVS, which are video techniques that set two, inward facing cameras to get size estimations of fish, offer one potential opportunity to better study these assemblages [@piggottRemoteVideoMethods2020].
+
+<!-- JUVENILES: 5 IN DESTROYED, 194 IN EMR, 25 IN LUSH -->
+
+EMR sites showed slightly different dynamics from both the destroyed and natural sites, indicating these areas may be in a temporary imbalance, as most fish species actually preferred these sites, and these areas had a higher proportion of fish with higher trophic scores. As mangroves regrow and the local ecosystem transitions from open water with sandy and rocky benthos to areas with vegitation and SILTY WATER BOTTOMS, the local fauna may be in transition as well. This is especially important on Tanakeke, where substrate contents, tidal patterns, and natural lack of mangrove diversity actually make restoration particularly challenging CITATION SPECIFIC TO TANAKEKE [@cameronEstimatingFullGreenhouse2019; @kusumaningtyasCarbonSequestrationPotential2022]. This can influence not only the efficacy of restoration efforts, but also the ecosystem function of mangroves as they regrow [@cameronHydroperiodSoilMoisture2019].
+
+Although we were unable to show statistical significance in the difference in fish biodiversity among different mangrove sites on Tanakeke, the benefits of mangroves to local communities and local biodiversity is a WELL SUPPORTED SOMETHING. HERE TALK ABOUT BROWN ET AL AND THEIR APPROACH. ALSO WOMANGROVE ARTICLES
+It is difficult to fully quantify the benefits of mangroves to fisheries. Fisheries themselves are usually classified by the catch, not the ecosystems they rely on so understanding the full benefits of mangroves on fish is difficult to encompass at large scale due to the multi-dimensionality of benefits and the lack of coherent data [@searyDefiningMangrovefisheriesTypology2021]. Because of this, mangroves are often under-valuated and converted to other land uses CITATION 52 IN searyDefiningMangrovefisheriesTypology2021. 
+
+As many studies have found that the majority of tropical fish species benefit from mangroves at some point in their life cycle, we think that our lack of statistical relationships between sites could be due to sampling design. Sites were selected based on habitat type, but the actual placement of the URUVs was INFLUENCED by other factors such as explicit permission from the landowner and the sites needed to be accessible from the boat and have clear video coverage of the area (i.e. extremely dense mangrove forests that couldn't be accessed or too dark for the video footage). Further, even in destroyed sites, cameras had to be placed near vegetation in order to avoid boat and foot traffic that could influence the fish behavior and location while filming. Further, due to funding  and resource availability, we were only able to collect data for 8 months, whereas a full year of data could paint a more robust picture of fish behavior and preference.
+
+This study provides a knowledge base for the fish diversity in mangrove forests of Tanakeke Island, Indonesia. Since mangrove restoration is a critical undertaking, especially in Indonesia, this study serves as baseline understanding of fishery and mangrove function on Tanakeke. Long-term monitoring of restored mangroves has helped quantify the long-term economic benefits and environmental services of mangroves [@wirabuanaMangrovesFaunaCompositions2025]. Conducting long-term surveys of fish assemblages in this ear could help better quantify the lasting impacts of restoration efforts. MORE LONG TERM STUFF
+
+# ACKNOWLEDGEMENTS
+I'll make this better just making sure I get everyone: Andrea, Fajarin, Anggi, Surastri, Suhpi, Uci, Asfi, Blue Forests, Piper, Olivia, Tofi
 
 \newpage
 
